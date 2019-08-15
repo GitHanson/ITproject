@@ -1,0 +1,3 @@
+This project will be consisting of the development of the family artifacts register, particularly in the Android mobile device system. The project is estimated to be completed by late November, 2019*. The modules of the register would be including a log on/ log in system; a cloud database for artifacts information storation; tagging and searching system; relationship illustration of family members (generation tree) with personal information, and a basic ¡°favorite¡± system. 
+
+*the actual time requires further confirm until week4 workshop (2019AUG14) 
