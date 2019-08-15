@@ -12,7 +12,7 @@ This is the project repo of the IT Project subject
 Contents:
 
 - Chenghan Li (Hanson) 900581 chenghanl@student.unimelb.edu.au
-- Xudong Zhang
+- Xudong Zhang 901065 xudongz1@student.unimelb.edu.au
 - Hao Liu
 - Kevin Liang 
 
