@@ -6,11 +6,11 @@
 
 - consisting of # of modules, and by the time (end of October)
 - The demo is required in November
-- offentification system — log in/out features
+- authentication system — log in/out features
 - Storage - 
-- what type of docs are we storings
+- what type of docs are we storing
 - tagging and searching — what kind of search? (concrete/date/...)
-  - make an aggreement
+  - make an agreement
 - Suggestion: negotiate with the client
 
 
@@ -18,9 +18,9 @@
 - Scope is from the requirement — we NEED a requirement list!!!!
 - it would be better to write a project background
   - Pink point: client wants but not existing in the industry
-  - why is choosing the system: introdcution
+  - why is choosing the system: introduction
   - role description
-    - Aigile — 2 main roles
+    - Agile — 2 main roles
     - Focus more on the programming and the testing
   - product backlog: **user stories**
 - **PRODUCT BACKLOG**
