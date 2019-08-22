@@ -130,6 +130,7 @@ Improvement:
   - 
 
 - sprint planning
+<<<<<<< HEAD
 
   - define our sprint goal
 
@@ -137,6 +138,11 @@ Improvement:
 
   - 1. Estimate item of story — define how big is the story
 
+=======
+  - define our sprint goal
+  - estimate the user story at the product backlog
+  - 1. Estimate item of story — define how big is the story
+>>>>>>> 98cd5290fe0b2c067f21aae56f662639ed32f34a
        1. planning poker — need everyone to do so 
           1. assigning number to the user story
           2. n hour of work for 1 person
@@ -178,6 +184,7 @@ Improvement:
                 1. present things that is visible
                 2. Enough for us to test the user story
 
+<<<<<<< HEAD
        - 
 
        1. **base project**
@@ -190,3 +197,5 @@ Improvement:
 
           ****
 
+=======
+>>>>>>> 98cd5290fe0b2c067f21aae56f662639ed32f34a
