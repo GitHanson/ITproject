@@ -110,7 +110,7 @@ Improvement:
                1. put into the acceptance criteria
                2. dont have to focus on the type of users
 
-   5. **rename the google frive**
+   5. **rename the google drive**
 
    6. team profile (**folders**)
 
@@ -119,3 +119,78 @@ Improvement:
       1. only in **requirement list**
 
       
+
+### 0822
+
+- product backlog, degital design, git repo set up, architecture design
+- finalise architecture design **by end of next week**
+- things to follow:
+  - agile process — slice 3 of ppt
+  - now we are at: based on Product backlog, do the Sprint Backlog
+  - 
+
+- sprint planning
+
+  - define our sprint goal
+
+  - estimate the user story at the product backlog
+
+  - 1. Estimate item of story — define how big is the story
+
+       1. planning poker — need everyone to do so 
+          1. assigning number to the user story
+          2. n hour of work for 1 person
+          3. not assigning a continous number
+          4. we use **Fibonacci** number: 1,2,3,5,8,..
+          5. "scrum poker link"
+       2. After finish planing, for each sprint we need to take user story from PB to SB
+          1. need to break down user story to **story point**
+             1. front end task
+             2. Back end task
+             3. testing task
+          2. "what is the proper number of the user story to take to the SB"
+             1. have a formula for the first sprint
+             2. e.g. 10hr per week — how many things could be conducted within the time
+             3. not using formula after sprint 1
+             4. we see the actual time and change the time (e.g. 45 hrs)
+             5. assign the task to the **person**
+             6. at the **trello board** 
+                1. **scrum master** set the task and the estimated finished time
+             7. could be small task pieces
+             8. as long as the tasks are related to the user story
+             9. estimation for the class
+             10. assigner: **reporter**: feedback and evaluation
+             11. accpentance quiteria
+       3. **sprint planning** is needed at the board
+          1. finished before the sprint
+             1. **before week 6**
+             2. week 6-9 finish all the
+          2. "what is working, what needs to be improved"
+             1. Start doing
+             2. Stop doing
+             3. continue doing
+       4. **sprint review** — show case meeting — with client
+          1. represent to the client what we have achieved
+          2. since have not much development:
+             1. represent to the digital prototype
+             2. collect info from the client
+             3. since the client have no technical background:
+                1. present things that is visible
+                2. Enough for us to test the user story
+
+       - 
+
+       1. **base project**
+
+          1. ""hello world""
+
+       2.  **folder name**
+
+          1. modified to "digital design"
+
+       3. priorities
+
+       4. acceptance criteria
+
+          ****
+
