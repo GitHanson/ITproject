@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "743540843386",
+    "firebase_url": "https://quickstart-auth-4f3b4.firebaseio.com",
+    "project_id": "quickstart-auth-4f3b4",
+    "storage_bucket": "quickstart-auth-4f3b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743540843386:android:e62f55e4b3d03899",
+        "android_client_info": {
+          "package_name": "com.example.randomiser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743540843386-3dk7g7sqes648l6ubmri4shpiqobq07c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR2w5XJDCqlQH8WMK3lpEFLzu6mRkAs_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743540843386-3dk7g7sqes648l6ubmri4shpiqobq07c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
