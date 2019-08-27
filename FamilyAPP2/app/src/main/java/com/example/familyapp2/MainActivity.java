@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null) {
+                if(mAuth.getCurrentUser() != null) {
+                    Toast.makeText(MainActivity.this, "You are logged in", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(i);
                 }
@@ -83,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Problem signing in. Try again", Toast.LENGTH_SHORT).show();
-                    }/*
+                    }
                     else {
                         Intent i = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(i);
-                    }*/
+                    }
                 }
             });
         }

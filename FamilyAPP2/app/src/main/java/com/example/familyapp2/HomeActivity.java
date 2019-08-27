@@ -1,13 +1,16 @@
 package com.example.familyapp2;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -46,6 +49,15 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 }
