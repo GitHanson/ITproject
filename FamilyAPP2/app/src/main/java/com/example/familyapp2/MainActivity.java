@@ -57,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 startSignIn();
             }
         });
+
+        ImageButton forgotBtn = findViewById(R.id.forgotButton);
+        forgotBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ForgotPwdActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

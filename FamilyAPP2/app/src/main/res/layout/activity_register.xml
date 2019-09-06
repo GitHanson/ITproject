@@ -30,7 +30,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColorHint="#ffffff"
         android:theme="@style/MyEditText"
         app:layout_constraintBottom_toBottomOf="parent"
