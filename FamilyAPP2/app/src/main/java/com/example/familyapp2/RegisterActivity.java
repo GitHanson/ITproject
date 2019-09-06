@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText userName, emailID, password, confirmation;
+    //private EditText userName, emailID, password, confirmation;
+    private EditText emailID, password, confirmation;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUsers;
 
@@ -33,12 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        userName = findViewById(R.id.editTextUsername);
+        //userName = findViewById(R.id.editTextUsername);
         emailID = findViewById(R.id.editTextEmail);
         password = findViewById(R.id.editTextPassword);
         confirmation = findViewById(R.id.editTextConfirm);
 
-        Button registerBtn = findViewById(R.id.button);
+        ImageButton registerBtn = findViewById(R.id.registerButton);
         registerBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -48,15 +50,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        final String name = userName.getText().toString();
+        //final String name = userName.getText().toString();
         final String email = emailID.getText().toString();
         final String pwd = password.getText().toString();
         String confirm = confirmation.getText().toString();
-        if(name.isEmpty()) {
-            userName.setError("Please enter a username");
-            userName.requestFocus();
-        }
-        else if(email.isEmpty()) {
+//        if(name.isEmpty()) {
+//            userName.setError("Please enter a username");
+//            userName.requestFocus();
+//        }
+        if(email.isEmpty()) {
             emailID.setError("Please enter your email");
             emailID.requestFocus();
         }
@@ -87,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     else {
                         String userID = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDB = databaseUsers.child(userID);
-                        currentUserDB.child("name").setValue(name);
+                        //currentUserDB.child("name").setValue(name);
                         currentUserDB.child("image").setValue("default");
 
                         Toast.makeText(RegisterActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
