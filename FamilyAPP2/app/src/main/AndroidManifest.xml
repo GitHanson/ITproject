@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ForgotPwdActivity"></activity>
+        <activity android:name=".JoinFamilyActivity"></activity>
+        <activity android:name=".ForgotPwdActivity" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
