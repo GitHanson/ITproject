@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ForgotPwdActivity"
-    android:background="@drawable/ic_background4">
+    android:background="@drawable/background3">
 
     <ImageView
         android:id="@+id/forgotText"
