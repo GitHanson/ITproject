@@ -3,11 +3,19 @@ package com.example.familyapp2;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.familyapp2.fragment.HomeFragment;
+import com.example.familyapp2.fragment.LikeFragment;
+import com.example.familyapp2.fragment.MeFragment;
+import com.example.familyapp2.fragment.TreeFragment;
+import com.example.familyapp2.fragment.UploadFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +23,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView mTextMessage;
+    private FragmentManager fragmentManager;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -23,19 +32,24 @@ public class HomeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    changeFragment(new HomeFragment(), true);
+                    //mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_tree:
-                    mTextMessage.setText(R.string.title_tree);
+                    changeFragment(new TreeFragment(), true);
+                    //mTextMessage.setText(R.string.title_tree);
                     return true;
                 case R.id.navigation_upload:
-                    mTextMessage.setText(R.string.title_upload);
+                    changeFragment(new UploadFragment(), true);
+                    //mTextMessage.setText(R.string.title_upload);
                     return true;
                 case R.id.navigation_like:
-                    mTextMessage.setText(R.string.title_like);
+                    changeFragment(new LikeFragment(), true);
+                    //mTextMessage.setText(R.string.title_like);
                     return true;
                 case R.id.navigation_me:
-                    mTextMessage.setText(R.string.title_me);
+                    changeFragment(new MeFragment(), true);
+                    //mTextMessage.setText(R.string.title_me);
                     return true;
             }
             return false;
@@ -50,6 +64,11 @@ public class HomeActivity extends AppCompatActivity {
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //initial fragmentManager
+        fragmentManager = getSupportFragmentManager();
+        //change fragment
+        changeFragment(new HomeFragment(), false);
+
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +77,16 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    // transfer between fragments
+    public void changeFragment(Fragment fragment, boolean isInit) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fl_container, fragment);
+        if (!isInit) {
+            transaction.addToBackStack(null);
+        }
+        transaction.commit();
     }
 
 }
