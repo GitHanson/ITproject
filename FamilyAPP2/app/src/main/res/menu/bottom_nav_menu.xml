@@ -17,9 +17,9 @@
         android:title="UPLOAD"/>
 
     <item
-        android:id="@+id/navigation_like"
+        android:id="@+id/navigation_category"
         android:icon="@mipmap/bt_like_btn"
-        android:title="LIKE"/>
+        android:title="CATEGORY"/>
 
     <item
         android:id="@+id/navigation_me"

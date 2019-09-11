@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.familyapp2.fragment.HomeFragment;
-import com.example.familyapp2.fragment.LikeFragment;
+import com.example.familyapp2.fragment.CategoryFragment;
 import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.TreeFragment;
 import com.example.familyapp2.fragment.UploadFragment;
@@ -19,10 +19,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
-    private TextView mTextMessage;
+    //private TextView mTextMessage;
     private FragmentManager fragmentManager;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -43,8 +42,8 @@ public class HomeActivity extends AppCompatActivity {
                     changeFragment(new UploadFragment(), true);
                     //mTextMessage.setText(R.string.title_upload);
                     return true;
-                case R.id.navigation_like:
-                    changeFragment(new LikeFragment(), true);
+                case R.id.navigation_category:
+                    changeFragment(new CategoryFragment(), true);
                     //mTextMessage.setText(R.string.title_like);
                     return true;
                 case R.id.navigation_me:
@@ -61,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
+        //mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //initial fragmentManager

@@ -1,7 +1,5 @@
 package com.example.familyapp2;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ViewUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -12,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.familyapp2.fragment.HomeFragment;
-import com.example.familyapp2.fragment.LikeFragment;
+import com.example.familyapp2.fragment.CategoryFragment;
 import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.TreeFragment;
 import com.example.familyapp2.fragment.UploadFragment;
@@ -49,7 +47,7 @@ public class Home2Activity extends FragmentActivity implements RadioGroup.OnChec
                 changeFragment(new UploadFragment(), true);
                 break;
             case R.id.home_like:
-                changeFragment(new LikeFragment(), true);
+                changeFragment(new CategoryFragment(), true);
                 break;
             case R.id.home_me:
                 changeFragment(new MeFragment(), true);
