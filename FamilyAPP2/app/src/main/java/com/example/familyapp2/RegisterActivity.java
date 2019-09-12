@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ImageButton;
@@ -93,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                         currentUserDB.child("image").setValue("default");
 
                         Toast.makeText(RegisterActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(i);
                     }
                 }
