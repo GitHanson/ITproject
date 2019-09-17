@@ -31,10 +31,14 @@ import com.google.firebase.storage.UploadTask;
 
 public class UploadArtifactActivity extends AppCompatActivity {
 
-    private Button selectFile, upload;
-    private TextView notification;
+    public static final String PDFFORMAT = "application/pdf";
+    public static final String IMAGEFORMAT = "images/*";
+
+    private Button selectFile, upload, pdfButton, imageButton;
+    private TextView notification, fileType;
     private Uri pdfUri;
     private ProgressBar bar;
+    private String format;
 
     private StorageReference mStorageRef;
     private DatabaseReference databaseArtifacts;
@@ -46,10 +50,29 @@ public class UploadArtifactActivity extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
+        fileType = findViewById(R.id.textView2);
+        pdfButton = findViewById(R.id.pdfButton);
+        imageButton = findViewById(R.id.imageButton);
         selectFile = findViewById(R.id.select);
         upload = findViewById(R.id.upload);
         notification = findViewById(R.id.textView);
         bar = findViewById(R.id.progressbar);
+
+        pdfButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fileType.setText("PDF format selected");
+                format = PDFFORMAT;
+            }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fileType.setText("image format selected");
+                format = IMAGEFORMAT;
+            }
+        });
 
         selectFile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,10 +147,19 @@ public class UploadArtifactActivity extends AppCompatActivity {
     }
 
     private void selectPDF() {
-        Intent intent = new Intent();
-        intent.setType("application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 86);
+        if(format.isEmpty()) {
+            Toast.makeText(UploadArtifactActivity.this, "Please select file type", Toast.LENGTH_SHORT).show();
+        } else if (format.equals(PDFFORMAT)){
+            Intent intent = new Intent();
+            intent.setType(format);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, 86);
+        } else if (format.equals(IMAGEFORMAT)) {
+            Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 86);
+        } else {
+            return;
+        }
     }
 
     @Override
