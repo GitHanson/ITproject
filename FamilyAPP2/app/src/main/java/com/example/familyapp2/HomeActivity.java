@@ -39,8 +39,11 @@ public class HomeActivity extends AppCompatActivity {
                     //mTextMessage.setText(R.string.title_tree);
                     return true;
                 case R.id.navigation_upload:
-                    changeFragment(new UploadFragment(), true);
+                    //changeFragment(new UploadFragment(), true);
                     //mTextMessage.setText(R.string.title_upload);
+                    Intent upload = new Intent(HomeActivity.this, ShareActivity.class);
+                    startActivity(upload);
+                    break;
                     return true;
                 case R.id.navigation_category:
                     changeFragment(new CategoryFragment(), true);
@@ -76,6 +79,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+/*
+        findViewById(R.id.upload_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent upload = new Intent(HomeActivity.this, UploadArtifactActivity.class);
+                startActivity(upload);
+            }
+        });*/
     }
 
     // transfer between fragments
