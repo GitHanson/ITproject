@@ -60,14 +60,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+/*
         findViewById(R.id.upload_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent upload = new Intent(HomeActivity.this, UploadArtifactActivity.class);
                 startActivity(upload);
             }
-        });
+        });*/
     }
-
 }

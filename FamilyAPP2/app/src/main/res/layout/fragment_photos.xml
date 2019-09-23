@@ -1,101 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <RelativeLayout
+    <Button
+        android:id="@+id/btn_choose_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose file" />
+
+    <EditText
+        android:id="@+id/et_photo_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_toEndOf="@+id/btn_choose_photo"
+        android:layout_toRightOf="@+id/btn_choose_photo"
+        android:hint="enter file name" />
+
+    <ImageView
+        android:id="@+id/iv_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_above="@id/progress"
+        android:layout_below="@id/et_photo_name"
+        android:layout_marginTop="16dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Documents Page"
-            android:textColor="@color/orange"
-            android:textSize="30dp"
-            android:textStyle="bold"/>
+    <Button
+        android:id="@+id/btn_upload_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="upload" />
 
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_upload_photo"
+        android:layout_alignBottom="@id/btn_upload_photo"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_toEndOf="@id/btn_upload_photo"
+        android:layout_toRightOf="@id/btn_upload_photo"
+        android:gravity="center"
+        android:text="Show Uploads"
+        android:textSize="16sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <RelativeLayout
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_upload_photo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="16dp" />
 
-        <include layout="@layout/photo_top_toolbar"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/take_photo"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:text="@string/take_photo"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gallery"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/gallery"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="100"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="60">
-
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/galleryImageView"
-                    android:scaleType="centerCrop"
-                    android:layout_marginTop="50dp"/>
-
-                <ProgressBar
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:id="@+id/progressBar"
-                    android:layout_centerInParent="true"/>
-
-            </RelativeLayout>
-
-            <GridView
-                android:id="@+id/gridView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="50dp"
-                android:layout_weight="40"
-                android:gravity="center"
-                android:horizontalSpacing="1dp"
-                android:numColumns="5"
-                android:stretchMode="none"
-                android:verticalSpacing="1dp">
-
-            </GridView>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
--->
+</RelativeLayout>
