@@ -1,9 +1,12 @@
 package com.example.familyapp2;
 
+import com.google.firebase.database.Exclude;
+
 public class Upload {
 
     private String name;
     private String imageUrl;
+    private String mKey;
 
     //Empty constructor for firebase
     public Upload() {
@@ -30,5 +33,15 @@ public class Upload {
         else {
             this.name = name;
         }
+    }
+
+    @Exclude
+    public String getKey() {
+        return mKey;
+    }
+
+    @Exclude
+    public void setKey(String key) {
+        mKey = key;
     }
 }
