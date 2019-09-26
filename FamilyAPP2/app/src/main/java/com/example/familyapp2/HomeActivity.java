@@ -44,7 +44,6 @@ public class HomeActivity extends AppCompatActivity {
                     Intent upload = new Intent(HomeActivity.this, ShareActivity.class);
                     startActivity(upload);
                     break;
-                    return true;
                 case R.id.navigation_category:
                     changeFragment(new CategoryFragment(), true);
                     //mTextMessage.setText(R.string.title_like);
