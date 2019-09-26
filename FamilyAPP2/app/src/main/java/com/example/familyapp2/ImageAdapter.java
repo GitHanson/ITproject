@@ -1,10 +1,7 @@
 package com.example.familyapp2;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,7 +18,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     private Context mContext;
     private List<Upload> mUploads;
-    private OnItemClickListener mListener;
 
     public ImageAdapter(Context context, List<Upload> uploads) {
         mContext = context;
@@ -40,6 +36,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewName.setText(uploadCurrent.getName());
         Picasso.get()
+                //.load("https://firebasestorage.googleapis.com/v0/b/familyapp-ba107.appspot.com/o/Artifacts%2F1569160347603.jpg?alt=media&token=ee3c657d-7b42-426e-a620-e51712166a1d")
                 .load(uploadCurrent.getImageUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
@@ -52,8 +49,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-            View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textViewName;
         public ImageView imageView;
@@ -63,59 +59,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
             textViewName = itemView.findViewById(R.id.text_view_name);
             imageView = itemView.findViewById(R.id.image_viewer_upload);
-
-            itemView.setOnClickListener(this);
-            itemView.setOnCreateContextMenuListener(this);
         }
-
-        @Override
-        public void onClick(View view) {
-            if(mListener != null) {
-                int position = getAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
-                    mListener.onItemClick(position);
-                }
-            }
-        }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            contextMenu.setHeaderTitle("Select Action");
-            MenuItem addTag = contextMenu.add(Menu.NONE, 1, 1, "Add Tags");
-            MenuItem delete = contextMenu.add(Menu.NONE, 2, 2, "Delete");
-
-            addTag.setOnMenuItemClickListener(this);
-            delete.setOnMenuItemClickListener(this);
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            if(mListener != null) {
-                int position = getAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
-                    switch(menuItem.getItemId()) {
-                        case 1:
-                            mListener.onAddTagClick(position);
-                            return true;
-                        case 2:
-                            mListener.onDeleteClick(position);
-                            return true;
-                    }
-                }
-            }
-            return false;
-        }
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(int position);
-
-        void onAddTagClick(int position);
-
-        void onDeleteClick(int position);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
     }
 }

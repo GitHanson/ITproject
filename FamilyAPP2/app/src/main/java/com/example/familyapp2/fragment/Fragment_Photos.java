@@ -23,8 +23,6 @@ import com.example.familyapp2.R;
 import com.example.familyapp2.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -42,7 +40,6 @@ public class Fragment_Photos extends Fragment_Uploads {
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
-    private FirebaseUser currentUser;
 
     @Nullable
     @Override
@@ -56,10 +53,8 @@ public class Fragment_Photos extends Fragment_Uploads {
         setImageView((ImageView)view.findViewById(R.id.iv_photo));
         mProgressBar = view.findViewById(R.id.progress);
 
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        mStorageRef = FirebaseStorage.getInstance().getReference(currentUser.getUid());
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
+        mStorageRef = FirebaseStorage.getInstance().getReference("Artifacts");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
 
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
