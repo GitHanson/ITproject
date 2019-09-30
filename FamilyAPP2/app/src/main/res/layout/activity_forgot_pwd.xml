@@ -46,9 +46,9 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:textColorHint="#ffffff"
+        android:textColorHint="@color/white"
         android:theme="@style/MyEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -73,4 +73,13 @@
         app:layout_constraintTop_toBottomOf="@+id/forgotEmailInput"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/reset_pwd_btn" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:foregroundGravity="center_horizontal"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/securityImage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
