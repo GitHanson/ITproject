@@ -3,6 +3,7 @@ package com.example.familyapp2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -40,6 +41,8 @@ public class ForgotPwdActivity extends AppCompatActivity {
                                     Toast.makeText(ForgotPwdActivity.this,
                                             "Password reset has been sent to your email.",
                                             Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(ForgotPwdActivity.this, LoginActivity.class);
+                                    startActivity(intent);
                                 }
                                 else {
                                     Toast.makeText(ForgotPwdActivity.this,
