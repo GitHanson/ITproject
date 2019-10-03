@@ -2,32 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/background3">
 
-    <Button
-        android:id="@+id/btn_choose_photo"
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose file" />
+        android:text="Select Photo"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"/>
 
     <EditText
-        android:id="@+id/et_photo_name"
+        android:id="@+id/et_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="180dp"
+        android:gravity="top"
+        android:layout_below="@id/uploadButton"
         android:layout_marginLeft="16dp"
-        android:layout_toEndOf="@+id/btn_choose_photo"
-        android:layout_toRightOf="@+id/btn_choose_photo"
-        android:hint="enter file name" />
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="40dp"
+        android:maxLines="5"
+        android:hint="Description" />
 
-    <ImageView
-        android:id="@+id/iv_photo"
+    <ImageButton
+        android:id="@+id/uploadButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/progress"
-        android:layout_below="@id/et_photo_name"
-        android:layout_marginTop="16dp" />
+        android:layout_height="200dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/textView3"
+        android:background="#0000"
+        android:contentDescription="uploadButton"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@id/textView3"
+        app:srcCompat="@drawable/add_picture" />
 
     <Button
         android:id="@+id/btn_upload_photo"

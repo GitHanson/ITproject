@@ -2,7 +2,7 @@ package com.example.familyapp2;
 
 public class Upload {
 
-    private String name;
+    private String description;
     private String imageUrl;
 
     //Empty constructor for firebase
@@ -16,19 +16,19 @@ public class Upload {
     }
 
     public String getName() {
-        return name;
+        return description;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setName(String name) {
-        if (name.trim().equals("")) {
-            this.name = "No Name";
+    public void setName(String description) {
+        if (description.trim().equals("")) {
+            this.description = "Empty";
         }
         else {
-            this.name = name;
+            this.description = description;
         }
     }
 }

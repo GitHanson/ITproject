@@ -1,6 +1,5 @@
 package com.example.familyapp2.fragment;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.familyapp2.ImageAdapter;
 
 public abstract class Fragment_Uploads extends Fragment {
 
@@ -26,7 +23,7 @@ public abstract class Fragment_Uploads extends Fragment {
     public static final String DOCUMENT_FORMAT = "application/pdf";
 
     private Uri mFileUri;
-    private ImageView mImageView;
+    private ImageButton mImageButton;
 
     @Nullable
     @Override
@@ -79,11 +76,11 @@ public abstract class Fragment_Uploads extends Fragment {
         mFileUri = uri;
     }
 
-    public ImageView getImageView() {
-        return mImageView;
+    public ImageButton getImageButton() {
+        return mImageButton;
     }
 
-    public void setImageView(ImageView imageView) {
-        mImageView = imageView;
+    public void setImageButton(ImageButton imageButton) {
+        mImageButton = imageButton;
     }
 }
