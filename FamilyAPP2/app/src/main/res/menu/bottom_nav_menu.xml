@@ -3,27 +3,27 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@mipmap/bt_home_btn"
+        android:icon="@mipmap/home_button"
         android:title="HOME"/>
 
     <item
         android:id="@+id/navigation_tree"
-        android:icon="@mipmap/bt_tree_btn"
+        android:icon="@mipmap/tree_button"
         android:title="TREE"/>
 
     <item
         android:id="@+id/navigation_upload"
-        android:icon="@mipmap/bt_upload_btn"
+        android:icon="@mipmap/upload_button"
         android:title="UPLOAD"/>
 
     <item
         android:id="@+id/navigation_category"
-        android:icon="@mipmap/bt_like_btn"
+        android:icon="@mipmap/category_button"
         android:title="CATEGORY"/>
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@mipmap/bt_me_btn"
+        android:icon="@mipmap/profile_button"
         android:title="ME"/>
 
 </menu>
