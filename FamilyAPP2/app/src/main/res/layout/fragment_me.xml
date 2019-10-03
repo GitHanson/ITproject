@@ -8,13 +8,14 @@
     android:background="@drawable/background3"
     tools:context=".fragment.MeFragment">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/goback"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="50dp"
+        android:background="#0000"
         android:src="@drawable/goback"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
