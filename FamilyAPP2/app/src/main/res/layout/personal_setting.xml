@@ -79,7 +79,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginTop="50dp"
         android:background="#0000"
-        android:text="My Invitation Code"
+        android:text="My Family Code"
         android:textColor="#FFFFFF"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
