@@ -39,6 +39,7 @@
         android:layout_marginTop="55dp"
         android:text="Settings"
         android:textColor="#FFFFFFFF"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/setting"
         app:layout_constraintTop_toTopOf="parent" />
 
