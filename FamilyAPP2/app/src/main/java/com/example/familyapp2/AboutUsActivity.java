@@ -1,11 +1,11 @@
 
 package com.example.familyapp2;
 
-        import androidx.appcompat.app.AppCompatActivity;
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.ImageButton;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class AboutUsActivity extends AppCompatActivity {
 

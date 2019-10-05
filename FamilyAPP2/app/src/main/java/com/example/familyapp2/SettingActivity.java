@@ -3,13 +3,9 @@ package com.example.familyapp2;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
-
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
-
-import com.example.familyapp2.fragment.MeFragment;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -63,6 +59,17 @@ public class SettingActivity extends AppCompatActivity{
 
     }
     @Override
-    public void onBackPressed(){super.onBackPressed();}
+    public void onBackPressed(){
+        /*ImageButton goback = findViewById(R.id.goback);
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if(count == 0){
+            super.onBackPressed();
+        }else{
+            getSupportFragmentManager().popBackStack();
+        }*/
+        super.onBackPressed();
+
+    }
 
 }
