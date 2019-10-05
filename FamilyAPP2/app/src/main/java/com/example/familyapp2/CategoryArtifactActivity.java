@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.familyapp2.fragment.CategoryFragment;
 
 import java.util.List;
 
@@ -22,6 +25,11 @@ public class CategoryArtifactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_artifact);
+
+        // different category name
+        TextView cateNameTextView = findViewById(R.id.cateName);
+        String cateName = CategoryFragment.getCategoryName();
+        cateNameTextView.setText(cateName);
 
         // implement back button
         ImageButton cateBackBtn = findViewById(R.id.cateBackBtn);
@@ -38,7 +46,7 @@ public class CategoryArtifactActivity extends AppCompatActivity {
             @Override
             public int getCount() {
                 return 5;
-            }
+            }  //how many artifact in this category
 
             @Override
             public Object getItem(int i) {
