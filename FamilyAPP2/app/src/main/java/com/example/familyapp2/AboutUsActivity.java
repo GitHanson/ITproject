@@ -12,9 +12,10 @@ public class AboutUsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        //illustrate the layout
         setContentView(R.layout.about_us);
 
-
+        //implement the goback button in family code page
         ImageButton goback = findViewById(R.id.goback);
         goback.setOnClickListener(new View.OnClickListener(){
 

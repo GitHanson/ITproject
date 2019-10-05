@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/goback" />
 
     <ImageView
-        android:id="@+id/setting"
+        android:id="@+id/set"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="15dp"
@@ -34,13 +34,13 @@
         android:id="@+id/Settings"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
         android:text="Settings"
         android:textColor="#FFFFFFFF"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/setting"
+        app:layout_constraintStart_toEndOf="@+id/set"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -49,13 +49,14 @@
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="70dp"
-        android:background="#0000"
+        android:layout_marginTop="50dp"
+        android:background="#31FFFFFF"
         android:text="Log out"
         android:textColor="#FFFFFFFF"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Settings" />
+        app:layout_constraintTop_toBottomOf="@+id/AboutUs"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/AboutUs"
@@ -64,12 +65,13 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="50dp"
-        android:background="#0000"
+        android:background="#31FFFFFF"
         android:text="About us"
         android:textColor="#FFFFFFFF"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Logout" />
+        app:layout_constraintTop_toBottomOf="@+id/FamilyCode"
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/FamilyCode"
@@ -77,12 +79,13 @@
         android:layout_height="50dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="50dp"
-        android:background="#0000"
+        android:layout_marginTop="100dp"
+        android:background="#31FFFFFF"
         android:text="My Family Code"
         android:textColor="#FFFFFF"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AboutUs" />
+        app:layout_constraintTop_toBottomOf="@+id/goback"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

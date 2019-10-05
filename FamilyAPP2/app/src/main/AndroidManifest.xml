@@ -24,6 +24,9 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
+        <activity android:name=".SettingActivity"/>
+        <activity android:name=".AboutUsActivity"/>
+        <activity android:name=".MyFamilyCodeActivity"/>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
