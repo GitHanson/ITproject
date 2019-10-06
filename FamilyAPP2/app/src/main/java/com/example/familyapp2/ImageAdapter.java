@@ -1,15 +1,16 @@
 package com.example.familyapp2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     private Context mContext;
     private List<Upload> mUploads;
+    private OnItemClickListener mListener;
 
     public ImageAdapter(Context context, List<Upload> uploads) {
         mContext = context;
@@ -27,14 +29,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.media_image_view, parent, false);
         return new ImageViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getName());
+        //holder.textViewName.setText(uploadCurrent.getName());
         Picasso.get()
                 //.load("https://firebasestorage.googleapis.com/v0/b/familyapp-ba107.appspot.com/o/Artifacts%2F1569160347603.jpg?alt=media&token=ee3c657d-7b42-426e-a620-e51712166a1d")
                 .load(uploadCurrent.getImageUrl())
@@ -42,6 +44,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+        /*Glide.with(mContext)
+                //.load(getUriFromMediaStore(position))
+                .load(uploadCurrent.getImageUrl())
+                .placeholder(R.mipmap.ic_launcher)
+                .fitCenter()
+                .centerCrop()
+                .override(96,96)
+                .into(holder.imageView);*/
     }
 
     @Override
@@ -49,16 +59,34 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
+    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView textViewName;
         public ImageView imageView;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.text_view_name);
-            imageView = itemView.findViewById(R.id.image_viewer_upload);
+            imageView = itemView.findViewById(R.id.mediaStoreImageView);
+            imageView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(mListener != null) {
+                int position = getAdapterPosition();
+                if(position != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(position);
+                }
+            }
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
 }

@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImagesActivity"></activity>
+        <activity android:name=".PhotoActivity"></activity>
+        <activity android:name=".VideoActivity" />
+        <activity android:name=".ImagesActivity" />
         <activity
             android:name=".ShareActivity"
             android:label="@string/title_activity_share"
