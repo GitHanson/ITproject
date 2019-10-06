@@ -75,8 +75,8 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
     @Override
     public void onItemClick(int position) {
         Upload selectedItem = mUploads.get(position);
-        String imageUrl = selectedItem.getImageUrl();
-        String description = selectedItem.getName();
+        String imageUrl = selectedItem.getArtifactUrl();
+        String description = selectedItem.getDescription();
 
         Bundle extras = new Bundle();
         extras.putString("IMAGE_URL", imageUrl);

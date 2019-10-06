@@ -39,7 +39,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         //holder.textViewName.setText(uploadCurrent.getName());
         Picasso.get()
                 //.load("https://firebasestorage.googleapis.com/v0/b/familyapp-ba107.appspot.com/o/Artifacts%2F1569160347603.jpg?alt=media&token=ee3c657d-7b42-426e-a620-e51712166a1d")
-                .load(uploadCurrent.getImageUrl())
+                .load(uploadCurrent.getThumbnailUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()

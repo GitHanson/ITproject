@@ -34,6 +34,7 @@ import com.squareup.picasso.Picasso;
 
 public class Fragment_Photos extends Fragment_Uploads {
 
+    public static final String FORMAT ="photo";
     private EditText description;
     private ProgressBar mProgressBar;
 
@@ -112,7 +113,7 @@ public class Fragment_Photos extends Fragment_Uploads {
                         @Override
                         public void onSuccess(Uri uri) {
                             Upload upload = new Upload(description.getText().toString().trim(),
-                                    uri.toString());
+                                    uri.toString(), uri.toString(), FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(upload);
                         }
