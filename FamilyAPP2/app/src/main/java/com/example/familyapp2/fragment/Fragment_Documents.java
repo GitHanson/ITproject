@@ -2,6 +2,8 @@ package com.example.familyapp2.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.familyapp2.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,6 +29,8 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 public class Fragment_Documents extends Fragment_Uploads {
+
+    public static final String FORMAT = "document";
 
     private EditText description;
     private ProgressBar mProgressBar;
@@ -78,8 +85,9 @@ public class Fragment_Documents extends Fragment_Uploads {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            //setFileUri(data.getData());
-            //getImageButton().setImageURI(getFileUri());
+            setFileUri(data.getData());
+            // Replaces ImageButton with a thumbnail of the selected video
+
         }
     }
 }

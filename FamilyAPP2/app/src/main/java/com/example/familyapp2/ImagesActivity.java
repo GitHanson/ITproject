@@ -8,10 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.familyapp2.fragment.Fragment_Documents;
+import com.example.familyapp2.fragment.Fragment_Photos;
+import com.example.familyapp2.fragment.Fragment_Videos;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,14 +79,30 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
     @Override
     public void onItemClick(int position) {
         Upload selectedItem = mUploads.get(position);
-        String imageUrl = selectedItem.getArtifactUrl();
+        String artifactUrl = selectedItem.getArtifactUrl();
         String description = selectedItem.getDescription();
+        String format = selectedItem.getFormat();
 
         Bundle extras = new Bundle();
-        extras.putString("IMAGE_URL", imageUrl);
+        extras.putString("ARTIFACT_URL", artifactUrl);
         extras.putString("DESCRIPTION", description);
-        Intent i = new Intent(ImagesActivity.this, PhotoActivity.class);
-        i.putExtras(extras);
-        startActivity(i);
+        Intent intent = new Intent();
+        switch(format) {
+            case Fragment_Photos
+                    .FORMAT:
+                intent.setClass(ImagesActivity.this, PhotoActivity.class);
+                break;
+            case Fragment_Videos
+                    .FORMAT:
+                intent.setClass(ImagesActivity.this, VideoActivity.class);
+                break;
+            case Fragment_Documents
+                    .FORMAT:
+                intent.setClass(ImagesActivity.this, DocumentActivity.class);
+                break;
+        }
+        //Intent i = new Intent(ImagesActivity.this, PhotoActivity.class);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

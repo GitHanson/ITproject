@@ -55,6 +55,7 @@ public class Fragment_Videos extends Fragment_Uploads {
     private StorageReference thumbnailRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
+    private StorageTask thumbnailTask;
 
     private Bitmap thumbnail;
     private String thumbnailDownloadUrl;
@@ -102,6 +103,44 @@ public class Fragment_Videos extends Fragment_Uploads {
                     + "." + getFileExtension(mVideoUri));
             final StorageReference thumbnailReference = thumbnailRef.child(currentTime
                     + "." + THUMBNAIL_EXTENSION);
+
+            // Adds video thumbnail to storage
+            // Store thumbnail into storage
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            thumbnail.compress(Bitmap.CompressFormat.JPEG,100,baos);
+            final byte[] data = baos.toByteArray();
+            thumbnailTask = thumbnailReference.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    thumbnailReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            thumbnailDownloadUrl = uri.toString();
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            /*
+            thumbnailReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    thumbnailDownloadUrl = uri.toString();
+                    UploadTask uploadTask = thumbnailReference.putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });*/
+
+            // Adds video file to storage
             mUploadTask = fileReference.putFile(mVideoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -115,23 +154,7 @@ public class Fragment_Videos extends Fragment_Uploads {
 
                     Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
 
-                    //Store Thumbnail
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    thumbnail.compress(Bitmap.CompressFormat.JPEG,100,baos);
-                    final byte[] data = baos.toByteArray();
-                    thumbnailReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            thumbnailDownloadUrl = uri.toString();
-                            UploadTask uploadTask = thumbnailReference.putBytes(data);
-                            uploadTask.addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
+
                     /*
                     UploadTask uploadTask = thumbnailReference.putBytes(data);
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -146,9 +169,11 @@ public class Fragment_Videos extends Fragment_Uploads {
                         }
                     });*/
 
+                    // Adds the artifact to the database
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+
                             Upload upload = new Upload(description.getText().toString().trim(),
                                     uri.toString(), thumbnailDownloadUrl, FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
@@ -174,6 +199,7 @@ public class Fragment_Videos extends Fragment_Uploads {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             setFileUri(data.getData());
+            // Replaces ImageButton with a thumbnail of the selected video
             Glide.with(getContext())
                     .asBitmap()
                     .load(getFileUri())
