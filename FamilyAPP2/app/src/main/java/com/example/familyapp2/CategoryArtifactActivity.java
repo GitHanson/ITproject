@@ -31,49 +31,49 @@ import java.util.List;
 
 public class CategoryArtifactActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference userRef;
-    DatabaseReference artifactRef;
-
-    private RecyclerView mRecyclerView;
-    private ImageAdapterCategory mAdapter;
-    private List<Artifact> mArtifacts;
+//    FirebaseDatabase database;
+//    DatabaseReference userRef;
+//    DatabaseReference artifactRef;
+//
+//    private RecyclerView mRecyclerView;
+//    private ImageAdapterCategory mAdapter;
+//    private List<Artifact> mArtifacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_artifact);
 
-        mRecyclerView = findViewById(R.id.category_recycler);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mArtifacts = new ArrayList<>();
-
-        // init firebase
-        database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("Users");
-        artifactRef = database.getReference("Artifacts");
-
-        artifactRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot :  dataSnapshot.getChildren()) {
-                    Artifact artifact = postSnapshot.getValue(Artifact.class);
-                    artifact.setKey(postSnapshot.getKey());
-                    mArtifacts.add(artifact);
-                }
-
-                mAdapter = new ImageAdapterCategory(CategoryArtifactActivity.this, mArtifacts);
-
-                mRecyclerView.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(CategoryArtifactActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mRecyclerView = findViewById(R.id.category_recycler);
+//        mRecyclerView.setHasFixedSize(true);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        mArtifacts = new ArrayList<>();
+//
+//        // init firebase
+//        database = FirebaseDatabase.getInstance();
+//        userRef = database.getReference("Users");
+//        artifactRef = database.getReference("Artifacts");
+//
+//        artifactRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot postSnapshot :  dataSnapshot.getChildren()) {
+//                    Artifact artifact = postSnapshot.getValue(Artifact.class);
+//                    artifact.setKey(postSnapshot.getKey());
+//                    mArtifacts.add(artifact);
+//                }
+//
+//                mAdapter = new ImageAdapterCategory(CategoryArtifactActivity.this, mArtifacts);
+//
+//                mRecyclerView.setAdapter(mAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(CategoryArtifactActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 
