@@ -143,7 +143,7 @@ public class Fragment_Photos extends Fragment_Uploads {
 
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             setFileUri(data.getData());
-            Picasso.get().load(getFileUri()).fit().into(getImageButton());
+            Picasso.get().load(getFileUri()).fit().centerCrop().into(getImageButton());
         }
     }
 }
