@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.familyapp2.fragment.Fragment_Documents;
 import com.example.familyapp2.fragment.Fragment_Photos;
 import com.example.familyapp2.fragment.Fragment_Videos;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,7 +73,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
-                    upload.setKey(postSnapshot.getKey());
+                    //upload.setKey(postSnapshot.getKey());
                     mUploads.add(upload);
                 }
 
