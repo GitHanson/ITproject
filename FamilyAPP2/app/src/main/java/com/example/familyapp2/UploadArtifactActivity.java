@@ -54,7 +54,7 @@ public class UploadArtifactActivity extends AppCompatActivity {
         pdfButton = findViewById(R.id.pdfButton);
         imageButton = findViewById(R.id.imageButton);
         selectFile = findViewById(R.id.select);
-        upload = findViewById(R.id.upload);
+        upload = findViewById(R.id.artifacts);
         notification = findViewById(R.id.textView);
         bar = findViewById(R.id.progressbar);
 
