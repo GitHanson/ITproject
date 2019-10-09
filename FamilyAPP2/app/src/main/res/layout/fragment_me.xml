@@ -48,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <ImageButton
         android:id="@+id/myvideo"
@@ -80,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myvideo" />
 
-    <EditText
+    <TextView
         android:id="@+id/Name"
         android:layout_width="200dp"
         android:layout_height="40dp"
@@ -89,15 +89,16 @@
         android:layout_marginTop="200dp"
         android:layout_marginEnd="105dp"
         android:layout_marginRight="105dp"
-        android:hint="name"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        android:textColor="#FFFFFF"
+        android:text = "no name"
+        app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/email"
+    <TextView
+        android:id="@+id/Email"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginStart="105dp"
@@ -105,9 +106,26 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="106dp"
         android:layout_marginRight="106dp"
-        android:hint="Email"
+        android:textColor="#FFFFFF"
+        android:text = "no email"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+    <ImageButton
+        android:id="@+id/edit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:background="#0000"
+        android:src="@drawable/updatefile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Name"
+        app:layout_constraintTop_toBottomOf="@+id/setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

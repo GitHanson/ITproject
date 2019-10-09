@@ -1,12 +1,19 @@
 package com.example.familyapp2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+
+import com.example.familyapp2.fragment.MeFragment;
 import com.google.firebase.auth.FirebaseAuth;
+
+import android.app.FragmentManager;
 
 
 public class SettingActivity extends AppCompatActivity{
@@ -22,8 +29,9 @@ public class SettingActivity extends AppCompatActivity{
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SettingActivity.this, HomeActivity.class);
+                Intent i = new Intent(SettingActivity.this,HomeActivity.class);
                 startActivity(i);
+                /*onBackPressed();*/
             }
         });
 
@@ -60,14 +68,8 @@ public class SettingActivity extends AppCompatActivity{
     }
     @Override
     public void onBackPressed(){
-        /*ImageButton goback = findViewById(R.id.goback);
-        int count = getSupportFragmentManager().getBackStackEntryCount();
 
-        if(count == 0){
-            super.onBackPressed();
-        }else{
-            getSupportFragmentManager().popBackStack();
-        }*/
+
         super.onBackPressed();
 
     }
