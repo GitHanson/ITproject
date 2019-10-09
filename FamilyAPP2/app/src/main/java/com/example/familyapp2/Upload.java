@@ -8,6 +8,7 @@ public class Upload {
     private String artifactUrl;
     private String thumbnailUrl;
     private String format;
+    //private String mKey;
 
     //Empty constructor for firebase
     public Upload() {
@@ -46,13 +47,13 @@ public class Upload {
         }
     }
 
-    @Exclude
-    public String getKey() {
-        return mKey;
-    }
-
-    @Exclude
-    public void setKey(String key) {
-        mKey = key;
-    }
+//    @Exclude
+//    public String getKey() {
+//        return mKey;
+//    }
+//
+//    @Exclude
+//    public void setKey(String key) {
+//        mKey = key;
+//    }
 }
