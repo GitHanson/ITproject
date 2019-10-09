@@ -2,63 +2,62 @@ package com.example.familyapp2;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.familyapp2.fragment.MeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class editProfileDetailActivity extends AppCompatActivity {
     private EditText name;
-    private EditText email;
-    private SharedPreferences prefs;
+    private ImageButton save;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_edit);
 
-        prefs = getSharedPreferences("MY_DATA", MODE_PRIVATE);
-        String Username = prefs.getString("MY_NAME", "");
-        String UserEmail = prefs.getString("MY_EMAIL", "");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
 
-        EditText name = (EditText) findViewById(R.id.Name);
-        EditText email = (EditText) findViewById(R.id.Email);
 
-        // Set default value.
-        name.setText(Username);
-        email.setText(UserEmail);
+        name = (EditText) findViewById(R.id.Name);
+        save = (ImageButton) findViewById(R.id.save);
 
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addUserName();
+                Intent i = new Intent(editProfileDetailActivity.this, HomeActivity.class);
+                startActivity(i);
+            }
+        });
     }
-    public void saveData(View view) {
-        // Get input text.
-        String Username = name.getText().toString();
-        String UserEmail = email.getText().toString();
+    public void addUserName(){
+        String userName = name.getText().toString();
 
-        // Save data.
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("MY_NAME", Username);
-        editor.putString("MY_EMAIL", UserEmail);
-        editor.apply();
+        if(!TextUtils.isEmpty(userName)){
+            databaseReference.child(uid).child("name").setValue(userName);
+            name.setText("");
 
-        // Return to main activity.
-        startActivity(new Intent(getApplicationContext(), MeFragment.class));
-        //onBackPressed();
-    }
-
-    @Override
-    public void onBackPressed(){
-        /*ImageButton goback = findViewById(R.id.goback);
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-        if(count == 0){
-            super.onBackPressed();
-        }else{
-            getSupportFragmentManager().popBackStack();
-        }*/
-        super.onBackPressed();
+        }
+        else{
+            Toast.makeText(editProfileDetailActivity.this, "Please type the user name", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

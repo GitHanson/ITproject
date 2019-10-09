@@ -1,15 +1,16 @@
 package com.example.familyapp2;
 
 public class User {
-    public String name, email;
+    private String id, name, email;
 
     public User() {
 
     }
 
-    public User(String name, String email) {
+    public User(String id, String name) {
+        this.id = id;
         this.name = name;
-        this.email = email;
+        //this.email = email;
     }
 
     public String getUsername() {
