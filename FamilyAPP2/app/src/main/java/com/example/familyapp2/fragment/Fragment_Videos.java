@@ -1,10 +1,8 @@
 package com.example.familyapp2.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,21 +14,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.example.familyapp2.ImagesActivity;
+import com.example.familyapp2.Artifacts;
 import com.example.familyapp2.R;
-import com.example.familyapp2.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -84,7 +77,7 @@ public class Fragment_Videos extends Fragment_Uploads {
             @Override
             public void onClick(View view) {
                 if(mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(getActivity(),"Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Artifacts in progress", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     uploadFile();
@@ -152,7 +145,7 @@ public class Fragment_Videos extends Fragment_Uploads {
                         }
                     }, 500);
 
-                    Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
 
 
                     /*
@@ -174,10 +167,10 @@ public class Fragment_Videos extends Fragment_Uploads {
                         @Override
                         public void onSuccess(Uri uri) {
 
-                            Upload upload = new Upload(description.getText().toString().trim(),
+                            Artifacts artifacts = new Artifacts(description.getText().toString().trim(),
                                     uri.toString(), thumbnailDownloadUrl, FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadID).setValue(upload);
+                            mDatabaseRef.child(uploadID).setValue(artifacts);
                         }
                     });
                 }

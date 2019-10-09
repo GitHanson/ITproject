@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="upload" />
+        android:text="@string/title_upload" />
 
     <ProgressBar
         android:id="@+id/progress"

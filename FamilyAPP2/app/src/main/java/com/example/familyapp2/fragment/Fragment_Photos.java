@@ -18,9 +18,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.familyapp2.Artifacts;
 import com.example.familyapp2.ImagesActivity;
 import com.example.familyapp2.R;
-import com.example.familyapp2.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,7 +72,7 @@ public class Fragment_Photos extends Fragment_Uploads {
             @Override
             public void onClick(View view) {
                 if(mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(getActivity(),"Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Artifacts in progress", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     uploadFile();
@@ -108,19 +108,19 @@ public class Fragment_Photos extends Fragment_Uploads {
                         }
                     }, 500);
 
-                    Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
                     /*
-                    Upload upload = new Upload(filename.getText().toString().trim(),
+                    Artifacts upload = new Artifacts(filename.getText().toString().trim(),
                             taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
                     String uploadID = mDatabaseRef.push().getKey();
                     mDatabaseRef.child(uploadID).setValue(upload);*/
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Upload upload = new Upload(description.getText().toString().trim(),
+                            Artifacts artifacts = new Artifacts(description.getText().toString().trim(),
                                     uri.toString(), uri.toString(), FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadID).setValue(upload);
+                            mDatabaseRef.child(uploadID).setValue(artifacts);
                         }
                     });
                 }

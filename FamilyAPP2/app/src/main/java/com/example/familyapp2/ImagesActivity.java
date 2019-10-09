@@ -1,14 +1,12 @@
 package com.example.familyapp2;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +36,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
     private DatabaseReference mDatabaseRef;
     private FirebaseUser currentUser;
     private ValueEventListener mDBListener;
-    private List<Upload> mUploads;
+    private List<Artifacts> mArtifacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +49,13 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
         mProgressCircle = findViewById(R.id.progress_circle);
 
-        mUploads = new ArrayList<>();
-        mAdapter = new ImageAdapter(ImagesActivity.this, mUploads);
+        mArtifacts = new ArrayList<>();
+        mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(ImagesActivity.this);
 
-        mAdapter = new ImageAdapter(ImagesActivity.this, mUploads);
+        mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(ImagesActivity.this);
 
@@ -69,12 +66,12 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                mUploads.clear();
+                mArtifacts.clear();
 
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Upload upload = postSnapshot.getValue(Upload.class);
-                    //upload.setKey(postSnapshot.getKey());
-                    mUploads.add(upload);
+                    Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
+                    //artifacts.setKey(postSnapshot.getKey());
+                    mArtifacts.add(artifacts);
                 }
 
                 mAdapter.notifyDataSetChanged();
@@ -92,7 +89,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
     @Override
     public void onItemClick(int position) {
-        Upload selectedItem = mUploads.get(position);
+        Artifacts selectedItem = mArtifacts.get(position);
         String artifactUrl = selectedItem.getArtifactUrl();
         String description = selectedItem.getDescription();
         String format = selectedItem.getFormat();
