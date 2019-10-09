@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +36,8 @@ import com.squareup.picasso.Picasso;
 
 public class Fragment_Photos extends Fragment_Uploads {
 
-    private EditText filename;
+    public static final String FORMAT ="photo";
+    private EditText description;
     private ProgressBar mProgressBar;
 
     private StorageReference mStorageRef;
@@ -49,11 +50,10 @@ public class Fragment_Photos extends Fragment_Uploads {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photos, container, false);
-        Button btnChooseImage = view.findViewById(R.id.btn_choose_photo);
+        setImageButton((ImageButton) view.findViewById(R.id.uploadButton));
         Button btnUpload = view.findViewById(R.id.btn_upload_photo);
         TextView showUploads = view.findViewById(R.id.tv_upload);
-        filename = view.findViewById(R.id.et_photo_name);
-        setImageView((ImageView)view.findViewById(R.id.iv_photo));
+        description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -61,7 +61,7 @@ public class Fragment_Photos extends Fragment_Uploads {
         mStorageRef = FirebaseStorage.getInstance().getReference(currentUser.getUid());
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
 
-        btnChooseImage.setOnClickListener(new View.OnClickListener() {
+        getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFileChooser(IMAGE_FORMAT);
@@ -117,8 +117,8 @@ public class Fragment_Photos extends Fragment_Uploads {
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Upload upload = new Upload(filename.getText().toString().trim(),
-                                    uri.toString());
+                            Upload upload = new Upload(description.getText().toString().trim(),
+                                    uri.toString(), uri.toString(), FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(upload);
                         }
@@ -148,8 +148,7 @@ public class Fragment_Photos extends Fragment_Uploads {
 
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             setFileUri(data.getData());
-            //getImageView().setImageURI(getFileUri());
-            Picasso.get().load(getFileUri()).into(getImageView());
+            Picasso.get().load(getFileUri()).fit().into(getImageButton());
         }
     }
 }
