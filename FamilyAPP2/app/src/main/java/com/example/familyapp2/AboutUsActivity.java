@@ -16,8 +16,8 @@ public class AboutUsActivity extends AppCompatActivity {
         setContentView(R.layout.about_us);
 
         //implement the goback button in family code page
-        ImageButton goback = findViewById(R.id.goback);
-        goback.setOnClickListener(new View.OnClickListener(){
+        ImageButton goBack = findViewById(R.id.goback);
+        goBack.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view){

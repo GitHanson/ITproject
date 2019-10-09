@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bcc9036-b275-4482-bb4d-bde3b5bd1178" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/SettingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/SettingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/fragment/MeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyAPP2/app/src/main/java/com/example/familyapp2/fragment/MeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyAPP2/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyAPP2/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyAPP2/app/src/main/res/layout/fragment_me.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyAPP2/app/src/main/res/layout/fragment_me.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7bcc9036-b275-4482-bb4d-bde3b5bd1178" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +22,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -37,15 +29,12 @@
               <item name="ITproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="ITproject" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ITproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ITproject" type="462c0819:PsiDirectoryNode" />
-              <item name="FamilyAPP2" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">

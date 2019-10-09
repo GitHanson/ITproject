@@ -39,11 +39,11 @@ public class MeFragment extends Fragment {
 
         SharedPreferences prefs = getContext().getSharedPreferences("MY_DATA",Context.MODE_PRIVATE);
         String Username = prefs.getString("MY_NAME","no name");
-        String Useremail = prefs.getString("MY_EMAIL","no email");
+        String UserEmail = prefs.getString("MY_EMAIL","no email");
 
         //set value
         name.setText(Username);
-        email.setText(Useremail);
+        email.setText(UserEmail);
 
 
 
@@ -71,8 +71,8 @@ public class MeFragment extends Fragment {
         });
 
         //implement myphoto button in profile page
-        final ImageButton myphoto = v.findViewById(R.id.myphoto);
-        myphoto.setOnClickListener(new View.OnClickListener(){
+        final ImageButton myPhoto = v.findViewById(R.id.myphoto);
+        myPhoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 setTypeName("My Photo");
@@ -82,8 +82,8 @@ public class MeFragment extends Fragment {
         });
 
         //implemet myvideo button in profile page
-        ImageButton myvideo = v.findViewById(R.id.myvideo);
-        myvideo.setOnClickListener(new View.OnClickListener(){
+        ImageButton myVideo = v.findViewById(R.id.myvideo);
+        myVideo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 setTypeName("My Video");
@@ -93,8 +93,8 @@ public class MeFragment extends Fragment {
         });
 
         //implemet mydocument button in profile page
-        ImageButton mydocument = v.findViewById(R.id.mydocument);
-        mydocument.setOnClickListener(new View.OnClickListener(){
+        ImageButton myDocument = v.findViewById(R.id.mydocument);
+        myDocument.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 setTypeName("My Document");

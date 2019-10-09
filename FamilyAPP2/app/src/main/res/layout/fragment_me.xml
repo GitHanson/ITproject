@@ -12,9 +12,9 @@
         android:id="@+id/setting"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:background="#0000"
         android:src="@drawable/setting"
         android:visibility="visible"
@@ -23,13 +23,14 @@
 
     <ImageButton
         android:id="@+id/Userframe"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="115dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="68dp"
         android:background="#0000"
         android:src="@drawable/userframe"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,14 +40,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
-        android:layout_marginBottom="300dp"
         android:background="#0000"
         android:src="@drawable/myphoto"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
@@ -82,34 +82,29 @@
 
     <TextView
         android:id="@+id/Name"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginLeft="106dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
         android:layout_marginTop="200dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginRight="105dp"
+        android:text="My Name"
         android:textColor="#FFFFFF"
-        android:text = "no name"
+        android:textSize="20dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Email"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="105dp"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="106dp"
-        android:layout_marginRight="106dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
+        android:gravity="center"
+        android:text="My Email"
         android:textColor="#FFFFFF"
-        android:text = "no email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name" />
 
@@ -119,13 +114,10 @@
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginRight="61dp"
+        android:layout_marginTop="200dp"
         android:background="#0000"
         android:src="@drawable/updatefile"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Name"
-        app:layout_constraintTop_toBottomOf="@+id/setting" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

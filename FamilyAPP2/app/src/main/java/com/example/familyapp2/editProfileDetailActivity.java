@@ -22,25 +22,25 @@ public class editProfileDetailActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences("MY_DATA", MODE_PRIVATE);
         String Username = prefs.getString("MY_NAME", "");
-        String Useremail = prefs.getString("MY_EMAIL", "");
+        String UserEmail = prefs.getString("MY_EMAIL", "");
 
         EditText name = (EditText) findViewById(R.id.Name);
         EditText email = (EditText) findViewById(R.id.Email);
 
         // Set default value.
         name.setText(Username);
-        email.setText(Useremail);
+        email.setText(UserEmail);
 
     }
     public void saveData(View view) {
         // Get input text.
         String Username = name.getText().toString();
-        String Useremail = email.getText().toString();
+        String UserEmail = email.getText().toString();
 
         // Save data.
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("MY_NAME", Username);
-        editor.putString("MY_EMAIL", Useremail);
+        editor.putString("MY_EMAIL", UserEmail);
         editor.apply();
 
         // Return to main activity.

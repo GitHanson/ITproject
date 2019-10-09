@@ -47,8 +47,8 @@ public class SettingActivity extends AppCompatActivity{
         });
 
         //implement the about us button in setting page
-        Button aboutus = findViewById(R.id.AboutUs);
-        aboutus.setOnClickListener(new View.OnClickListener(){
+        Button aboutUs = findViewById(R.id.AboutUs);
+        aboutUs.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent i = new Intent(SettingActivity.this, AboutUsActivity.class);
@@ -56,8 +56,8 @@ public class SettingActivity extends AppCompatActivity{
             }
         });
         //implement the family code button in setting page
-        Button familycode = findViewById(R.id.FamilyCode);
-        familycode.setOnClickListener(new View.OnClickListener(){
+        Button familyCode = findViewById(R.id.FamilyCode);
+        familyCode.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent i = new Intent(SettingActivity.this, MyFamilyCodeActivity.class);

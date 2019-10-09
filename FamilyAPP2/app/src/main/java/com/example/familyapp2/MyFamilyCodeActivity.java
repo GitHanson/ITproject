@@ -14,8 +14,8 @@ public class MyFamilyCodeActivity extends AppCompatActivity {
         setContentView(R.layout.myfamily_code);
 
 
-        ImageButton goback = findViewById(R.id.goback);
-        goback.setOnClickListener(new View.OnClickListener() {
+        ImageButton goBack = findViewById(R.id.goback);
+        goBack.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
