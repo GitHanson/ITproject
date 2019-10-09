@@ -70,22 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         //change fragment
         changeFragment(new HomeFragment(), false);
 
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(i);
-            }
-        });
-/*
-        findViewById(R.id.upload_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent upload = new Intent(HomeActivity.this, UploadArtifactActivity.class);
-                startActivity(upload);
-            }
-        });*/
     }
 
     // transfer between fragments
