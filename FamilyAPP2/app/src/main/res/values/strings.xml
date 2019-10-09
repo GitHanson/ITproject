@@ -16,6 +16,22 @@
 
     <string name="next">Next</string>
 
+    <string name="select_category">Select Category</string>
+    <string-array name="categories">
+        <item>Other</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+        <item>Six</item>
+        <item>Seven</item>
+        <item>Eight</item>
+    </string-array>
+
+    <string name="privacy_setting">Privacy Setting</string>
+    <string name="set_private">Private</string>
+    <string name="set_public">Public</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
