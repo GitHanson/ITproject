@@ -8,12 +8,17 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,11 +37,13 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class Fragment_Photos extends Fragment_Uploads {
+public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnItemSelectedListener {
 
     public static final String FORMAT ="photo";
     private EditText description;
     private ProgressBar mProgressBar;
+    private Spinner spinner;
+    private ToggleButton toggleButton;
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -52,9 +59,23 @@ public class Fragment_Photos extends Fragment_Uploads {
         TextView showUploads = view.findViewById(R.id.tv_upload);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
+        spinner = view.findViewById(R.id.spinner_categories);
+        toggleButton = view.findViewById(R.id.privacy_toggle);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Artifacts");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.categories, R.layout.category_spinner_layout);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(this);
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+            }
+        });
 
         getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,5 +166,15 @@ public class Fragment_Photos extends Fragment_Uploads {
             setFileUri(data.getData());
             Picasso.get().load(getFileUri()).fit().centerCrop().into(getImageButton());
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

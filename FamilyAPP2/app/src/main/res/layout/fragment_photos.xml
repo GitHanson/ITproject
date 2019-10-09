@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/et_description"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="90dp"
         android:gravity="top"
         android:layout_below="@id/uploadButton"
         android:layout_marginLeft="16dp"
@@ -80,7 +80,7 @@
         android:id="@+id/select_category"
         android:text="@string/select_category"
         android:textSize="20sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="50dp"
         android:layout_below="@id/et_description" />
     <Spinner
