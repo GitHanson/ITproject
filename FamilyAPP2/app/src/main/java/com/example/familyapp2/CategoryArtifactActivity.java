@@ -37,8 +37,11 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     FirebaseDatabase mFirebaseDatabase;
-    DatabaseReference mRef;
+    DatabaseReference mRefArtifact;
+    DatabaseReference mRefUser;
     String cateName;
+    String familyId;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,7 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
         //send query to Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference("Artifacts");
+        mRefArtifact = mFirebaseDatabase.getReference("Artifacts");
 
 
 
@@ -82,52 +85,57 @@ public class CategoryArtifactActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Artifacts> options =
-                new FirebaseRecyclerOptions.Builder<Artifacts>()
-                        .setQuery(mRef, Artifacts.class)
-                        .build();
+        mRefUser = mFirebaseDatabase.getReference("Users");
+        mRefUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-//        Query query = mRef.orderByChild("family_category_privacy").equalTo("03_"+cateName.toLowerCase()+"_1");
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//
-//                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
-//                        // do with your result
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-        FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder>(options) {
+                //get family id
+                familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
 
-                    @NonNull
-                    @Override
-                    public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.list_item_artifact, parent, false);
+                // set recycler view
+                FirebaseRecyclerOptions<Artifacts> options =
+                        new FirebaseRecyclerOptions.Builder<Artifacts>()
+                                // add a filter order by family_category_privacy
+                                // privacy 1=visible, 0=invisible
+                                .setQuery(mRefArtifact.orderByChild("family_category_privacy").equalTo(familyId+"_"+cateName.toLowerCase()+"_1"), Artifacts.class)
+                                .build();
 
-                        return new CategoryViewHolder(view);
-                    }
 
-                    @Override
-                    protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull Artifacts model) {
-                        //if (model.getFamily_category_privacy().equals("03_"+cateName.toLowerCase()+"_1")) {
-                            holder.setDetails(getApplicationContext(), model.getArtifactUrl());
-                        //}
-                    }
 
-                };
+                FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder> firebaseRecyclerAdapter =
+                        new FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder>(options) {
 
-        //set adapter to recycler view
-        firebaseRecyclerAdapter.startListening();
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+                            @NonNull
+                            @Override
+                            // inflate items in the recycler view
+                            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                                View view = LayoutInflater.from(parent.getContext())
+                                        .inflate(R.layout.list_item_artifact, parent, false);
+
+                                return new CategoryViewHolder(view);
+                            }
+
+                            @Override
+                            // set the images
+                            protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull Artifacts model) {
+                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl());
+                            }
+
+                        };
+
+                //set adapter to recycler view
+                firebaseRecyclerAdapter.startListening();
+                mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     // back to previous activity

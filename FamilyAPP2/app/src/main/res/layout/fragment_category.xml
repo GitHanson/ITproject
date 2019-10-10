@@ -144,7 +144,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/deep_purple"
+        android:background="@drawable/newcolor2"
         android:text="Clothing"
         app:layout_constraintBottom_toTopOf="@+id/cate_house"
         app:layout_constraintEnd_toStartOf="@+id/cate_photo"
