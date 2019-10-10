@@ -136,7 +136,7 @@ public class Fragment_Documents extends Fragment_Uploads {
                     }, 500);
 
                     Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
-
+/*
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -145,7 +145,7 @@ public class Fragment_Documents extends Fragment_Uploads {
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifact);
                         }
-                    });
+                    });*/
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

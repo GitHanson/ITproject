@@ -132,7 +132,7 @@ public class Fragment_Videos extends Fragment_Uploads {
                     }, 500);
 
                     Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
-
+/*
                     // Adds the artifact to the database
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -142,7 +142,7 @@ public class Fragment_Videos extends Fragment_Uploads {
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifacts);
                         }
-                    });
+                    });*/
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
