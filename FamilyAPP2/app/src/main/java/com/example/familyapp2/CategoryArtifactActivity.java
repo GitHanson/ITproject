@@ -35,13 +35,14 @@ import java.util.List;
 
 public class CategoryArtifactActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    FirebaseDatabase mFirebaseDatabase;
-    DatabaseReference mRefArtifact;
-    DatabaseReference mRefUser;
-    String cateName;
-    String familyId;
-    FirebaseAuth mAuth;
+    private RecyclerView mRecyclerView;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mRefArtifact;
+    private DatabaseReference mRefUser;
+    private String cateName;
+    private String familyId;
+    private FirebaseAuth mAuth;
+    private String family_category_privacyValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +80,6 @@ public class CategoryArtifactActivity extends AppCompatActivity {
     }
 
     //load data into recycler view onStart
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -92,16 +91,14 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
                 //get family id
                 familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
+                family_category_privacyValue = familyId+"_"+cateName.toLowerCase()+"_1";
 
                 // set recycler view
-                FirebaseRecyclerOptions<Artifacts> options =
-                        new FirebaseRecyclerOptions.Builder<Artifacts>()
-                                // add a filter order by family_category_privacy
-                                // privacy 1=visible, 0=invisible
-                                .setQuery(mRefArtifact.orderByChild("family_category_privacy").equalTo(familyId+"_"+cateName.toLowerCase()+"_1"), Artifacts.class)
-                                .build();
-
-
+                FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
+                        // add a filter order by family_category_privacy
+                        // privacy 1=visible, 0=invisible
+                        .setQuery(mRefArtifact.orderByChild("family_category_privacy").equalTo(family_category_privacyValue), Artifacts.class)
+                        .build();
 
                 FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder> firebaseRecyclerAdapter =
                         new FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder>(options) {
@@ -112,7 +109,6 @@ public class CategoryArtifactActivity extends AppCompatActivity {
                             public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                                 View view = LayoutInflater.from(parent.getContext())
                                         .inflate(R.layout.list_item_artifact, parent, false);
-
                                 return new CategoryViewHolder(view);
                             }
 
@@ -121,7 +117,6 @@ public class CategoryArtifactActivity extends AppCompatActivity {
                             protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull Artifacts model) {
                                 holder.setDetails(getApplicationContext(), model.getThumbnailUrl());
                             }
-
                         };
 
                 //set adapter to recycler view
@@ -134,8 +129,6 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     // back to previous activity
