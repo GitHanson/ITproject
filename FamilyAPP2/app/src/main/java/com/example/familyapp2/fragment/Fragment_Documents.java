@@ -23,8 +23,8 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.example.familyapp2.Artifacts;
 import com.example.familyapp2.R;
-import com.example.familyapp2.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -140,10 +140,10 @@ public class Fragment_Documents extends Fragment_Uploads {
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            Upload upload = new Upload(description.getText().toString().trim(),
+                            Artifacts artifact = new Artifacts(description.getText().toString().trim(),
                                     uri.toString(), thumbnailDownloadUrl, FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadID).setValue(upload);
+                            mDatabaseRef.child(uploadID).setValue(artifact);
                         }
                     });
                 }
