@@ -1,22 +1,30 @@
 package com.example.familyapp2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+
 
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.familyapp2.fragment.MeFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
-import android.app.FragmentManager;
+import java.net.URI;
 
 
 public class SettingActivity extends AppCompatActivity{
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    String uid;
+    private static final int Gallery_Request = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,6 +73,17 @@ public class SettingActivity extends AppCompatActivity{
             }
         });
 
+        //implement the change profile photo page
+        Button changePhoto = findViewById(R.id.changeProfilePhoto);
+        changePhoto.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(SettingActivity.this, MyFamilyCodeActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
     @Override
     public void onBackPressed(){
@@ -72,6 +91,17 @@ public class SettingActivity extends AppCompatActivity{
 
         super.onBackPressed();
 
+    }
+    protected void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult();
+
+        if(requestCode == Gallery_Request && resultCode == RESULT_OK){
+            URI imagePath = data.getData();
+            CropImage.activity(imagePath)
+                    .setrGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(SettingActivity.this);
+        }
     }
 
 }
