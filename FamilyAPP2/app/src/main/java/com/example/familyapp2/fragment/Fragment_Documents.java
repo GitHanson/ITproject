@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.ParcelFileDescriptor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.shockwave.pdfium.PdfDocument;
+import com.shockwave.pdfium.PdfiumCore;
 
 import java.io.ByteArrayOutputStream;
 
@@ -168,21 +171,27 @@ public class Fragment_Documents extends Fragment_Uploads {
 
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             setFileUri(data.getData());
-            Glide.with(getContext())
-                    .asBitmap()
-                    .load(R.drawable.pdf_symbol)
-                    .into(new CustomTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                            getImageButton().setImageBitmap(resource);
-                            thumbnail = resource;
-                        }
+            generateBitmapFromPdf(getFileUri());
+            getImageButton().setImageBitmap(thumbnail);
+        }
+    }
 
-                        @Override
-                        public void onLoadCleared(@Nullable Drawable placeholder) {
-
-                        }
-                    });
+    public void generateBitmapFromPdf(Uri pdfUri) {
+        int pageNumber = 0;
+        PdfiumCore pdfiumCore = new PdfiumCore(getContext());
+        try {
+            //http://www.programcreek.com/java-api-examples/index.php?api=android.os.ParcelFileDescriptor
+            ParcelFileDescriptor fd = getContext().getContentResolver().openFileDescriptor(pdfUri, "r");
+            PdfDocument pdfDocument = pdfiumCore.newDocument(fd);
+            pdfiumCore.openPage(pdfDocument, pageNumber);
+            int width = pdfiumCore.getPageWidthPoint(pdfDocument, pageNumber);
+            int height = pdfiumCore.getPageHeightPoint(pdfDocument, pageNumber);
+            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            pdfiumCore.renderPageBitmap(pdfDocument, bmp, pageNumber, 0, 0, width, height);
+            thumbnail = bmp;
+            pdfiumCore.closeDocument(pdfDocument); // important!
+        } catch(Exception e) {
+            //todo with exception
         }
     }
 }

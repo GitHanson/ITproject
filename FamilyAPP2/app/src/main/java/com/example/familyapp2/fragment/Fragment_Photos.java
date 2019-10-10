@@ -170,7 +170,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        
+
     }
 
     @Override
