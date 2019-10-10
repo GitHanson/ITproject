@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-public class HomeViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder extends RecyclerView.ViewHolder {
     View mView;
 
-    public HomeViewHolder(@NonNull View itemView) {
+    public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
         mView = itemView;
@@ -31,5 +31,5 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
         Picasso.get().load(image_icon).into(mImageViewIcon);
         mTextView.setText(description);
         mUserName.setText(userName);
-}
+    }
 }

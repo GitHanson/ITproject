@@ -3,7 +3,6 @@ package com.example.familyapp2.fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.familyapp2.Artifacts;
-import com.example.familyapp2.CategoryViewHolder;
-import com.example.familyapp2.HomeViewHolder;
+import com.example.familyapp2.ViewHolder;
 import com.example.familyapp2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -82,19 +80,19 @@ public class HomeFragment extends Fragment {
                         .setQuery(mRefArtifact.orderByChild("family_privacy").equalTo(family_privacyValue), Artifacts.class)
                         .build();
 
-                FirebaseRecyclerAdapter<Artifacts, HomeViewHolder> firebaseRecyclerAdapter =
-                        new FirebaseRecyclerAdapter<Artifacts, HomeViewHolder>(options) {
+                FirebaseRecyclerAdapter<Artifacts, ViewHolder> firebaseRecyclerAdapter =
+                        new FirebaseRecyclerAdapter<Artifacts, ViewHolder>(options) {
 
                             @NonNull
                             @Override
-                            public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                                 View view_holder = LayoutInflater.from(parent.getContext())
                                         .inflate(R.layout.home_item, parent, false);
-                                return new HomeViewHolder(view_holder);
+                                return new ViewHolder(view_holder);
                             }
 
                             @Override
-                            protected void onBindViewHolder(@NonNull HomeViewHolder holder, int position, @NonNull Artifacts model) {
+                            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
                                 holder.setDetails(getActivity().getApplicationContext(), model.getThumbnailUrl(), profileUrl, userName, model.getDescription());
                             }
 

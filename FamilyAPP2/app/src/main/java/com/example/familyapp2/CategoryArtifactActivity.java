@@ -8,16 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.familyapp2.fragment.CategoryFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -27,11 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CategoryArtifactActivity extends AppCompatActivity {
 
@@ -41,6 +33,8 @@ public class CategoryArtifactActivity extends AppCompatActivity {
     private DatabaseReference mRefUser;
     private String cateName;
     private String familyId;
+    private String profileUrl;
+    private String userName;
     private FirebaseAuth mAuth;
     private String family_category_privacyValue;
 
@@ -93,6 +87,10 @@ public class CategoryArtifactActivity extends AppCompatActivity {
                 familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
                 family_category_privacyValue = familyId+"_"+cateName.toLowerCase()+"_1";
 
+                // get profile icon url and user name
+                profileUrl = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("profileUrl").getValue(String.class);
+                userName = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("name").getValue(String.class);
+
                 // set recycler view
                 FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
                         // add a filter order by family_category_privacy
@@ -100,22 +98,22 @@ public class CategoryArtifactActivity extends AppCompatActivity {
                         .setQuery(mRefArtifact.orderByChild("family_category_privacy").equalTo(family_category_privacyValue), Artifacts.class)
                         .build();
 
-                FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder> firebaseRecyclerAdapter =
-                        new FirebaseRecyclerAdapter<Artifacts, CategoryViewHolder>(options) {
+                FirebaseRecyclerAdapter<Artifacts, ViewHolder> firebaseRecyclerAdapter =
+                        new FirebaseRecyclerAdapter<Artifacts, ViewHolder>(options) {
 
                             @NonNull
                             @Override
                             // inflate items in the recycler view
-                            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                                 View view = LayoutInflater.from(parent.getContext())
-                                        .inflate(R.layout.list_item_artifact, parent, false);
-                                return new CategoryViewHolder(view);
+                                        .inflate(R.layout.home_item, parent, false);
+                                return new ViewHolder(view);
                             }
 
                             @Override
                             // set the images
-                            protected void onBindViewHolder(@NonNull CategoryViewHolder holder, int position, @NonNull Artifacts model) {
-                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl());
+                            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
+                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), profileUrl, userName, model.getDescription());
                             }
                         };
 
