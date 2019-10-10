@@ -118,20 +118,6 @@ public class Fragment_Videos extends Fragment_Uploads {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            /*
-            thumbnailReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    thumbnailDownloadUrl = uri.toString();
-                    UploadTask uploadTask = thumbnailReference.putBytes(data);
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });*/
 
             // Adds video file to storage
             mUploadTask = fileReference.putFile(mVideoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -147,26 +133,10 @@ public class Fragment_Videos extends Fragment_Uploads {
 
                     Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
 
-
-                    /*
-                    UploadTask uploadTask = thumbnailReference.putBytes(data);
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });*/
-
                     // Adds the artifact to the database
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
                             Artifacts artifacts = new Artifacts(description.getText().toString().trim(),
                                     uri.toString(), thumbnailDownloadUrl, FORMAT);
                             String uploadID = mDatabaseRef.push().getKey();
