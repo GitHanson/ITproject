@@ -92,16 +92,18 @@ public class SettingActivity extends AppCompatActivity{
         super.onBackPressed();
 
     }
-    protected void onActivityResult(int requestCode, int resultCode,Intent data){
-        super.onActivityResult();
+    //protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+       // super.onActivityResult();
 
-        if(requestCode == Gallery_Request && resultCode == RESULT_OK){
+        /*if(requestCode == Gallery_Request && resultCode == RESULT_OK){
             URI imagePath = data.getData();
             CropImage.activity(imagePath)
                     .setrGuidelines(CropImageView.Guidelines.ON)
                     .setAspectRatio(1,1)
                     .start(SettingActivity.this);
-        }
-    }
+                    }
+                    */
+
+    //}
 
 }
