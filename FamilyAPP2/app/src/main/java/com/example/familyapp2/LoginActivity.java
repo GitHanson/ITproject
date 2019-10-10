@@ -75,6 +75,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
+
     private void startSignIn() {
         String email = emailID.getText().toString();
         String pwd = password.getText().toString();
