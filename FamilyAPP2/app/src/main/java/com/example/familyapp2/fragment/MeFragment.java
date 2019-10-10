@@ -2,50 +2,70 @@ package com.example.familyapp2.fragment;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.content.Context;
-import android.content.SharedPreferences;
-
-
 
 import com.example.familyapp2.PersonalArtifactActivity;
 import com.example.familyapp2.R;
 import com.example.familyapp2.SettingActivity;
 import com.example.familyapp2.editProfileDetailActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MeFragment extends Fragment {
     public static String typeName;
-    private SharedPreferences prefs;
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    String uid;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
+        //use the layout to illustrate this fragment
         View v = inflater.inflate(R.layout.fragment_me, null);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = user.getUid();
 
-        TextView name = v.findViewById(R.id.Name);
-        TextView email = v.findViewById(R.id.Email);
+        final TextView name = v.findViewById(R.id.Name);
+        final TextView email = v.findViewById(R.id.Email);
 
-        SharedPreferences prefs = getContext().getSharedPreferences("MY_DATA",Context.MODE_PRIVATE);
-        String Username = prefs.getString("MY_NAME","no name");
-        String UserEmail = prefs.getString("MY_EMAIL","no email");
+        // get the user name and show the username in personal profile
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String userName = dataSnapshot.child(uid).child("name").getValue(String.class);
+                name.setText(userName);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
-        //set value
-        name.setText(Username);
-        email.setText(UserEmail);
-
-
+        //get the user email and illustrate the email on the personal profile pages
+        mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null){
+            String userEmail= mAuth.getCurrentUser().getEmail();
+            email.setText(userEmail);
+        }
 
         //implement edit button
         ImageButton edit = v.findViewById(R.id.edit);
@@ -56,9 +76,6 @@ public class MeFragment extends Fragment {
                 startActivity(i);
             }
         });
-
-
-
 
         //implement the setting button in profile page
         ImageButton setting =  v.findViewById(R.id.setting);
