@@ -60,9 +60,17 @@ public class MeFragment extends Fragment {
                 String userName = dataSnapshot.child(uid).child("name").getValue(String.class);
                 String image = dataSnapshot.child(uid).child("profileUrl").getValue(String.class);
                 // set the user name
-                name.setText(userName);
+                if(userName != null) {
+                    name.setText(userName);
+                }else{
+                    name.setText("No Name");
+                }
                 // show the profile photo in circle and fit the size
-                Picasso.get().load(image).into(profilePhoto);
+                if(image != null) {
+                    Picasso.get().load(image).into(profilePhoto);
+                }else{
+
+                }
             }
 
             @Override
