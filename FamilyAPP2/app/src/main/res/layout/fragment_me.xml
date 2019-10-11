@@ -62,6 +62,7 @@
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
+
         android:src="@drawable/mydoc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +120,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
-        android:src="@drawable/userframe"
+        android:src="@drawable/default_profile_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

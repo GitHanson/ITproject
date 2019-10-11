@@ -2,6 +2,7 @@ package com.example.familyapp2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class ProfilePhotoActivity extends AppCompatActivity {
 
     private Button iconChange;
     private Button iconUpdate;
+    private Button iconConfirm;
     private ImageView newIcon;
     private ProgressBar prossBar;
 
@@ -52,12 +54,13 @@ public class ProfilePhotoActivity extends AppCompatActivity {
 
         newIcon = findViewById(R.id.icon_view);
         prossBar = findViewById(R.id.progressBar);
-
+        // identify the current user and get the user ID
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         storageReference = FirebaseStorage.getInstance().getReference("Icon").child(uid);
         databaseReference = FirebaseDatabase.getInstance().getReference("Icon").child(uid);
 
+        //implement the functionality of accessing the local album and begin choosing picture as icon
         iconChange = findViewById(R.id.icon_change);
         iconChange.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,7 @@ public class ProfilePhotoActivity extends AppCompatActivity {
                 openFileChooser();
             }
         });
+        // implement the functionality of update icon
         iconUpdate = findViewById(R.id.update_icon);
         iconUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +76,15 @@ public class ProfilePhotoActivity extends AppCompatActivity {
                 uploadIcon();
             }
         });
-
-
+        // implement the functionality of icon confirm and back to setting page
+        iconConfirm = findViewById(R.id.back);
+        iconConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ProfilePhotoActivity.this, SettingActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void openFileChooser(){
@@ -81,17 +92,14 @@ public class ProfilePhotoActivity extends AppCompatActivity {
         intent.setType("image/");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,PHOTO_REQUEST);
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode == PHOTO_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             iconUri = data.getData();
             Picasso.get().load(iconUri).into(newIcon);
-
         }
     }
     private String getFileExtension(Uri uri){
@@ -99,6 +107,7 @@ public class ProfilePhotoActivity extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
+    //Do the upload functionality to upload the icon to database
     private void uploadIcon(){
         if(iconUri != null){
             final StorageReference iconReference = storageReference.child(System.currentTimeMillis()
@@ -121,10 +130,12 @@ public class ProfilePhotoActivity extends AppCompatActivity {
                     iconReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+                            // create an new icon and store it in both storage and database
                             Icon icon = new Icon(uri.toString());
                             String uploadId = databaseReference.push().getKey();
                             databaseReference.child(uploadId).setValue(icon);
 
+                            //set my icon to this uploaded photo's uri
                             databaseReference2 = FirebaseDatabase.getInstance().getReference("Users");
                             databaseReference2.child(uid).child("profileUrl").setValue(uri.toString());
                         }

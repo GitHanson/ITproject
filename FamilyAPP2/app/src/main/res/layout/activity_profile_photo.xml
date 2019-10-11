@@ -12,8 +12,8 @@
         android:id="@+id/icon_change"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginBottom="80dp"
         android:background="#39FFFFFF"
         android:text="Select icon"
@@ -22,13 +22,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="130dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
+        android:src="@drawable/circleupload"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,13 +49,16 @@
         android:id="@+id/update_icon"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="80dp"
         android:background="#39FFFFFF"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/back"
+        app:layout_constraintStart_toEndOf="@+id/icon_change" />
 
     <TextView
         android:id="@+id/pageIntroduce"
@@ -71,4 +75,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="80dp"
+        android:text="Confirm"
+        android:background="#39FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
