@@ -27,7 +27,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         TextView mTextView = mView.findViewById(R.id.home_description);
         TextView mUserName = mView.findViewById(R.id.home_user_name);
         //set data to views
-        Picasso.get().load(image_artifact).into(mImageViewArtifact);
+        Picasso.get().load(image_artifact).resize(280,180).into(mImageViewArtifact);
         Picasso.get().load(image_icon).into(mImageViewIcon);
         mTextView.setText(description);
         mUserName.setText(userName);
@@ -37,7 +37,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView mImageViewArtifact = mView.findViewById(R.id.profile_image);
         TextView mTextView = mView.findViewById(R.id.profile_description);
         //set data to views
-        Picasso.get().load(image_artifact).into(mImageViewArtifact);
+        Picasso.get().load(image_artifact).resize(280,180).into(mImageViewArtifact);
         mTextView.setText(description);
     }
 
