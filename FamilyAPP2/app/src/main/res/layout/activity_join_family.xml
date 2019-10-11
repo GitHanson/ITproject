@@ -51,7 +51,6 @@
         android:background="#0000"
         android:contentDescription="join in a family"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_join_family_code"
         app:srcCompat="@drawable/join_family_btn" />
@@ -68,7 +67,6 @@
         android:background="#0000"
         android:contentDescription="create family"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dont_have_invCode_textView"
         app:srcCompat="@drawable/create_family_btn" />
