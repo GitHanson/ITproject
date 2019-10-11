@@ -101,14 +101,14 @@ public class PersonalArtifactActivity extends AppCompatActivity {
                             // inflate items in the recycler view
                             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                                 View view = LayoutInflater.from(parent.getContext())
-                                        .inflate(R.layout.home_item, parent, false);
+                                        .inflate(R.layout.list_item_artifact, parent, false);
                                 return new ViewHolder(view);
                             }
 
                             @Override
                             // set the images
                             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
-                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), profileUrl, userName, model.getDescription());
+                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), model.getDescription());
                             }
                         };
 

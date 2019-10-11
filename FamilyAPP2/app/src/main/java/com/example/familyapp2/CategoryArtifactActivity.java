@@ -81,15 +81,11 @@ public class CategoryArtifactActivity extends AppCompatActivity {
         mRefUser = mFirebaseDatabase.getReference("Users");
         mRefUser.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
 
                 //get family id
                 familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
                 family_category_privacyValue = familyId+"_"+cateName.toLowerCase()+"_1";
-
-                // get profile icon url and user name
-                profileUrl = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("profileUrl").getValue(String.class);
-                userName = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("name").getValue(String.class);
 
                 // set recycler view
                 FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
@@ -113,7 +109,11 @@ public class CategoryArtifactActivity extends AppCompatActivity {
                             @Override
                             // set the images
                             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
-                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), profileUrl, userName, model.getDescription());
+                                String artifactUserId = model.getUserId();
+                                String artifactUserName = dataSnapshot.child(artifactUserId).child("name").getValue(String.class);
+                                String artifactUserIcon = dataSnapshot.child(artifactUserId).child("profileUrl").getValue(String.class);
+
+                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), artifactUserIcon, artifactUserName, model.getDescription());
                             }
                         };
 

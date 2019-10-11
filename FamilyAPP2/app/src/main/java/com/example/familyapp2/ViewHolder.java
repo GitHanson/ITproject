@@ -32,4 +32,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         mTextView.setText(description);
         mUserName.setText(userName);
     }
+    public void setDetails(Context ctx, String image_artifact, String description) {
+        //view
+        ImageView mImageViewArtifact = mView.findViewById(R.id.profile_image);
+        TextView mTextView = mView.findViewById(R.id.profile_description);
+        //set data to views
+        Picasso.get().load(image_artifact).into(mImageViewArtifact);
+        mTextView.setText(description);
+    }
+
 }
