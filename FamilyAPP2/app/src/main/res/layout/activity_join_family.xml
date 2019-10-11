@@ -56,20 +56,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_join_family_code"
         app:srcCompat="@drawable/join_family_btn" />
 
-    <ImageView
-        android:id="@+id/dont_have_family_yet_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="512dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:contentDescription="dont have inv code"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dont_have_family" />
 
     <ImageButton
         android:id="@+id/create_family_btn"
@@ -84,6 +70,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dont_have_family_yet_imageView"
+        app:layout_constraintTop_toBottomOf="@+id/dont_have_invCode_textView"
         app:srcCompat="@drawable/create_family_btn" />
+
+    <TextView
+        android:id="@+id/dont_have_invCode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an invitation code?"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="478dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="512dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="dont have inv code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
