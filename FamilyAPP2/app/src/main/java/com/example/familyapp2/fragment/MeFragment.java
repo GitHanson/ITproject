@@ -102,7 +102,7 @@ public class MeFragment extends Fragment {
         myPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("My Photo");
+                setTypeName("Photo");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
@@ -113,7 +113,7 @@ public class MeFragment extends Fragment {
         myVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("My Video");
+                setTypeName("Video");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
@@ -124,7 +124,7 @@ public class MeFragment extends Fragment {
         myDocument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("My Document");
+                setTypeName("Document");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
