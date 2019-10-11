@@ -30,6 +30,7 @@
         <activity android:name=".SettingActivity"/>
         <activity android:name=".AboutUsActivity"/>
         <activity android:name=".MyFamilyCodeActivity"/>
+        <activity android:name=".JoinFamilyActivity"/>
         <activity android:name=".PersonalArtifactActivity"/>
         <activity android:name=".editProfileDetailActivity"/>
         <activity android:name=".RegisterActivity" />
