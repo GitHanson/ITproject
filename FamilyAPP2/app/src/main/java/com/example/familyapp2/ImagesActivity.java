@@ -61,7 +61,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         mStorage = FirebaseStorage.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");// /" + currentUser.getUid());
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
