@@ -38,7 +38,6 @@
         android:contentDescription="uploadButton"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toEndOf="@id/textView3"
         app:srcCompat="@drawable/add_picture" />
 
