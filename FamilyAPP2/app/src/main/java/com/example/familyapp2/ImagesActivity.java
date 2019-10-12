@@ -55,9 +55,9 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
         mAdapter.setOnItemClickListener(ImagesActivity.this);
 
-        mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(ImagesActivity.this);
+       //mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
+        //mRecyclerView.setAdapter(mAdapter);
+        //mAdapter.setOnItemClickListener(ImagesActivity.this);
 
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         mStorage = FirebaseStorage.getInstance();

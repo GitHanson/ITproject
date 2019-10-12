@@ -92,6 +92,7 @@ public class Artifacts {
     public void setUser_format_privacy(String user_format_privacy) {
         this.user_format_privacy = user_format_privacy;
     }
+
 //    @Exclude
 //    public String getKey() {
 //        return mKey;
