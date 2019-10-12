@@ -33,13 +33,9 @@ public class Artifacts {
         this.userId = userId;
         this.familyId = familyId;
         setUser_format_privacy(userId, format, privacy);
-        if(!familyId.equals("None")) {
+        if(familyId != null) {
             setFamily_category_privacy(familyId, category, privacy);
             setFamily_privacy(familyId, privacy);
-        }
-        else {
-            family_category_privacy = "None";
-            family_privacy = "None";
         }
     }
 
@@ -75,7 +71,7 @@ public class Artifacts {
     public void setPrivacy(String privacy) {
         this.privacy = privacy;
         setUser_format_privacy(userId, format, privacy);
-        if(!familyId.equals("None")) {
+        if(familyId != null) {
             setFamily_category_privacy(familyId, category, privacy);
             setFamily_privacy(familyId, privacy);
         }
@@ -101,7 +97,7 @@ public class Artifacts {
 
     public void setCategory(String category) {
         this.category = category;
-        if(!familyId.equals("None")) {
+        if(familyId != null) {
             setFamily_category_privacy(familyId, category, privacy);
         }
     }

@@ -45,6 +45,7 @@ import com.squareup.picasso.Picasso;
 public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnItemSelectedListener {
 
     public static final String FORMAT ="photo";
+
     private EditText description;
     private ProgressBar mProgressBar;
     private Spinner spinner;
@@ -159,11 +160,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                     }, 500);
 
                     Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
-                    /*
-                    Artifacts upload = new Artifacts(filename.getText().toString().trim(),
-                            taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                    String uploadID = mDatabaseRef.push().getKey();
-                    mDatabaseRef.child(uploadID).setValue(upload);*/
+
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -204,8 +201,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        category = text;
+        category = adapterView.getItemAtPosition(i).toString();
     }
 
     @Override

@@ -26,7 +26,7 @@ public class DocumentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
-        documentUrl = extras.getString("DOCUMENT_URL");
+        documentUrl = extras.getString("ARTIFACT_URL");
 
         pdfView.fromUri(Uri.parse(documentUrl))
                 .load();
