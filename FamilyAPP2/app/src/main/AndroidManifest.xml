@@ -33,6 +33,7 @@
         <activity android:name=".JoinFamilyActivity"/>
         <activity android:name=".PersonalArtifactActivity"/>
         <activity android:name=".editProfileDetailActivity"/>
+        <activity android:name=".ProfilePhotoActivity"/>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
