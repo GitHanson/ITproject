@@ -26,6 +26,7 @@ import com.squareup.picasso.Picasso;
 public class editProfileDetailActivity extends AppCompatActivity {
     private EditText name;
     private EditText familyName;
+    private EditText year;
     private ImageButton save;
 
     DatabaseReference databaseReference;
@@ -48,6 +49,7 @@ public class editProfileDetailActivity extends AppCompatActivity {
         // get each button by id
         name = (EditText) findViewById(R.id.Name);
         familyName = (EditText)findViewById(R.id.FamilyName);
+        year = (EditText) findViewById(R.id.Year);
         save = (ImageButton) findViewById(R.id.save);
 
         //implement the save button functionality
@@ -56,6 +58,7 @@ public class editProfileDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 addFamilyName();
                 addUserName();
+                addYear();
                 Intent i = new Intent(editProfileDetailActivity.this, HomeActivity.class);
                 startActivity(i);
             }
@@ -71,7 +74,7 @@ public class editProfileDetailActivity extends AppCompatActivity {
             name.setText("");
         }
         else{
-            Toast.makeText(editProfileDetailActivity.this, "Please type the user name", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(editProfileDetailActivity.this, "Please type the user name", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -88,13 +91,24 @@ public class editProfileDetailActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(userFamilyName)) {
                     databaseReference2.child(uFamilyID).child("familyName").setValue(userFamilyName);
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+    }
+
+    public void addYear(){
+        String birthYear = year.getText().toString();
+
+        if(!TextUtils.isEmpty(birthYear)){
+            databaseReference.child(uid).child("yearOfBirth").setValue(birthYear);
+            year.setText("");
+        }
+        else{
+            //Toast.makeText(editProfileDetailActivity.this, "Please type the year of birth", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 
