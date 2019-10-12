@@ -8,12 +8,10 @@ public class Artifacts {
     private String artifactUrl;
     private String thumbnailUrl;
     private String format;
-    private String category;
-    private String privacy;
-    private String userId;
-    private String familyId;
     private String family_category_privacy;
     private String family_privacy;
+    private String privacy;
+    private String userId;
     private String user_format_privacy;
 
     //private String mKey;
@@ -23,20 +21,11 @@ public class Artifacts {
 
     }
 
-    public Artifacts(String description, String artifactUri, String imageUrl, String format, String category, String privacy, String userId, String familyId) {
+    public Artifacts(String description, String artifactUri, String imageUrl, String format) {
         setDescription(description);
         this.artifactUrl = artifactUri;
         this.thumbnailUrl = imageUrl;
         this.format = format;
-        this.category = category;
-        this.privacy = privacy;
-        this.userId = userId;
-        this.familyId = familyId;
-        setUser_format_privacy(userId, format, privacy);
-        if(familyId != null) {
-            setFamily_category_privacy(familyId, category, privacy);
-            setFamily_privacy(familyId, privacy);
-        }
     }
 
     public String getDescription() {
@@ -64,65 +53,53 @@ public class Artifacts {
         }
     }
 
-    public String getPrivacy() {
-        return privacy;
-    }
-
-    public void setPrivacy(String privacy) {
-        this.privacy = privacy;
-        setUser_format_privacy(userId, format, privacy);
-        if(familyId != null) {
-            setFamily_category_privacy(familyId, category, privacy);
-            setFamily_privacy(familyId, privacy);
-        }
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getFamilyId() {
-        return familyId;
-    }
-
-    public void setFamilyId(String familyId) {
-        this.familyId = familyId;
-        setFamily_privacy(familyId, privacy);
-        setFamily_category_privacy(familyId, category, privacy);
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-        if(familyId != null) {
-            setFamily_category_privacy(familyId, category, privacy);
-        }
-    }
-
     public String getFamily_category_privacy() {
         return family_category_privacy;
     }
 
-    private void setFamily_category_privacy(String familyId, String category, String privacy) {
-        family_category_privacy = familyId + "_" + category + "_" + privacy;
+    public void setFamily_category_privacy(String family_category_privacy) {
+        this.family_category_privacy = family_category_privacy;
     }
 
     public String getFamily_privacy() {
         return family_privacy;
     }
 
-    private void setFamily_privacy(String familyId, String privacy) {
-        family_privacy = familyId + "_" + privacy;
+    public void setFamily_privacy(String family_privacy) {
+        this.family_privacy = family_privacy;
+    }
+
+    public String getPrivacy() {
+        return privacy;
+    }
+
+    public void setPrivacy(String privacy) {
+        this.privacy = privacy;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUser_format_privacy() {
         return user_format_privacy;
     }
 
-    private void setUser_format_privacy(String userId, String format, String privacy) {
-        user_format_privacy = userId + "_" + format + "_" + privacy;
+    public void setUser_format_privacy(String user_format_privacy) {
+        this.user_format_privacy = user_format_privacy;
     }
+
+//    @Exclude
+//    public String getKey() {
+//        return mKey;
+//    }
+//
+//    @Exclude
+//    public void setKey(String key) {
+//        mKey = key;
+//    }
 }

@@ -27,13 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
         android:src="@drawable/myphoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
@@ -62,6 +61,7 @@
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
+
         android:src="@drawable/mydoc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,16 +71,19 @@
         android:id="@+id/Name"
         android:layout_width="150dp"
         android:layout_height="40dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
         android:text="Loading...."
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/Email"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/my_profile_photo" />
 
     <TextView
         android:id="@+id/Email"
@@ -104,11 +107,10 @@
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="200dp"
         android:background="#0000"
         android:src="@drawable/updatefile"
-        app:layout_constraintStart_toEndOf="@+id/Name"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/Email"
+        app:layout_constraintStart_toEndOf="@+id/Name" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/my_profile_photo"
@@ -119,7 +121,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
-        android:src="@drawable/userframe"
+        android:src="@drawable/default_profile_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

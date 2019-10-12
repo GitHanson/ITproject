@@ -25,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText emailID, password, confirmation;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUsers;
+    private final String defaultProfileUrl = "https://firebasestorage.googleapis.com/v0/b/familyapp-ba107.appspot.com/o/Icon%2Fdefault_profile_icon.png?alt=media&token=7d8a6276-9a3b-4a3d-b87b-231040e9f51d";
+    private final String defaultName = "No name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
                     else {
                         String userID = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDB = databaseUsers.child(userID);
-                        //currentUserDB.child("name").setValue(name);
-                        currentUserDB.child("image").setValue("default");
+                        currentUserDB.child("profileUrl").setValue(defaultProfileUrl);
+                        currentUserDB.child("name").setValue(defaultName);
+
 
                         Toast.makeText(RegisterActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(RegisterActivity.this, LoginActivity.class);

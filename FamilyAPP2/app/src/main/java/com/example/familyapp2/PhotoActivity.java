@@ -27,7 +27,7 @@ public class PhotoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
-        imageUrl = extras.getString("ARTIFACT_URL");
+        imageUrl = extras.getString("IMAGE_URL");
 
         Picasso.get()
                 .load(imageUrl)

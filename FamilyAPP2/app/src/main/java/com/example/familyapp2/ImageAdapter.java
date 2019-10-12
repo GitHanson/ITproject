@@ -42,6 +42,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
+        /*Glide.with(mContext)
+                //.load(getUriFromMediaStore(position))
+                .load(artifactsCurrent.getImageUrl())
+                .placeholder(R.mipmap.ic_launcher)
+                .fitCenter()
+                .centerCrop()
+                .override(96,96)
+                .into(holder.imageView);*/
     }
 
     @Override

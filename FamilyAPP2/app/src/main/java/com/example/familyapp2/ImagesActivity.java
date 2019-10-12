@@ -52,9 +52,16 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
         mArtifacts = new ArrayList<>();
         mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
         mRecyclerView.setAdapter(mAdapter);
+
         mAdapter.setOnItemClickListener(ImagesActivity.this);
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+       //mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
+        //mRecyclerView.setAdapter(mAdapter);
+        //mAdapter.setOnItemClickListener(ImagesActivity.this);
+
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -63,6 +70,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
+                    //artifacts.setKey(postSnapshot.getKey());
                     mArtifacts.add(artifacts);
                 }
 
