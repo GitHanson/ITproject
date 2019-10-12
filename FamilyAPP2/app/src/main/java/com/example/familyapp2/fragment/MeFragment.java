@@ -60,17 +60,9 @@ public class MeFragment extends Fragment {
                 String userName = dataSnapshot.child(uid).child("name").getValue(String.class);
                 String image = dataSnapshot.child(uid).child("profileUrl").getValue(String.class);
                 // set the user name
-                if(userName != null) {
-                    name.setText(userName);
-                }else{
-                    name.setText("No Name");
-                }
+                name.setText(userName);
                 // show the profile photo in circle and fit the size
-                if(image != null) {
-                    Picasso.get().load(image).into(profilePhoto);
-                }else{
-
-                }
+                Picasso.get().load(image).into(profilePhoto);
             }
 
             @Override
@@ -110,7 +102,7 @@ public class MeFragment extends Fragment {
         myPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("Photo");
+                setTypeName("My Photo");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
@@ -121,7 +113,7 @@ public class MeFragment extends Fragment {
         myVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("Video");
+                setTypeName("My Video");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
@@ -132,7 +124,7 @@ public class MeFragment extends Fragment {
         myDocument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("Document");
+                setTypeName("My Document");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
