@@ -19,13 +19,13 @@
     <string name="select_category">Select Category</string>
     <string-array name="categories">
         <item>Other</item>
-        <item>Two</item>
-        <item>Three</item>
-        <item>Four</item>
-        <item>Five</item>
-        <item>Six</item>
-        <item>Seven</item>
-        <item>Eight</item>
+        <item>Instrument</item>
+        <item>Book</item>
+        <item>Clothing</item>
+        <item>Photograph</item>
+        <item>House</item>
+        <item>Antiques</item>
+        <item>Jewelry</item>
     </string-array>
 
     <string name="privacy_setting">Privacy Setting</string>

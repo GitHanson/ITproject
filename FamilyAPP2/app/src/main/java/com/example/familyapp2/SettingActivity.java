@@ -23,6 +23,11 @@ import java.net.URI;
 
 
 public class SettingActivity extends AppCompatActivity{
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    String uid;
+    private static final int Gallery_Request = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -80,7 +85,7 @@ public class SettingActivity extends AppCompatActivity{
         changePhoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i = new Intent(SettingActivity.this, ProfilePhotoActivity.class);
+                Intent i = new Intent(SettingActivity.this, MyFamilyCodeActivity.class);
                 startActivity(i);
 
             }

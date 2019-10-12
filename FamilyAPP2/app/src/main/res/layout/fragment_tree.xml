@@ -6,11 +6,10 @@
     tools:context=".fragment.TreeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/title_tree"
+        android:gravity="center"/>
 
-
-    <Button
-        android:id="@+id/tree_page_family_btn"
-        android:layout_width="107dp"
-        android:layout_height="60dp"
-        android:text="family" />
 </FrameLayout>
