@@ -43,14 +43,13 @@
         app:layout_constraintStart_toEndOf="@+id/set"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/Logout"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginTop="50dp"
-        android:background="#31FFFFFF"
+        android:background="@drawable/button_effect"
         android:text="Log out"
         android:textColor="#FFFFFFFF"
         android:visibility="visible"
@@ -60,12 +59,10 @@
 
     <Button
         android:id="@+id/AboutUs"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginTop="50dp"
-        android:background="#31FFFFFF"
+        android:background="@drawable/button_effect"
         android:text="About us"
         android:textColor="#FFFFFFFF"
         android:visibility="visible"
@@ -75,12 +72,10 @@
 
     <Button
         android:id="@+id/FamilyCode"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginTop="50dp"
-        android:background="#31FFFFFF"
+        android:background="@drawable/button_effect"
         android:text="My Family Code"
         android:textColor="#FFFFFF"
         android:visibility="visible"
@@ -90,12 +85,10 @@
 
     <Button
         android:id="@+id/changeProfilePhoto"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginTop="125dp"
-        android:background="#31FFFFFF"
+        android:background="@drawable/button_effect"
         android:text="change profile photo"
         android:textColor="#FFFFFF"
         android:visibility="visible"
