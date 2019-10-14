@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/et_description"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="90dp"
         android:gravity="top"
         android:layout_below="@id/uploadButton"
         android:layout_marginLeft="16dp"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="artifacts" />
+        android:text="upload" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -58,5 +58,47 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/select_category"
+        android:text="@string/select_category"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/et_description" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_categories"
+        android:layout_below="@id/et_description"
+        android:layout_toRightOf="@+id/select_category"
+        android:layout_alignTop="@id/select_category"
+        android:layout_marginLeft="20dp">
+
+    </Spinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/privacy_setting"
+        android:text="@string/privacy_setting"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/select_category"/>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/privacy_toggle"
+        android:layout_toRightOf="@id/privacy_setting"
+        android:layout_below="@id/spinner_categories"
+        android:layout_marginTop="35dp"
+        android:layout_alignLeft="@id/spinner_categories"
+        android:textOff="@string/set_public"
+        android:textOn="@string/set_private"
+        />
 
 </RelativeLayout>

@@ -7,13 +7,17 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 public class VideoActivity extends AppCompatActivity {
 
     private VideoView videoView;
+    private TextView tvDescription;
     private Uri videoUri;
     private MediaController mediaController;
+
+    private String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,26 +25,21 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
 
         videoView = findViewById(R.id.videoView);
+        tvDescription = findViewById(R.id.description);
 
         Intent intent = getIntent();
-        videoUri = (Uri)intent.getSerializableExtra("VIDEO_URI");
+        Bundle extras = intent.getExtras();
+        description = extras.getString("DESCRIPTION");
+        videoUri = Uri.parse(extras.getString("ARTIFACT_URL"));
 
         videoView.setVideoURI(videoUri);
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int i, int i1) {
-                        mediaController = new MediaController(getApplicationContext());
-                        videoView.setMediaController(mediaController);
-                        mediaController.setAnchorView(videoView);
-                    }
-                });
-            }
-        });
+        videoView.requestFocus();
+
+        videoView.setMediaController(new MediaController(VideoActivity.this));
 
         videoView.start();
+
+        tvDescription.setText(description);
     }
 
 

@@ -30,8 +30,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -49,8 +52,12 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference userRef;
     private StorageTask mUploadTask;
-    private FirebaseUser currentUser;
+
+    private String privacy;
+    private String category;
+    private String familyId;
 
     @Nullable
     @Override
@@ -65,10 +72,12 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         spinner = view.findViewById(R.id.spinner_categories);
         toggleButton = view.findViewById(R.id.privacy_toggle);
 
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        privacy = "1";
+        category = "Other";
 
-        mStorageRef = FirebaseStorage.getInstance().getReference(currentUser.getUid());
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
+        mStorageRef = FirebaseStorage.getInstance().getReference("Artifacts");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+        userRef = FirebaseDatabase.getInstance().getReference("Users");
 
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.categories, R.layout.category_spinner_layout);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -78,7 +87,14 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
+                if(b) {
+                    // private = 0
+                    privacy = "0";
+                }
+                else {
+                    // public = 1
+                    privacy = "1";
+                }
             }
         });
 
@@ -118,6 +134,19 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
             + "." + getFileExtension(mImageUri));
 
+            final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    familyId = dataSnapshot.child(userId).child("familyId").getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
             mUploadTask = fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -130,16 +159,12 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                     }, 500);
 
                     Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
-                    /*
-                    Artifacts upload = new Artifacts(filename.getText().toString().trim(),
-                            taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                    String uploadID = mDatabaseRef.push().getKey();
-                    mDatabaseRef.child(uploadID).setValue(upload);*/
+
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             Artifacts artifacts = new Artifacts(description.getText().toString().trim(),
-                                    uri.toString(), uri.toString(), FORMAT);
+                                    uri.toString(), uri.toString(), FORMAT, category, privacy, userId, familyId);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifacts);
                         }
@@ -169,13 +194,17 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
 
         if(requestCode == ARTIFACT_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             setFileUri(data.getData());
-            Picasso.get().load(getFileUri()).fit().centerCrop().into(getImageButton());
+            Picasso.get()
+                    .load(getFileUri())
+                    .fit()
+                    .centerCrop()
+                    .into(getImageButton());
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+        category = adapterView.getItemAtPosition(i).toString();
     }
 
     @Override

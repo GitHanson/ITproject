@@ -10,11 +10,16 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,8 +31,12 @@ import com.example.familyapp2.Artifacts;
 import com.example.familyapp2.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -36,22 +45,28 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
-public class Fragment_Videos extends Fragment_Uploads {
+public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnItemSelectedListener {
 
     public static final String FORMAT = "video";
     public static final String THUMBNAIL_EXTENSION = "jpg";
 
     private EditText description;
     private ProgressBar mProgressBar;
+    private Spinner spinner;
+    private ToggleButton toggleButton;
 
     private StorageReference mStorageRef;
     private StorageReference thumbnailRef;
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference userRef;
     private StorageTask mUploadTask;
     private StorageTask thumbnailTask;
 
     private Bitmap thumbnail;
     private String thumbnailDownloadUrl;
+    private String privacy;
+    private String category;
+    private String familyId;
 
     @Nullable
     @Override
@@ -61,10 +76,36 @@ public class Fragment_Videos extends Fragment_Uploads {
         Button btnUpload = view.findViewById(R.id.btn_upload_video);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
+        spinner = view.findViewById(R.id.spinner_categories);
+        toggleButton = view.findViewById(R.id.privacy_toggle);
+
+        // default public
+        privacy = "1";
+        category = "Other";
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Artifacts");
         thumbnailRef = FirebaseStorage.getInstance().getReference("Thumbnails");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+        userRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.categories, R.layout.category_spinner_layout);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(this);
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    // private = 0
+                    privacy = "0";
+                }
+                else {
+                    // public = 1
+                    privacy = "1";
+                }
+            }
+        });
 
         getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +137,19 @@ public class Fragment_Videos extends Fragment_Uploads {
                     + "." + getFileExtension(mVideoUri));
             final StorageReference thumbnailReference = thumbnailRef.child(currentTime
                     + "." + THUMBNAIL_EXTENSION);
+
+            final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    familyId = dataSnapshot.child(userId).child("familyId").getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
             // Adds video thumbnail to storage
             // Store thumbnail into storage
@@ -138,7 +192,7 @@ public class Fragment_Videos extends Fragment_Uploads {
                         @Override
                         public void onSuccess(Uri uri) {
                             Artifacts artifacts = new Artifacts(description.getText().toString().trim(),
-                                    uri.toString(), thumbnailDownloadUrl, FORMAT);
+                                    uri.toString(), thumbnailDownloadUrl, FORMAT, category, privacy, userId, familyId);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifacts);
                         }
@@ -179,5 +233,15 @@ public class Fragment_Videos extends Fragment_Uploads {
                         }
                     });
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        category = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

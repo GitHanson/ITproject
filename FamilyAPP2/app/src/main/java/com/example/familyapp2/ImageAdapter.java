@@ -34,22 +34,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Artifacts artifactsCurrent = mArtifacts.get(position);
-        //holder.textViewName.setText(artifactsCurrent.getName());
         Picasso.get()
-                //.load("https://firebasestorage.googleapis.com/v0/b/familyapp-ba107.appspot.com/o/Artifacts%2F1569160347603.jpg?alt=media&token=ee3c657d-7b42-426e-a620-e51712166a1d")
                 .load(artifactsCurrent.getThumbnailUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView);
-        /*Glide.with(mContext)
-                //.load(getUriFromMediaStore(position))
-                .load(artifactsCurrent.getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
-                .fitCenter()
-                .centerCrop()
-                .override(96,96)
-                .into(holder.imageView);*/
     }
 
     @Override
