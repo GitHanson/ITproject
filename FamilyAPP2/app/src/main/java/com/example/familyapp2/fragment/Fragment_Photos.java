@@ -133,13 +133,13 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         Uri mImageUri = getFileUri();
         if(mImageUri != null) {
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-            + "." + getFileExtension(mImageUri));
+                + "." + getFileExtension(mImageUri));
 
             final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    familyId = dataSnapshot.child(userId).child("familyId").getValue(String.class);
+                    familyId = dataSnapshot.child(userId).child("family").getValue(String.class);
                 }
 
                 @Override

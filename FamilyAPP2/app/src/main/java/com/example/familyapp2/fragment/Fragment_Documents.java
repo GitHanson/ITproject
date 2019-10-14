@@ -146,7 +146,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    familyId = dataSnapshot.child(userId).child("familyId").getValue(String.class);
+                    familyId = dataSnapshot.child(userId).child("family").getValue(String.class);
                 }
 
                 @Override
