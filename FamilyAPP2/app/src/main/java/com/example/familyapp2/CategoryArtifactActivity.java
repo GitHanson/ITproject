@@ -49,7 +49,10 @@ public class CategoryArtifactActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //set layout as Linear
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         //send query to Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();

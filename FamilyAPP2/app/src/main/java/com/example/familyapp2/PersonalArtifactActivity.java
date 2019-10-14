@@ -77,7 +77,10 @@ public class PersonalArtifactActivity extends AppCompatActivity implements newIm
         mRecyclerView.setHasFixedSize(true);
 
         //set layout as Linear
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         mArtifacts = new ArrayList<>();
         mAdapter = new newImageAdapter(PersonalArtifactActivity.this, mArtifacts);
