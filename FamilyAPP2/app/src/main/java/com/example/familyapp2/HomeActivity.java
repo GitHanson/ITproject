@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
+
 import android.view.MenuItem;
 import android.view.View;
 
@@ -92,6 +93,10 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         }
+        //System.out.println(getCallingActivity()+"3333333333333333333");
+        //if(this.getCallingActivity().equals(SettingActivity.class)){
+         //   changeFragment(new MeFragment(),true);
+        //}
 
 
     }
