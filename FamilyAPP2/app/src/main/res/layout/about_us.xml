@@ -70,8 +70,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="60dp"
-        android:text="Hao Liu (Rick)
-        l11@student.unimelb.edu.au"
+        android:text="Hao Liu (Rick) l11@student.unimelb.edu.au"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
