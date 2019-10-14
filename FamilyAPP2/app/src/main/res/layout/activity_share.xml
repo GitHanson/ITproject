@@ -22,6 +22,7 @@
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabTextColor="@color/grey"
+        android:background="#3d4071"
         app:tabIndicatorColor="@color/orange"
     />
 
