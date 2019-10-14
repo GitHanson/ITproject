@@ -15,6 +15,7 @@
     <string name="documents">DOCUMENTS</string>
 
     <string name="next">Next</string>
+    <string name="email">E-mail</string>
 
     <string name="select_category">Select Category</string>
     <string-array name="categories">
