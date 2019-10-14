@@ -1,6 +1,5 @@
 package com.example.familyapp2;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,9 +7,7 @@ import com.example.familyapp2.fragment.HomeFragment;
 import com.example.familyapp2.fragment.CategoryFragment;
 import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.TreeFragment;
-import com.example.familyapp2.fragment.UploadFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
@@ -21,7 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 
 import android.view.MenuItem;
-import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
     //private TextView mTextMessage;
@@ -44,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
                     //mTextMessage.setText(R.string.title_tree);
                     return true;
                 case R.id.navigation_upload:
-                    //changeFragment(new UploadFragment(), true);
                     //mTextMessage.setText(R.string.title_upload);
                     Intent upload = new Intent(HomeActivity.this, ShareActivity.class);
                     startActivity(upload);

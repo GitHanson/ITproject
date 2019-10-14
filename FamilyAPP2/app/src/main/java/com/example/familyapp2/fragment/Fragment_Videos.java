@@ -142,7 +142,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    familyId = dataSnapshot.child(userId).child("familyId").getValue(String.class);
+                    familyId = dataSnapshot.child(userId).child("family").getValue(String.class);
                 }
 
                 @Override
