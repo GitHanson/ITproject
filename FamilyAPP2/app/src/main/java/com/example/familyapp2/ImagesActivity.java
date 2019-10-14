@@ -84,12 +84,14 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
     public void onItemClick(int position) {
         Artifacts selectedItem = mArtifacts.get(position);
         String artifactUrl = selectedItem.getArtifactUrl();
+        String thumbnailUrl = selectedItem.getThumbnailUrl();
         String description = selectedItem.getDescription();
         String format = selectedItem.getFormat();
 
         Bundle extras = new Bundle();
         extras.putString("ARTIFACT_URL", artifactUrl);
         extras.putString("DESCRIPTION", description);
+        extras.putString("THUMB", thumbnailUrl);
         Intent intent = new Intent();
         switch(format) {
             case Fragment_Photos
