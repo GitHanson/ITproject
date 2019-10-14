@@ -89,7 +89,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="80dp"
         android:background="#39FFFFFF"
-        android:text="Confirm"
+        android:text="Go back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/update_icon" />
