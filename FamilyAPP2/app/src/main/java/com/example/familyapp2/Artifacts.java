@@ -15,6 +15,7 @@ public class Artifacts {
     private String family_category_privacy;
     private String family_privacy;
     private String user_format_privacy;
+    private String mKey;
 
     //private String mKey;
 
@@ -123,6 +124,14 @@ public class Artifacts {
 
     private void setUser_format_privacy(String userId, String format, String privacy) {
         user_format_privacy = userId + "_" + format + "_" + privacy;
+    }
+    @Exclude
+    public String getKey(){
+        return mKey;
+    }
+    @Exclude
+    public void setKey(String key){
+        mKey = key;
     }
 
 }
