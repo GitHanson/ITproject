@@ -31,9 +31,10 @@ class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     /**
-     *
-     * @param fragment
-     * @param title
+     * This function describes the action to add a fragment (with title)
+     * to the corresponding fragment list
+     * @param fragment the fragment being added to the fragment list
+     * @param title the title of fragment list that is being added
      */
     public void addFragment(Fragment fragment, String title) {
         fragmentListTitles.add(title);
