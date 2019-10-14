@@ -15,8 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.familyapp2.HomeActivity;
 import com.example.familyapp2.JoinFamilyActivity;
+import com.example.familyapp2.MemberProfileActivity;
 import com.example.familyapp2.R;
+import com.example.familyapp2.editProfileDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,13 +65,78 @@ public class TreeFragment extends Fragment {
 
         // assign values to icon
         treeIcon1 = view.findViewById(R.id.tree_icon1);
+        treeIcon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Bundle extras = new Bundle();
+                //extras.putString("ARTIFACT_URL", artifactUrl);
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
         treeIcon2 = view.findViewById(R.id.tree_icon2);
+        treeIcon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
         treeIcon3 = view.findViewById(R.id.tree_icon3);
-        treeIcon4 = view.findViewById(R.id.tree_icon4);
-        treeIcon5 = view.findViewById(R.id.tree_icon5);
-        treeIcon6 = view.findViewById(R.id.tree_icon6);
-        treeIcon7 = view.findViewById(R.id.tree_icon7);
-        treeIcon8 = view.findViewById(R.id.tree_icon8);
+        treeIcon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+        /*treeIcon4 = view.findViewById(R.id.tree_icon4);
+        treeIcon4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });*/
+
+        /*treeIcon5 = view.findViewById(R.id.tree_icon5);
+        treeIcon5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });*/
+
+        /*treeIcon6 = view.findViewById(R.id.tree_icon6);
+        treeIcon6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });*/
+
+        /*treeIcon7 = view.findViewById(R.id.tree_icon7);
+        treeIcon7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });*/
+
+        /*treeIcon8 = view.findViewById(R.id.tree_icon8);
+        treeIcon8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                startActivity(i);
+            }
+        });*/
 
         familyNameTextView = view.findViewById(R.id.tree_title_textView);
 
@@ -110,7 +178,6 @@ public class TreeFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String familyName = dataSnapshot.child(familyId).child("familyName").getValue(String.class);
                             familyNameTextView.setText(familyName);
-
 
                             for (DataSnapshot child : dataSnapshot.child(familyId).child("members").getChildren()) {
                                 String key = child.getKey();

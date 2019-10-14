@@ -1,5 +1,7 @@
 package com.example.familyapp2;
 
+import com.google.firebase.database.Exclude;
+
 public class Artifacts {
 
     private String description;
