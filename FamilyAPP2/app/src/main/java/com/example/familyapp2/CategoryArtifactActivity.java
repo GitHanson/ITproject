@@ -85,7 +85,7 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
                 //get family id
                 familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
-                family_category_privacyValue = familyId+"_"+cateName.toLowerCase()+"_1";
+                family_category_privacyValue = familyId+"_"+cateName+"_1";
 
                 // set recycler view
                 FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
