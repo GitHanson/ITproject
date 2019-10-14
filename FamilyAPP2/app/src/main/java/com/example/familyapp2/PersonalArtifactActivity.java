@@ -6,14 +6,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
+
 import android.widget.TextView;
 import com.example.familyapp2.fragment.MeFragment;
+import com.example.familyapp2.fragment.Fragment_Documents;
+import com.example.familyapp2.fragment.Fragment_Photos;
+import com.example.familyapp2.fragment.Fragment_Videos;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class PersonalArtifactActivity extends AppCompatActivity {
@@ -35,6 +44,7 @@ public class PersonalArtifactActivity extends AppCompatActivity {
     private String userName;
     private FirebaseAuth mAuth;
     private String user_format;
+    private List<Artifacts> mArtifact;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -95,7 +105,6 @@ public class PersonalArtifactActivity extends AppCompatActivity {
 
                 FirebaseRecyclerAdapter<Artifacts, ViewHolder> firebaseRecyclerAdapter =
                         new FirebaseRecyclerAdapter<Artifacts, ViewHolder>(options) {
-
                             @NonNull
                             @Override
                             // inflate items in the recycler view
@@ -104,25 +113,45 @@ public class PersonalArtifactActivity extends AppCompatActivity {
                                         .inflate(R.layout.list_item_artifact, parent, false);
                                 return new ViewHolder(view);
                             }
-
                             @Override
                             // set the images
                             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
                                 holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), model.getDescription());
                             }
                         };
-
                 //set adapter to recycler view
                 firebaseRecyclerAdapter.startListening();
                 mRecyclerView.setAdapter(firebaseRecyclerAdapter);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
+    /*public void onItemClick(int position){
+        Artifacts selectedItem = mArtifact.get(position);
+        String artifactUrl = selectedItem.getArtifactUrl();
+        String description =  selectedItem.getDescription();
+        String format = selectedItem.getFormat();
+
+        Bundle extras = new Bundle();
+        extras.putString("AETIFACT_URL", artifactUrl);
+        extras.putString("DESCRIPTION", description);
+        Intent intent = new Intent();
+
+        switch(format){
+            case Fragment_Photos.FORMAT:
+                intent.setClass(PersonalArtifactActivity.this, PhotoActivity.class);
+                break;
+            case Fragment_Videos.FORMAT:
+                intent.setClass(PersonalArtifactActivity.this, VideoActivity.class);
+                break;
+            case Fragment_Documents.FORMAT:
+                intent.setClass(PersonalArtifactActivity.this,DocumentActivity.class);
+        }
+
+    }*/
 
 
     @Override

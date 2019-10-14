@@ -1,5 +1,6 @@
 package com.example.familyapp2;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.view.Menu;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,8 @@ import android.view.View;
 public class HomeActivity extends AppCompatActivity {
     //private TextView mTextMessage;
     private FragmentManager fragmentManager;
+    public Menu mMenu;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,6 +75,24 @@ public class HomeActivity extends AppCompatActivity {
         //change fragment
         changeFragment(new HomeFragment(), false);
 
+        Intent intent = getIntent();
+        String check = intent.getStringExtra("BackMe");
+
+
+        if (check != null) {
+            if (check.equals("yes")) {
+
+                mMenu = navView.getMenu();
+                mMenu.performIdentifierAction(R.id.navigation_me, 0);
+                //onOptionsItemSelected(mMenu.findItem(R.id.navigation_me));
+
+
+//                Fragment fragment = new MeFragment();
+                changeFragment(new MeFragment(), true);
+                check = "";
+            }
+
+        }
         //System.out.println(getCallingActivity()+"3333333333333333333");
         //if(this.getCallingActivity().equals(SettingActivity.class)){
          //   changeFragment(new MeFragment(),true);
@@ -89,4 +111,9 @@ public class HomeActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        this.mMenu = menu;
+//        return super.onCreateOptionsMenu(menu);
+//    }
 }
