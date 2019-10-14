@@ -1,7 +1,5 @@
 package com.example.familyapp2;
 
-import com.google.firebase.database.Exclude;
-
 public class Artifacts {
 
     private String description;
@@ -15,8 +13,6 @@ public class Artifacts {
     private String family_category_privacy;
     private String family_privacy;
     private String user_format_privacy;
-
-    //private String mKey;
 
     //Empty constructor for firebase
     public Artifacts() {
