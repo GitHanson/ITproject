@@ -40,11 +40,11 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="80dp"
-        android:text="Chenghan Li (Hanson)
-        chenghanl@student.unimelb.edu.au"
+        android:layout_marginBottom="24dp"
+        android:text="Chenghan Li (Hanson)\nchenghanl@student.unimelb.edu.au"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/chris"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goback" />
 
@@ -54,12 +54,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:text="Xudong Zhang (Chris)
-        xudongz1@student.unimelb.edu.au"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Xudong Zhang (Chris)\nxudongz1@student.unimelb.edu.au"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rick"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hanson" />
 
@@ -69,11 +69,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:text="Hao Liu (Rick) l11@student.unimelb.edu.au"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Hao Liu (Rick) \nl11@student.unimelb.edu.au"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/kevin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chris" />
 
@@ -83,13 +84,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="249dp"
-        android:text="Kevin Liang (Kevin) kliang3@student.unimelb.edu.au"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="130dp"
+        android:text="Kevin Liang (Kevin)\nkliang3@student.unimelb.edu.au"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rick" />
 </androidx.constraintlayout.widget.ConstraintLayout>
