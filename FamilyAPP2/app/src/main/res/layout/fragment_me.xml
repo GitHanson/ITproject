@@ -23,30 +23,31 @@
 
     <ImageButton
         android:id="@+id/myphoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
-        android:src="@drawable/myphoto"
+        android:src="@drawable/my_photo_effect"
+        android:text="My Photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <ImageButton
         android:id="@+id/myvideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="414dp"
+        android:layout_height="55dp"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
-        android:src="@drawable/myvideo"
+        android:src="@drawable/my_video_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myphoto" />
@@ -57,12 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:background="#0000"
 
-        android:src="@drawable/mydoc"
+        android:src="@drawable/my_doc_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myvideo" />

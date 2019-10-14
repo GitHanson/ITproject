@@ -28,35 +28,52 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+        /**
+         * This function response to the action (by calling the changeFragment method)
+         * when an item is selected (the button is clicked and change the fragment
+         * into the selected one.
+         * @param item the item (totally 5 types: home/tree/upload/category/me) that
+         *             indicates different fragments
+         * @return a boolean to indicate if the fragment has been successfully changed
+         */
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+
+                // The case when the home button pressed
                 case R.id.navigation_home:
                     changeFragment(new HomeFragment(), true);
-                    //mTextMessage.setText(R.string.title_home);
                     return true;
+
+                // The case when the tree button pressed
                 case R.id.navigation_tree:
                     changeFragment(new TreeFragment(), true);
-                    //mTextMessage.setText(R.string.title_tree);
                     return true;
+
+                // The case when the upload button pressed
                 case R.id.navigation_upload:
-                    //mTextMessage.setText(R.string.title_upload);
                     Intent upload = new Intent(HomeActivity.this, ShareActivity.class);
                     startActivity(upload);
                     break;
+
+                // The case when the category button pressed
                 case R.id.navigation_category:
                     changeFragment(new CategoryFragment(), true);
-                    //mTextMessage.setText(R.string.title_like);
                     return true;
+
+                // The case when the personal profile page pressed
                 case R.id.navigation_me:
                     changeFragment(new MeFragment(), true);
-                    //mTextMessage.setText(R.string.title_me);
                     return true;
             }
             return false;
         }
     };
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +114,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // transfer between fragments
+
+    /**
+     * This function changes the fragment by replacing the current fragment with another
+     * @param fragment
+     * @param isInit
+     */
     public void changeFragment(Fragment fragment, boolean isInit) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fl_container, fragment);
