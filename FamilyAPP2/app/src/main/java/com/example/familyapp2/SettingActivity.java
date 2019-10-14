@@ -32,9 +32,9 @@ public class SettingActivity extends AppCompatActivity{
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SettingActivity.this,HomeActivity.class);
-                startActivity(i);
-                /*onBackPressed();*/
+//                Intent i = new Intent(SettingActivity.this,HomeActivity.class);
+//                startActivity(i);
+                onBackPressed();
             }
         });
 
@@ -83,8 +83,13 @@ public class SettingActivity extends AppCompatActivity{
     @Override
     public void onBackPressed(){
 
+        Intent intent = new Intent(SettingActivity.this,HomeActivity.class);
 
-        super.onBackPressed();
+        intent.putExtra("BackMe","yes");
+        startActivity(intent);
+
+
+        //super.onBackPressed();
 
     }
     //protected void onActivityResult(int requestCode, int resultCode,Intent data) {
