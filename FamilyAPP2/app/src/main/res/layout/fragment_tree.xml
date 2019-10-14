@@ -1,16 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.TreeFragment">
+    tools:context=".fragment.TreeFragment"
+    android:background="@drawable/background3">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/tree_page_family_btn"
-        android:layout_width="107dp"
-        android:layout_height="60dp"
-        android:text="family" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/tree_title_imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/tree_title_image" />
+
+                <TextView
+                    android:id="@+id/tree_title_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Please join a family"
+                    android:textColor="@color/white"
+                    android:textSize="24dp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="470dp"
+            android:background="@drawable/tree"
+            tools:layout_editor_absoluteY="80dp" >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon1"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="171dp"
+                android:layout_marginLeft="171dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="44dp"
+                android:layout_marginRight="44dp"
+                android:layout_marginBottom="71dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintBottom_toTopOf="@+id/tree_icon5"
+                app:layout_constraintEnd_toStartOf="@+id/tree_icon3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon2"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="87dp"
+                android:layout_marginEnd="145dp"
+                android:layout_marginRight="145dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintEnd_toStartOf="@+id/tree_icon3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon3"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="42dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintBottom_toTopOf="@+id/tree_icon6"
+                app:layout_constraintStart_toEndOf="@+id/tree_icon1"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon5"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="41dp"
+                android:layout_marginRight="41dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintEnd_toStartOf="@+id/tree_icon6"
+                app:layout_constraintTop_toBottomOf="@+id/tree_icon3"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon6"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginRight="3dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tree_icon3"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon4"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="42dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tree_icon2"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon7"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="119dp"
+                android:layout_marginLeft="119dp"
+                android:layout_marginTop="113dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tree_icon2"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/tree_icon8"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginEnd="72dp"
+                android:layout_marginRight="72dp"
+                android:src="@drawable/tree_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tree_icon5"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/tree_page_family_btn"
+            android:layout_width="107dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="152dp"
+            android:layout_marginLeft="152dp"
+            android:layout_marginBottom="4dp"
+            android:text="family" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
 </FrameLayout>
