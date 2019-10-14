@@ -15,10 +15,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.Fragment_Documents;
 import com.example.familyapp2.fragment.Fragment_Photos;
 import com.example.familyapp2.fragment.Fragment_Videos;
+import com.example.familyapp2.ImageAdapter;
+import com.example.familyapp2.newImageAdapter;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,7 +37,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class PersonalArtifactActivity extends AppCompatActivity {
+public class PersonalArtifactActivity extends AppCompatActivity implements newImageAdapter.OnItemClickListener{
 
     private RecyclerView mRecyclerView;
     private FirebaseDatabase mFirebaseDatabase;
@@ -44,27 +48,20 @@ public class PersonalArtifactActivity extends AppCompatActivity {
     private String userName;
     private FirebaseAuth mAuth;
     private String user_format;
-    private List<Artifacts> mArtifact;
+    private List<Artifacts> mArtifacts;
+    private newImageAdapter mAdapter;
+    private ValueEventListener mDBListener;
+    private DatabaseReference mDatabaseRef;
+    String uid;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_artifact);
 
-        //recycler view
-        mRecyclerView = findViewById(R.id.personal_artifact_recycler);
-        mRecyclerView.setHasFixedSize(true);
-
-        //set layout as Linear
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        //send query to Firebase
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRefArtifact = mFirebaseDatabase.getReference("Artifacts");
-
         // different artifact type name
-        TextView typenameTextView = findViewById(R.id.typename);
-        String typename = MeFragment.getTypeName();
-        typenameTextView.setText("My "+typename);
+        final TextView typenameTextView = findViewById(R.id.typename);
+        final String typename = MeFragment.getTypeName();
+        typenameTextView.setText(typename);
 
         //implement back button
         ImageButton goback = findViewById(R.id.goback);
@@ -75,16 +72,55 @@ public class PersonalArtifactActivity extends AppCompatActivity {
             }
         });
 
+        //recycler view
+        mRecyclerView = findViewById(R.id.personal_artifact_recycler);
+        mRecyclerView.setHasFixedSize(true);
+
+        //set layout as Linear
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mArtifacts = new ArrayList<>();
+        mAdapter = new newImageAdapter(PersonalArtifactActivity.this, mArtifacts);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(PersonalArtifactActivity.this);
+
+        //send query to Firebase
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mRefArtifact = mFirebaseDatabase.getReference("Artifacts");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+
+        mDBListener = mRefArtifact.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mArtifacts.clear();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
+                    if(artifacts.getUserId()!= null && artifacts.getUserId().equals(uid)&& artifacts.getFormat().equals(typename)){
+                        mArtifacts.add(artifacts);
+                        artifacts.setKey(postSnapshot.getKey());
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(PersonalArtifactActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
     //load data into recycler view onStart
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
 
         mRefUser = mFirebaseDatabase.getReference("Users");
-        mRefUser.addValueEventListener(new ValueEventListener() {
+        /*mRefUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // get user id
@@ -117,27 +153,35 @@ public class PersonalArtifactActivity extends AppCompatActivity {
                             // set the images
                             protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
                                 holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), model.getDescription());
+                                mArtifact.add(model);
+
                             }
                         };
                 //set adapter to recycler view
                 firebaseRecyclerAdapter.startListening();
                 mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-    }
-    /*public void onItemClick(int position){
-        Artifacts selectedItem = mArtifact.get(position);
+        }*/
+
+    @Override
+    public void onItemClick(int position){
+        Artifacts selectedItem = mArtifacts.get(position);
         String artifactUrl = selectedItem.getArtifactUrl();
         String description =  selectedItem.getDescription();
         String format = selectedItem.getFormat();
+        String selectedKey = selectedItem.getKey();
 
         Bundle extras = new Bundle();
-        extras.putString("AETIFACT_URL", artifactUrl);
+        extras.putString("ARTIFACT_URL", artifactUrl);
         extras.putString("DESCRIPTION", description);
+        extras.putString("theKey", selectedKey);
         Intent intent = new Intent();
 
         switch(format){
@@ -148,12 +192,17 @@ public class PersonalArtifactActivity extends AppCompatActivity {
                 intent.setClass(PersonalArtifactActivity.this, VideoActivity.class);
                 break;
             case Fragment_Documents.FORMAT:
-                intent.setClass(PersonalArtifactActivity.this,DocumentActivity.class);
+                intent.setClass(PersonalArtifactActivity.this, DocumentActivity.class);
         }
+        intent.putExtras(extras);
+        startActivity(intent);
 
-    }*/
+    }
 
-
+    protected void onDestory(){
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
+    }
     @Override
     public void onBackPressed(){
         super.onBackPressed();
