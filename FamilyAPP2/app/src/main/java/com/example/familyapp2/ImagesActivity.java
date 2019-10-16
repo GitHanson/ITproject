@@ -55,13 +55,7 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
         mAdapter.setOnItemClickListener(ImagesActivity.this);
 
-       //mAdapter = new ImageAdapter(ImagesActivity.this, mArtifacts);
-        //mRecyclerView.setAdapter(mAdapter);
-        //mAdapter.setOnItemClickListener(ImagesActivity.this);
-
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        mStorage = FirebaseStorage.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts/" + currentUser.getUid());
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
         mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -70,7 +64,6 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
 
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
-                    //artifacts.setKey(postSnapshot.getKey());
                     mArtifacts.add(artifacts);
                 }
 
@@ -91,12 +84,14 @@ public class ImagesActivity extends AppCompatActivity implements ImageAdapter.On
     public void onItemClick(int position) {
         Artifacts selectedItem = mArtifacts.get(position);
         String artifactUrl = selectedItem.getArtifactUrl();
+        String thumbnailUrl = selectedItem.getThumbnailUrl();
         String description = selectedItem.getDescription();
         String format = selectedItem.getFormat();
 
         Bundle extras = new Bundle();
         extras.putString("ARTIFACT_URL", artifactUrl);
         extras.putString("DESCRIPTION", description);
+        extras.putString("THUMB", thumbnailUrl);
         Intent intent = new Intent();
         switch(format) {
             case Fragment_Photos

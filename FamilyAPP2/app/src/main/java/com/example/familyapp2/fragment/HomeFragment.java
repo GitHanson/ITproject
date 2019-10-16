@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.familyapp2.Artifacts;
 import com.example.familyapp2.ViewHolder;
@@ -46,7 +47,10 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         //set layout as Linear
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         //send query to Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();

@@ -19,8 +19,18 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         mView = itemView;
     }
 
-    //set details to item in recycler view
-    public void setDetails(Context ctx, String image_artifact, String image_icon, String userName, String description) {
+
+    /**
+     * This function describes the action to set the details to the item
+     * in the recycler view
+     * @param ctx the context
+     * @param image_artifact the string source of the artifact in the format of an image
+     * @param image_icon the string source of the image icon
+     * @param userName the username in the format of a string
+     * @param description the description of the artifact in the format of a string
+     */
+    public void setDetails(Context ctx, String image_artifact, String image_icon,
+                           String userName, String description) {
         //view
         ImageView mImageViewArtifact = mView.findViewById(R.id.home_image);
         ImageView mImageViewIcon = mView.findViewById(R.id.home_icon);
@@ -32,6 +42,14 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         mTextView.setText(description);
         mUserName.setText(userName);
     }
+
+
+    /**
+     *
+     * @param ctx the context
+     * @param image_artifact the string source of the artifact in the format of an image
+     * @param description the description of the artifact in the format of a string
+     */
     public void setDetails(Context ctx, String image_artifact, String description) {
         //view
         ImageView mImageViewArtifact = mView.findViewById(R.id.profile_image);

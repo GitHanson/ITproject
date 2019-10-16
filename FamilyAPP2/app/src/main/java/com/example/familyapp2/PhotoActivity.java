@@ -4,30 +4,46 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class PhotoActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private TextView tvDescription;
+    private ImageButton delete;
 
     private String description;
     private String imageUrl;
+    private String thisKey;
+    private FirebaseStorage mStorage;
+    private DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+
         imageView = findViewById(R.id.imageView);
         tvDescription = findViewById(R.id.description);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
-        imageUrl = extras.getString("IMAGE_URL");
+        imageUrl = extras.getString("ARTIFACT_URL");
+        thisKey = extras.getString("theKey");
 
         Picasso.get()
                 .load(imageUrl)
@@ -37,5 +53,23 @@ public class PhotoActivity extends AppCompatActivity {
                 .into(imageView);
 
         tvDescription.setText(description);
+
+        delete = findViewById(R.id.deleteButton);
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                StorageReference imageRef = mStorage.getReferenceFromUrl(imageUrl);
+                imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid){
+                        mDatabaseRef.child(thisKey).removeValue();
+                        Toast.makeText(PhotoActivity.this, "Artifact deleted", Toast.LENGTH_SHORT).show();
+                        PhotoActivity.this.finish();
+                    }
+                });
+                //onBackPressed();
+            }
+        });
+
     }
 }

@@ -49,7 +49,10 @@ public class CategoryArtifactActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //set layout as Linear
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         //send query to Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,7 +88,7 @@ public class CategoryArtifactActivity extends AppCompatActivity {
 
                 //get family id
                 familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
-                family_category_privacyValue = familyId+"_"+cateName.toLowerCase()+"_1";
+                family_category_privacyValue = familyId+"_"+cateName+"_1";
 
                 // set recycler view
                 FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
