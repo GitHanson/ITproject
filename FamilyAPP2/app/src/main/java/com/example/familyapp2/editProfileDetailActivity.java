@@ -27,6 +27,7 @@ public class editProfileDetailActivity extends AppCompatActivity {
     private EditText name;
     private EditText familyName;
     private EditText year;
+    private ImageButton back;
     private ImageButton save;
 
     DatabaseReference databaseReference;
@@ -51,6 +52,7 @@ public class editProfileDetailActivity extends AppCompatActivity {
         familyName = (EditText)findViewById(R.id.FamilyName);
         year = (EditText) findViewById(R.id.Year);
         save = (ImageButton) findViewById(R.id.save);
+        back = (ImageButton) findViewById(R.id.goback);
 
         //implement the save button functionality
         save.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,13 @@ public class editProfileDetailActivity extends AppCompatActivity {
                 addYear();
                 Intent i = new Intent(editProfileDetailActivity.this, HomeActivity.class);
                 startActivity(i);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }
@@ -109,6 +118,11 @@ public class editProfileDetailActivity extends AppCompatActivity {
             //Toast.makeText(editProfileDetailActivity.this, "Please type the year of birth", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 
 

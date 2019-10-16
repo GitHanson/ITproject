@@ -18,7 +18,7 @@ public class MemberProfileActivity extends AppCompatActivity {
 
     private TextView name;
     private TextView email;
-    private ImageButton goBack;
+    private ImageButton back;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -26,16 +26,14 @@ public class MemberProfileActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.Name);
         email = (TextView)findViewById(R.id.Email);
-        //goBack = findViewById(R.id.goback);
-        /*goBack.setOnClickListener(new View.OnClickListener() {
+        back = (ImageButton) findViewById(R.id.goback);
+
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(SettingActivity.this,HomeActivity.class);
-//                startActivity(i);
                 onBackPressed();
             }
-        });*/
-
+        });
 
     }
     @Override

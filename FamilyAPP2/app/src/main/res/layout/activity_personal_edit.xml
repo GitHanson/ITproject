@@ -73,10 +73,10 @@
         android:id="@+id/image"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/goback"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/updatefile" />
 
@@ -92,6 +92,18 @@
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/goback"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:background="#0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/goback" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
