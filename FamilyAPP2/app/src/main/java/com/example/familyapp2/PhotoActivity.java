@@ -22,6 +22,7 @@ public class PhotoActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView tvDescription;
     private ImageButton delete;
+    private ImageButton back;
 
     private String description;
     private String imageUrl;
@@ -37,7 +38,7 @@ public class PhotoActivity extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
 
         imageView = findViewById(R.id.imageView);
-        tvDescription = findViewById(R.id.description);
+
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -52,8 +53,11 @@ public class PhotoActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(imageView);
 
+        //set the description for this artifact
+        tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
 
+        // implement the delete functionality to delet this artifact (photo)
         delete = findViewById(R.id.deleteButton);
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -67,9 +71,23 @@ public class PhotoActivity extends AppCompatActivity {
                         PhotoActivity.this.finish();
                     }
                 });
-                //onBackPressed();
             }
         });
 
+        //implement the go back functionality in this page, to go back previous page
+        back = findViewById(R.id.goback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    // override the onBackPressed() method
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }

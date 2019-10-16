@@ -9,23 +9,40 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
 
 public class DocumentActivity extends AppCompatActivity {
 
     private ImageView pdfView;
+    private ImageView goback;
+    private ImageView delete;
+
     private TextView tvDescription;
     private String description;
     private String documentUrl;
     private String thumbnailUrl;
+    private String thisKey;
+
+    private FirebaseStorage mStorage;
+    private DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document);
+        mStorage = FirebaseStorage.getInstance();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+
+
         pdfView = findViewById(R.id.pdfView);
-        tvDescription = findViewById(R.id.description);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -56,6 +73,44 @@ public class DocumentActivity extends AppCompatActivity {
             }
         });
 
+        //set the artifact description
+        tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
+
+        // go back button, can shift to previous page
+        goback = findViewById(R.id.goback);
+        goback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        // delete button to delete this artifact(document)
+        delete = findViewById(R.id.deleteButton);
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                StorageReference imageRef = mStorage.getReferenceFromUrl(documentUrl);
+                imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>(){
+                    @Override
+                    public void onSuccess(Void aVoid){
+                        mDatabaseRef.child(thisKey).removeValue();
+                        Toast.makeText(DocumentActivity.this, "Artifact deleted", Toast.LENGTH_SHORT).show();
+                        DocumentActivity.this.finish();
+                    }
+                });
+            }
+        });
+
+
+
+
+    }
+
+    //override the onBackPressed() method
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
     }
 }
