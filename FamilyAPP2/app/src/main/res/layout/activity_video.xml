@@ -62,5 +62,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/goback" />
 
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:background="#0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:srcCompat="@drawable/editpic" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

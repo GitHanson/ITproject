@@ -24,7 +24,10 @@ public class VideoActivity extends AppCompatActivity {
     private VideoView videoView;
     private TextView tvDescription;
     private ImageButton delete;
+    private ImageButton edit;
     private ImageButton back;
+
+
     private String thisKey;
     private Uri videoUri;
     private String videoUrl;
@@ -77,6 +80,17 @@ public class VideoActivity extends AppCompatActivity {
                         VideoActivity.this.finish();
                     }
                 });
+            }
+        });
+
+
+        //click edit pass to edit artifact details page
+        edit = findViewById(R.id.editButton);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(VideoActivity.this, editArtifactDetailActivity.class);
+                startActivity(i);
             }
         });
 

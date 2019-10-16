@@ -35,6 +35,7 @@
         <activity android:name=".editProfileDetailActivity"/>
         <activity android:name=".ProfilePhotoActivity"/>
         <activity android:name=".MemberProfileActivity"/>
+        <activity android:name=".editArtifactDetailActivity"/>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

@@ -23,6 +23,7 @@ public class PhotoActivity extends AppCompatActivity {
     private TextView tvDescription;
     private ImageButton delete;
     private ImageButton back;
+    private ImageButton edit;
 
     private String description;
     private String imageUrl;
@@ -74,6 +75,16 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
 
+        //click edit pass to edit artifact details page
+        edit = findViewById(R.id.editButton);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PhotoActivity.this, editArtifactDetailActivity.class);
+                startActivity(i);
+            }
+        });
+
         //implement the go back functionality in this page, to go back previous page
         back = findViewById(R.id.goback);
         back.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +93,7 @@ public class PhotoActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
 
     }
 

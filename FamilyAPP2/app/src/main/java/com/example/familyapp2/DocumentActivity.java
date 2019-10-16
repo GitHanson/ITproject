@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,7 +25,8 @@ public class DocumentActivity extends AppCompatActivity {
 
     private ImageView pdfView;
     private ImageView goback;
-    private ImageView delete;
+    private ImageButton edit;
+    private ImageButton delete;
 
     private TextView tvDescription;
     private String description;
@@ -83,6 +86,16 @@ public class DocumentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+
+        //click edit pass to edit artifact details page
+        edit = findViewById(R.id.editButton);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DocumentActivity.this, editArtifactDetailActivity.class);
+                startActivity(i);
             }
         });
 
