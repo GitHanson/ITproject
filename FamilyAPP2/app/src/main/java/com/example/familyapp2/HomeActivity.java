@@ -93,23 +93,10 @@ public class HomeActivity extends AppCompatActivity {
 
         if (check != null) {
             if (check.equals("yes")) {
-
-                mMenu = navView.getMenu();
-                mMenu.performIdentifierAction(R.id.navigation_me, 0);
-                //onOptionsItemSelected(mMenu.findItem(R.id.navigation_me));
-
-
-//                Fragment fragment = new MeFragment();
                 changeFragment(new MeFragment(), true);
                 check = "";
             }
-
         }
-        //System.out.println(getCallingActivity()+"3333333333333333333");
-        //if(this.getCallingActivity().equals(SettingActivity.class)){
-         //   changeFragment(new MeFragment(),true);
-        //}
-
 
     }
 

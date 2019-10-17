@@ -19,6 +19,7 @@ import com.example.familyapp2.HomeActivity;
 import com.example.familyapp2.JoinFamilyActivity;
 import com.example.familyapp2.MemberProfileActivity;
 import com.example.familyapp2.R;
+import com.example.familyapp2.User;
 import com.example.familyapp2.editProfileDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,6 +53,8 @@ public class TreeFragment extends Fragment {
     FirebaseUser user;
     String uid;
 
+    String mUserId;
+
     private String familyId;
     private List<String> memberList = new ArrayList<>();
     int numOfMembers;
@@ -63,80 +66,17 @@ public class TreeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tree, null);
 
+
         // assign values to icon
         treeIcon1 = view.findViewById(R.id.tree_icon1);
-        treeIcon1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Bundle extras = new Bundle();
-                //extras.putString("ARTIFACT_URL", artifactUrl);
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });
-
         treeIcon2 = view.findViewById(R.id.tree_icon2);
-        treeIcon2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });
-
         treeIcon3 = view.findViewById(R.id.tree_icon3);
-        treeIcon3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });
+        treeIcon4 = view.findViewById(R.id.tree_icon4);
+        treeIcon5 = view.findViewById(R.id.tree_icon5);
+        treeIcon6 = view.findViewById(R.id.tree_icon6);
+        treeIcon7 = view.findViewById(R.id.tree_icon7);
+        treeIcon8 = view.findViewById(R.id.tree_icon8);
 
-        /*treeIcon4 = view.findViewById(R.id.tree_icon4);
-        treeIcon4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
-
-        /*treeIcon5 = view.findViewById(R.id.tree_icon5);
-        treeIcon5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
-
-        /*treeIcon6 = view.findViewById(R.id.tree_icon6);
-        treeIcon6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
-
-        /*treeIcon7 = view.findViewById(R.id.tree_icon7);
-        treeIcon7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
-
-        /*treeIcon8 = view.findViewById(R.id.tree_icon8);
-        treeIcon8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                startActivity(i);
-            }
-        });*/
 
         familyNameTextView = view.findViewById(R.id.tree_title_textView);
 
@@ -185,9 +125,21 @@ public class TreeFragment extends Fragment {
                                 numOfMembers = memberList.size();
                             }
                             int i = 0;
-                            for (String userId : memberList) {
+                            for (final String userId : memberList) {
                                 String icon = UserDataSnapshot.child(userId).child("profileUrl").getValue(String.class);
                                 Picasso.get().load(icon).into(treeIconList.get(i));
+
+                                treeIconList.get(i).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Bundle extras = new Bundle();
+                                        extras.putString("userId",userId);
+                                        System.out.println("*******"+userId);
+                                        Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                                        i.putExtras(extras);
+                                        startActivity(i);
+                                    }
+                                });
                                 i = i + 1;
                             }
                         }
@@ -205,7 +157,6 @@ public class TreeFragment extends Fragment {
 
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;
