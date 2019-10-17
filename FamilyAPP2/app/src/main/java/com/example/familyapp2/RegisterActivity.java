@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                         DatabaseReference currentUserDB = databaseUsers.child(userID);
                         currentUserDB.child("profileUrl").setValue(defaultProfileUrl);
                         currentUserDB.child("name").setValue(defaultName);
+                        currentUserDB.child("email").setValue(email);
 
 
                         Toast.makeText(RegisterActivity.this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
