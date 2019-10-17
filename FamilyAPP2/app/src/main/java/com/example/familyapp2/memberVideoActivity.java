@@ -2,7 +2,6 @@ package com.example.familyapp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -20,12 +19,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class VideoActivity extends AppCompatActivity {
-
+public class memberVideoActivity extends AppCompatActivity {
     private VideoView videoView;
     private TextView tvDescription;
-    private ImageButton delete;
-    private ImageButton edit;
+
     private ImageButton back;
 
 
@@ -33,7 +30,6 @@ public class VideoActivity extends AppCompatActivity {
     private Uri videoUri;
     private String videoUrl;
     private MediaController mediaController;
-    private ProgressDialog mDialog;
 
     private String description;
     private FirebaseStorage mStorage;
@@ -42,7 +38,7 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_members_video);
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
 
@@ -56,61 +52,17 @@ public class VideoActivity extends AppCompatActivity {
         description = extras.getString("DESCRIPTION");
         videoUrl = extras.getString("ARTIFACT_URL");
         videoUri = Uri.parse(extras.getString("ARTIFACT_URL"));
-        thisKey = extras.getString("theKey");
-
-        mDialog = new ProgressDialog(VideoActivity.this);
-        mDialog.setMessage("Video buffering. Please wait...");
-        mDialog.setCanceledOnTouchOutside(false);
-        mDialog.show();
+        //thisKey = extras.getString("theKey");
 
         videoView.setVideoURI(videoUri);
         videoView.requestFocus();
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                mDialog.dismiss();
-                mediaController = new MediaController(VideoActivity.this);
-                videoView.setMediaController(mediaController);
-                mediaController.setAnchorView(videoView);
-                videoView.start();
-
-            }
-        });
-
+        videoView.setMediaController(new MediaController(memberVideoActivity.this));
+        videoView.start();
 
 
         //set the description for this artifact
         tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
-
-        //delet button to delete this artifact(video)
-        delete = findViewById(R.id.deleteButton);
-        delete.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                StorageReference imageRef = mStorage.getReferenceFromUrl(videoUrl);
-                imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>(){
-                    @Override
-                    public void onSuccess(Void aVoid){
-                        mDatabaseRef.child(thisKey).removeValue();
-                        Toast.makeText(VideoActivity.this, "Artifact deleted", Toast.LENGTH_SHORT).show();
-                        VideoActivity.this.finish();
-                    }
-                });
-            }
-        });
-
-
-        //click edit pass to edit artifact details page
-        edit = findViewById(R.id.editButton);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(VideoActivity.this, editArtifactDetailActivity.class);
-                startActivity(i);
-            }
-        });
 
         //back button to go back to previous page
         back = findViewById(R.id.goback);
@@ -127,6 +79,5 @@ public class VideoActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
     }
-
 
 }

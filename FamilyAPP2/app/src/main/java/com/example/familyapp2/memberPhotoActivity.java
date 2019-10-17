@@ -17,13 +17,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class PhotoActivity extends AppCompatActivity {
-
+public class memberPhotoActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView tvDescription;
-    private ImageButton delete;
+
     private ImageButton back;
-    private ImageButton edit;
+
 
     private String description;
     private String imageUrl;
@@ -34,7 +33,7 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_photo);
+        setContentView(R.layout.activity_members_photo);
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
 
@@ -58,32 +57,6 @@ public class PhotoActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
 
-        // implement the delete functionality to delet this artifact (photo)
-        delete = findViewById(R.id.deleteButton);
-        delete.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                StorageReference imageRef = mStorage.getReferenceFromUrl(imageUrl);
-                imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>(){
-                    @Override
-                    public void onSuccess(Void aVoid){
-                        mDatabaseRef.child(thisKey).removeValue();
-                        Toast.makeText(PhotoActivity.this, "Artifact deleted", Toast.LENGTH_SHORT).show();
-                        PhotoActivity.this.finish();
-                    }
-                });
-            }
-        });
-
-        //click edit pass to edit artifact details page
-        edit = findViewById(R.id.editButton);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(PhotoActivity.this, editArtifactDetailActivity.class);
-                startActivity(i);
-            }
-        });
 
         //implement the go back functionality in this page, to go back previous page
         back = findViewById(R.id.goback);
@@ -94,12 +67,5 @@ public class PhotoActivity extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    // override the onBackPressed() method
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
     }
 }
