@@ -140,7 +140,7 @@ public class TreeFragment extends Fragment {
                                     @Override
                                     public void onClick(View view) {
                                         Bundle extras = new Bundle();
-                                        extras.putString("userId",userId);
+                                        extras.putString("userId", userId);
                                         Intent i = new Intent(getActivity(), MemberProfileActivity.class);
                                         i.putExtras(extras);
                                         startActivity(i);

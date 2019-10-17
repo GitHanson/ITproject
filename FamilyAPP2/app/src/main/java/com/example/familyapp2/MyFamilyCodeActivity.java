@@ -36,8 +36,7 @@ public class MyFamilyCodeActivity extends AppCompatActivity {
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MyFamilyCodeActivity.this, SettingActivity.class);
-                startActivity(i);
+                onBackPressed();
             }
         });
 
