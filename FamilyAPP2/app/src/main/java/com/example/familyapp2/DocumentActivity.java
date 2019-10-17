@@ -9,6 +9,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.view.View;
 
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,7 +34,7 @@ public class DocumentActivity extends AppCompatActivity {
 
 
     private ImageView pdfView;
-    private ImageView goback;
+    private ImageButton goback;
     private ImageButton edit;
     private ImageButton delete;
 
@@ -58,8 +60,6 @@ public class DocumentActivity extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
-
-
 
 
         webView = findViewById(R.id.pdfView);
