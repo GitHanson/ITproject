@@ -54,6 +54,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
     private ProgressBar mProgressBar;
     private Spinner spinner;
     private ToggleButton toggleButton;
+    private ProgressBar uploadSpinner;
 
     private StorageReference mStorageRef;
     private StorageReference thumbnailRef;
@@ -78,6 +79,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
         toggleButton = view.findViewById(R.id.privacy_toggle);
+        uploadSpinner = view.findViewById(R.id.uploadSpinner);
 
         // default public
         privacy = "1";
@@ -132,6 +134,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
     public void uploadFile() {
         Uri mVideoUri = getFileUri();
         if(mVideoUri != null) {
+            uploadSpinner.setVisibility(View.VISIBLE);
             long currentTime = System.currentTimeMillis();
             final StorageReference fileReference = mStorageRef.child(currentTime
                     + "." + getFileExtension(mVideoUri));
@@ -195,6 +198,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
                                     uri.toString(), thumbnailDownloadUrl, FORMAT, category, privacy, userId, familyId);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifacts);
+                            uploadSpinner.setVisibility(View.GONE);
                         }
                     });
                 }
@@ -202,6 +206,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    uploadSpinner.setVisibility(View.GONE);
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -210,6 +215,9 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
                     mProgressBar.setProgress((int) progress);
                 }
             });
+        }
+        else {
+            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
 

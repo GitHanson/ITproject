@@ -122,4 +122,13 @@
         android:textOn="@string/set_private"
         />
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/uploadSpinner"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+    </ProgressBar>
+
 </RelativeLayout>

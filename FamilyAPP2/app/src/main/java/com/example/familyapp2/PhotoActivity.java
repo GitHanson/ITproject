@@ -32,8 +32,8 @@ public class PhotoActivity extends AppCompatActivity {
         Picasso.get()
                 .load(imageUrl)
                 .placeholder(R.mipmap.ic_launcher)
-                .fit()
-                .centerCrop()
+                //.fit()
+                //.centerCrop()
                 .into(imageView);
 
         tvDescription.setText(description);
