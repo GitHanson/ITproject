@@ -152,7 +152,6 @@
             android:layout_height="60dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/tree_pot_bigger"
-            android:text="Manage Family"
             android:layout_gravity="center_vertical|center_horizontal"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
