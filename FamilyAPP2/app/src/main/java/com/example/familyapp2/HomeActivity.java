@@ -87,16 +87,14 @@ public class HomeActivity extends AppCompatActivity {
         //change fragment
         changeFragment(new HomeFragment(), false);
 
-        Intent intent = getIntent();
-        String check = intent.getStringExtra("BackMe");
-
-
-        if (check != null) {
-            if (check.equals("yes")) {
-                changeFragment(new MeFragment(), true);
-                check = "";
-            }
-        }
+//        Intent intent = getIntent();
+//        String check = intent.getStringExtra("BackMe");
+//
+//
+//        if (check!=null && check.equals("yes")) {
+//            changeFragment(new MeFragment(), true);
+//            check = "";
+//        }
 
     }
 

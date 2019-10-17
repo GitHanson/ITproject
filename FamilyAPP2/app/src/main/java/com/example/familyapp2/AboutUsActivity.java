@@ -18,11 +18,9 @@ public class AboutUsActivity extends AppCompatActivity {
         //implement the goback button in family code page
         ImageButton goBack = findViewById(R.id.goback);
         goBack.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view){
-                Intent i = new Intent(AboutUsActivity.this, SettingActivity.class);
-                startActivity(i);
+                onBackPressed();
             }
         });
 
