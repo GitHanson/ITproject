@@ -36,7 +36,7 @@
         android:layout_below="@id/textView3"
         android:background="#0000"
         android:contentDescription="uploadButton"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textView3"
         app:srcCompat="@drawable/add_picture" />
@@ -114,6 +114,4 @@
         android:background="@drawable/privacy_selector"
         android:textOff=""
         android:textOn="" />
-    />
-
 </RelativeLayout>

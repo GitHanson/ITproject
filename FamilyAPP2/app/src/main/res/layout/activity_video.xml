@@ -6,17 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".VideoActivity"
     android:padding="30dp">
-    
-    <VideoView
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/videoView"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout">
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/videoView"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/description"
         android:layout_marginTop="30dp"
-        android:layout_below="@id/videoView"/>
+        android:layout_below="@id/frameLayout"/>
 
 </RelativeLayout>

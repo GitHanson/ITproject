@@ -109,7 +109,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
             @Override
             public void onClick(View view) {
                 if(mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(getActivity(),"Artifacts in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Upload in progress", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     uploadFile();

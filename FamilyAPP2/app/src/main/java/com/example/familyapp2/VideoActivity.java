@@ -2,6 +2,7 @@ package com.example.familyapp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -16,6 +17,7 @@ public class VideoActivity extends AppCompatActivity {
     private TextView tvDescription;
     private Uri videoUri;
     private MediaController mediaController;
+    private ProgressDialog mDialog;
 
     private String description;
 
@@ -32,12 +34,25 @@ public class VideoActivity extends AppCompatActivity {
         description = extras.getString("DESCRIPTION");
         videoUri = Uri.parse(extras.getString("ARTIFACT_URL"));
 
+        mDialog = new ProgressDialog(VideoActivity.this);
+        mDialog.setMessage("Video buffering. Please wait...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+
         videoView.setVideoURI(videoUri);
         videoView.requestFocus();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mDialog.dismiss();
+                mediaController = new MediaController(VideoActivity.this);
+                videoView.setMediaController(mediaController);
+                mediaController.setAnchorView(videoView);
+                videoView.start();
 
-        videoView.setMediaController(new MediaController(VideoActivity.this));
+            }
+        });
 
-        videoView.start();
 
         tvDescription.setText(description);
     }

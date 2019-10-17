@@ -90,15 +90,15 @@
         android:layout_below="@id/select_category"/>
 
     <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/privacy_toggle"
-        android:layout_toRightOf="@id/privacy_setting"
+        android:layout_width="52dp"
+        android:layout_height="27dp"
         android:layout_below="@id/spinner_categories"
-        android:layout_marginTop="35dp"
-        android:layout_alignLeft="@id/spinner_categories"
-        android:textOff="@string/set_public"
-        android:textOn="@string/set_private"
-        />
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="43dp"
+        android:layout_toRightOf="@id/privacy_setting"
+        android:background="@drawable/privacy_selector"
+        android:textOff=""
+        android:textOn="" />
 
 </RelativeLayout>
