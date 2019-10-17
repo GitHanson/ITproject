@@ -36,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 import java.util.ArrayList;
 
-
+//
 public class PersonalArtifactActivity extends AppCompatActivity implements newImageAdapter.OnItemClickListener{
 
     private RecyclerView mRecyclerView;
@@ -49,6 +49,7 @@ public class PersonalArtifactActivity extends AppCompatActivity implements newIm
     private FirebaseAuth mAuth;
     private String user_format;
     private List<Artifacts> mArtifacts;
+    //
     private newImageAdapter mAdapter;
     private ValueEventListener mDBListener;
     private DatabaseReference mDatabaseRef;
