@@ -14,10 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DocumentActivity"></activity>
+        <activity android:name=".MemberArtifactActivity"></activity>
+        <activity android:name=".DocumentActivity" />
         <activity android:name=".PhotoActivity" />
         <activity android:name=".VideoActivity" />
-        <activity android:name=".CategoryArtifactActivity"></activity>
+        <activity android:name=".CategoryArtifactActivity" />
         <activity android:name=".ImagesActivity" />
         <activity
             android:name=".ShareActivity"
@@ -27,19 +28,19 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" />
-        <activity android:name=".SettingActivity"/>
-        <activity android:name=".AboutUsActivity"/>
-        <activity android:name=".MyFamilyCodeActivity"/>
-        <activity android:name=".JoinFamilyActivity"/>
-        <activity android:name=".PersonalArtifactActivity"/>
-        <activity android:name=".editProfileDetailActivity"/>
-        <activity android:name=".ProfilePhotoActivity"/>
-        <activity android:name=".MemberProfileActivity"/>
-        <activity android:name=".editArtifactDetailActivity"/>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".AboutUsActivity" />
+        <activity android:name=".MyFamilyCodeActivity" />
+        <activity android:name=".JoinFamilyActivity" />
+        <activity android:name=".PersonalArtifactActivity" />
+        <activity android:name=".editProfileDetailActivity" />
+        <activity android:name=".ProfilePhotoActivity" />
+        <activity android:name=".MemberProfileActivity" />
+        <activity android:name=".editArtifactDetailActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".memberPhotoActivity"/>
-        <activity android:name=".memberDocumentActivity"/>
-        <activity android:name=".memberVideoActivity"/>
+        <activity android:name=".memberPhotoActivity" />
+        <activity android:name=".memberDocumentActivity" />
+        <activity android:name=".memberVideoActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

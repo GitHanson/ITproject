@@ -101,7 +101,7 @@ public class PersonalArtifactActivity extends AppCompatActivity implements newIm
                 mArtifacts.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
-                    if(artifacts.getUserId()!= null && artifacts.getUserId().equals(uid)&& artifacts.getFormat().equals(typename)){
+                    if(artifacts.getUserId()!= null && artifacts.getUserId().equals(uid)&& artifacts.getFormat().equals(typename.toLowerCase())){
                         mArtifacts.add(artifacts);
                         //set Key use for artifact deletion
                         artifacts.setKey(postSnapshot.getKey());

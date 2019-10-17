@@ -28,7 +28,12 @@ public class MemberProfileActivity extends AppCompatActivity {
     private TextView email;
     private ImageButton goBack;
     private ImageView icon;
+    private ImageButton photoBtn;
+    private ImageButton videoBtn;
+    private ImageButton docBtn;
     DatabaseReference userRef;
+
+    static String formatName;
 
 
     @Override
@@ -44,6 +49,9 @@ public class MemberProfileActivity extends AppCompatActivity {
         goBack = findViewById(R.id.goBack);
         icon = findViewById(R.id.my_profile_photo);
 
+        photoBtn = findViewById(R.id.photo);
+        videoBtn = findViewById(R.id.video);
+        docBtn = findViewById(R.id.document);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,17 +80,53 @@ public class MemberProfileActivity extends AppCompatActivity {
                 }
 
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
 
+
+
+        photoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                formatName = "Photo";
+                Bundle extras1 = new Bundle();
+                extras1.putString("memberUserId",userId);
+                Intent i = new Intent(MemberProfileActivity.this, MemberArtifactActivity.class);
+                i.putExtras(extras1);
+                startActivity(i);
+            }
+        });
+        videoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                formatName = "Video";
+                Bundle extras1 = new Bundle();
+                extras1.putString("memberUserId",userId);
+                Intent i = new Intent(MemberProfileActivity.this, MemberArtifactActivity.class);
+                i.putExtras(extras1);
+                startActivity(i);
+            }
+        });
+        docBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                formatName = "Document";
+                Bundle extras1 = new Bundle();
+                extras1.putString("memberUserId",userId);
+                Intent i = new Intent(MemberProfileActivity.this, MemberArtifactActivity.class);
+                i.putExtras(extras1);
+                startActivity(i);
+            }
+        });
 
     }
     @Override
     public void onBackPressed(){
         super.onBackPressed();
+    }
+
+    public static String getFormatName() {
+        return formatName;
     }
 }
