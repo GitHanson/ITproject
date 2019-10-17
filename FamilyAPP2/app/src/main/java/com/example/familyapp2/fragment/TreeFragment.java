@@ -80,6 +80,8 @@ public class TreeFragment extends Fragment {
 
         familyNameTextView = view.findViewById(R.id.tree_title_textView);
 
+        final Button familyBtn = view.findViewById(R.id.tree_page_family_btn);
+
         // add all the icon to the list
         treeIconList.add(treeIcon1);
         treeIconList.add(treeIcon2);
@@ -90,28 +92,33 @@ public class TreeFragment extends Fragment {
         treeIconList.add(treeIcon7);
         treeIconList.add(treeIcon8);
 
-        // on family button click
-        Button familyBtn = view.findViewById(R.id.tree_page_family_btn);
-        familyBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), JoinFamilyActivity.class);
-                startActivity(i);
-            }
-        });
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
 
         familyRef = FirebaseDatabase.getInstance().getReference("Families");
         userRef = FirebaseDatabase.getInstance().getReference("Users");
+        // display family members' profile icon
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot UserDataSnapshot) {
                 familyId = UserDataSnapshot.child(uid).child("family").getValue(String.class);
                 if (familyId == null) {
 
+                    // implement the button if user has no family
+                    familyBtn.setText("Join or create\nyour family");
+                    familyBtn.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getActivity(), JoinFamilyActivity.class);
+                            startActivity(i);
+                        }
+                    });
+
                 } else {
+                    // hide the button if the user has family
+                    familyBtn.setText("");
 
                     familyRef.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -134,7 +141,6 @@ public class TreeFragment extends Fragment {
                                     public void onClick(View view) {
                                         Bundle extras = new Bundle();
                                         extras.putString("userId",userId);
-                                        System.out.println("*******"+userId);
                                         Intent i = new Intent(getActivity(), MemberProfileActivity.class);
                                         i.putExtras(extras);
                                         startActivity(i);
