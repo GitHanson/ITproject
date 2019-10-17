@@ -77,7 +77,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_documents, container, false);
         setImageButton((ImageButton) view.findViewById(R.id.uploadButton));
-        Button btnUpload = view.findViewById(R.id.btn_upload_document);
+        ImageButton btnUpload = view.findViewById(R.id.btn_upload_document);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
@@ -96,6 +96,15 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(this);
+
+        //back
+        ImageButton backBtn = view.findViewById(R.id.goBack);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

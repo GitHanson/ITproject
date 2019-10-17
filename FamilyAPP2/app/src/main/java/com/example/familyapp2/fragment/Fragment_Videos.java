@@ -74,7 +74,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_videos, container, false);
         setImageButton((ImageButton) view.findViewById(R.id.uploadButton));
-        Button btnUpload = view.findViewById(R.id.btn_upload_video);
+        ImageButton btnUpload = view.findViewById(R.id.btn_upload_video);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
@@ -84,6 +84,15 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
         // default public
         privacy = "1";
         category = "Other";
+
+        //back
+        ImageButton backBtn = view.findViewById(R.id.goBack);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Artifacts");
         thumbnailRef = FirebaseStorage.getInstance().getReference("Thumbnails");

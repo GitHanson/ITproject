@@ -66,7 +66,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photos, container, false);
         setImageButton((ImageButton) view.findViewById(R.id.uploadButton));
-        Button btnUpload = view.findViewById(R.id.btn_upload_photo);
+        ImageButton btnUpload = view.findViewById(R.id.btn_upload_photo);
         TextView showUploads = view.findViewById(R.id.tv_upload);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
@@ -85,6 +85,15 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(this);
+
+        //back
+        ImageButton backBtn = view.findViewById(R.id.goBack);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
 
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -214,4 +223,5 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }
