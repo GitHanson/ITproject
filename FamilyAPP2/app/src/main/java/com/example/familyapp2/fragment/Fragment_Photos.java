@@ -49,6 +49,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
     private ProgressBar mProgressBar;
     private Spinner spinner;
     private ToggleButton toggleButton;
+    private ProgressBar uploadSpinner;
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -71,6 +72,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
         toggleButton = view.findViewById(R.id.privacy_toggle);
+        uploadSpinner = view.findViewById(R.id.uploadSpinner);
 
         privacy = "1";
         category = "Other";
@@ -131,6 +133,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
     public void uploadFile() {
         Uri mImageUri = getFileUri();
         if(mImageUri != null) {
+            uploadSpinner.setVisibility(View.VISIBLE);
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                 + "." + getFileExtension(mImageUri));
 
@@ -167,6 +170,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                                     uri.toString(), uri.toString(), FORMAT, category, privacy, userId, familyId);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifacts);
+                            uploadSpinner.setVisibility(View.GONE);
                         }
                     });
                 }
@@ -174,6 +178,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    uploadSpinner.setVisibility(View.GONE);
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -196,8 +201,6 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
             setFileUri(data.getData());
             Picasso.get()
                     .load(getFileUri())
-                    .fit()
-                    .centerCrop()
                     .into(getImageButton());
         }
     }

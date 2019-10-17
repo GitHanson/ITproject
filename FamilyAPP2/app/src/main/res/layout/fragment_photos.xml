@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Select Photo"
+        android:textColor="@color/white"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"/>
 
@@ -23,14 +24,17 @@
         android:layout_below="@id/uploadButton"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:maxLines="5"
-        android:hint="Description" />
+        android:hint="Description"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
 
     <ImageButton
         android:id="@+id/uploadButton"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_below="@id/textView3"
@@ -79,6 +83,7 @@
         android:id="@+id/select_category"
         android:text="@string/select_category"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/et_description" />
@@ -86,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_categories"
+        android:backgroundTint="@color/white"
         android:layout_below="@id/et_description"
         android:layout_toRightOf="@+id/select_category"
         android:layout_alignTop="@id/select_category"
@@ -99,6 +105,7 @@
         android:id="@+id/privacy_setting"
         android:text="@string/privacy_setting"
         android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/select_category"/>
@@ -108,10 +115,22 @@
         android:layout_width="52dp"
         android:layout_height="27dp"
         android:layout_below="@id/spinner_categories"
+
         android:layout_marginLeft="45dp"
         android:layout_marginTop="43dp"
         android:layout_toRightOf="@id/privacy_setting"
         android:background="@drawable/privacy_selector"
         android:textOff=""
         android:textOn="" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/uploadSpinner"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+    </ProgressBar>
+
+
 </RelativeLayout>

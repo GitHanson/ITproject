@@ -56,6 +56,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
     private ProgressBar mProgressBar;
     private Spinner spinner;
     private ToggleButton toggleButton;
+    private ProgressBar uploadSpinner;
 
     private StorageReference mStorageRef;
     private StorageReference thumbnailRef;
@@ -81,6 +82,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
         toggleButton = view.findViewById(R.id.privacy_toggle);
+        uploadSpinner = view.findViewById(R.id.uploadSpinner);
 
         privacy = "1";
         category = "Other";
@@ -136,6 +138,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
     public void uploadFile() {
         Uri mDocumentUri = getFileUri();
         if(mDocumentUri != null) {
+            uploadSpinner.setVisibility(View.VISIBLE);
             long currentTime = System.currentTimeMillis();
             final StorageReference fileReference = mStorageRef.child(currentTime
                     + "." + getFileExtension(mDocumentUri));
@@ -196,6 +199,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
                                     uri.toString(), thumbnailDownloadUrl, FORMAT, category, privacy, userId, familyId);
                             String uploadID = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadID).setValue(artifact);
+                            uploadSpinner.setVisibility(View.GONE);
                         }
                     });
                 }
@@ -203,6 +207,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    uploadSpinner.setVisibility(View.GONE);
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
