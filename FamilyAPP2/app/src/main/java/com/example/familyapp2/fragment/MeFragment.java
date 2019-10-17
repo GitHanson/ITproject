@@ -110,29 +110,29 @@ public class MeFragment extends Fragment {
         myPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("photo");
+                setTypeName("Photo");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
         });
 
-        //implemet myvideo button in profile page
+        //implement myvideo button in profile page
         ImageButton myVideo = v.findViewById(R.id.myvideo);
         myVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("video");
+                setTypeName("Video");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
         });
 
-        //implemet mydocument button in profile page
+        //implement mydocument button in profile page
         ImageButton myDocument = v.findViewById(R.id.mydocument);
         myDocument.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setTypeName("document");
+                setTypeName("Document");
                 Intent i = new Intent(getActivity(), PersonalArtifactActivity.class);
                 startActivity(i);
             }
