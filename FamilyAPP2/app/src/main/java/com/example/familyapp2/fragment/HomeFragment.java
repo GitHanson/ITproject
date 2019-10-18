@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.familyapp2.Artifacts;
+import com.example.familyapp2.CategoryArtifactActivity;
 import com.example.familyapp2.DocumentActivity;
 import com.example.familyapp2.HomeActivity;
 import com.example.familyapp2.PersonalArtifactActivity;
@@ -22,8 +23,12 @@ import com.example.familyapp2.PhotoActivity;
 import com.example.familyapp2.VideoActivity;
 import com.example.familyapp2.ViewHolder;
 import com.example.familyapp2.R;
+//import com.example.familyapp2.homeImageAdapter;
+import com.example.familyapp2.memberDocumentActivity;
+import com.example.familyapp2.memberVideoActivity;
+import com.example.familyapp2.memberPhotoActivity;
+
 import com.example.familyapp2.homeImageAdapter;
-import com.example.familyapp2.newImageAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +41,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment implements homeImageAdapter.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private FirebaseDatabase mFirebaseDatabase;
@@ -51,6 +56,8 @@ public class HomeFragment extends Fragment{
     private FirebaseAuth mAuth;
     private String family_privacyValue;
     private DatabaseReference mDatabaseRef;
+    private String uid;
+    private DatabaseReference mDatabaseRef1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,84 +76,46 @@ public class HomeFragment extends Fragment{
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
-        //mArtifacts = new ArrayList<>();
-
-        //mAdapter = new homeImageAdapter(getActivity(), mArtifacts);
-        //mRecyclerView.setAdapter(mAdapter);
-        //mAdapter.setOnItemClickListener(HomeFragment.this);
+        mArtifacts = new ArrayList<>();
+        mAdapter = new homeImageAdapter(getActivity(), mArtifacts);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(this);
 
         //send query to Firebase
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRefArtifact = mFirebaseDatabase.getReference("Artifacts");
-        //mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+        // mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
+        mDatabaseRef1 = FirebaseDatabase.getInstance().getReference("Users");
 
 
-       /* mDBListener = mRefArtifact.addValueEventListener(new ValueEventListener() {
+        mDatabaseRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mArtifacts.clear();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
-                    mArtifacts.add(artifacts);
-                }
-                mAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        // Inflate the layout for this fragment
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        mRefUser = mFirebaseDatabase.getReference("Users");
-        mRefUser.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-
-                // get family id and family_privacy Value
-                familyId = dataSnapshot.child(mAuth.getInstance().getCurrentUser().getUid()).child("family").getValue(String.class);
-                family_privacyValue = familyId+"_1";
-
-                // set recycler view
-                FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
-                        // add a filter order by family_privacy
-                        // privacy 1=visible, 0=invisible
-                        .setQuery(mRefArtifact.orderByChild("family_privacy").equalTo(family_privacyValue), Artifacts.class)
-                        .build();
-
-                FirebaseRecyclerAdapter<Artifacts, ViewHolder> firebaseRecyclerAdapter =
-                        new FirebaseRecyclerAdapter<Artifacts, ViewHolder>(options) {
-
-                            @NonNull
-                            @Override
-                            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                                View view_holder = LayoutInflater.from(parent.getContext())
-                                        .inflate(R.layout.home_item, parent, false);
-                                return new ViewHolder(view_holder);
+                final String familyId = dataSnapshot.child(uid).child("family").getValue(String.class);
+                mDBListener = mRefArtifact.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        mArtifacts.clear();
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
+                            if (artifacts.getFamily_privacy() != null && artifacts.getUserId() != null && artifacts.getFamily_privacy().equals(familyId + "_" + "1")) {
+                                mArtifacts.add(artifacts);
+                                //set Key use for artifact deletion
+                                artifacts.setKey(postSnapshot.getKey());
                             }
 
-                            @Override
-                            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
-                                String artifactUserId = model.getUserId();
-                                String artifactUserName = dataSnapshot.child(artifactUserId).child("name").getValue(String.class);
-                                String artifactUserIcon = dataSnapshot.child(artifactUserId).child("profileUrl").getValue(String.class);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
 
-                                holder.setDetails(getActivity().getApplicationContext(), model.getThumbnailUrl(), artifactUserIcon, artifactUserName, model.getDescription());
-                            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                        };
-
-                //set adapter to recycler view
-                firebaseRecyclerAdapter.startListening();
-                mRecyclerView.setAdapter(firebaseRecyclerAdapter);
             }
 
             @Override
@@ -154,14 +123,19 @@ public class HomeFragment extends Fragment{
 
             }
         });
+        // Inflate the layout for this fragment
+        return view;
     }
-    /*@Override
-    public void onItemClick(int position){
-       /* Artifacts selectedItem = mArtifacts.get(position);
+
+    @Override
+    public void onItemClick(int position) {
+        Artifacts selectedItem = mArtifacts.get(position);
         String artifactUrl = selectedItem.getArtifactUrl();
-        String description =  selectedItem.getDescription();
+        String description = selectedItem.getDescription();
         String format = selectedItem.getFormat();
         String selectedKey = selectedItem.getKey();
+        String artifactId = selectedItem.getUserId();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Bundle extras = new Bundle();
         extras.putString("ARTIFACT_URL", artifactUrl);
@@ -169,8 +143,36 @@ public class HomeFragment extends Fragment{
         extras.putString("theKey", selectedKey);
         Intent intent = new Intent();
 
+        switch (format) {
+            case Fragment_Photos.FORMAT:
+                if (artifactId.equals(uid)) {
+                    intent.setClass(getActivity(), PhotoActivity.class);
+                } else {
+                    intent.setClass(getActivity(), memberPhotoActivity.class);
+                }
+                break;
+            case Fragment_Videos.FORMAT:
+                if (artifactId.equals(uid)) {
+                    intent.setClass(getActivity(), VideoActivity.class);
+                } else {
+                    intent.setClass(getActivity(), memberVideoActivity.class);
+                }
+                break;
+            case Fragment_Documents.FORMAT:
+                if (artifactId.equals(uid)) {
+                    intent.setClass(getActivity(), DocumentActivity.class);
+                } else {
+                    intent.setClass(getActivity(), memberDocumentActivity.class);
+                }
+        }
         intent.putExtras(extras);
         startActivity(intent);
+        //Toast.makeText(CategoryArtifactActivity.this, "on click works", Toast.LENGTH_SHORT).show();
 
-    }*/
+    }
+    protected void onDestory(){
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
+    }
+
 }

@@ -155,7 +155,7 @@ public class CategoryArtifactActivity extends AppCompatActivity implements homeI
         Bundle extras = new Bundle();
         extras.putString("ARTIFACT_URL", artifactUrl);
         extras.putString("DESCRIPTION", description);
-        //extras.putString("theKey", selectedKey);
+        extras.putString("theKey", selectedKey);
         Intent intent = new Intent();
 
         switch(format){

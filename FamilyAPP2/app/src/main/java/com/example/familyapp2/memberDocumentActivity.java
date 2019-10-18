@@ -67,6 +67,7 @@ public class memberDocumentActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
         documentUrl = extras.getString("ARTIFACT_URL");
+        thisKey = extras.getString("theKey");
 
         mDialog = new ProgressDialog(memberDocumentActivity.this);
         mDialog.setMessage("Document loading. Please wait...");

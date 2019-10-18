@@ -19,7 +19,7 @@ import android.view.Menu;
 
 import android.view.MenuItem;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity{
     //private TextView mTextMessage;
     private FragmentManager fragmentManager;
     public Menu mMenu;
@@ -113,6 +113,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         transaction.commit();
     }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
