@@ -170,7 +170,7 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                         }
                     }, 500);
 
-                    Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
 
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override

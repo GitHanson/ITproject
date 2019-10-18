@@ -20,6 +20,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/green_buttoneffect"
         android:text="Instrument"
+        android:textSize="18sp"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/cate_cloth"
         app:layout_constraintEnd_toStartOf="@+id/cate_book"
@@ -34,6 +35,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="8dp"
+        android:textSize="18sp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/greenblue"
@@ -56,6 +58,7 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/grey"
         android:text="Jewelry"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cate_other"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +77,7 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/light_purple"
         android:text="Other"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cate_jew"
@@ -92,6 +96,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/orange"
         android:text="Photograph"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/cate_anti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cate_cloth"
@@ -110,6 +115,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/red"
         android:text="House"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/cate_jew"
         app:layout_constraintEnd_toStartOf="@+id/cate_anti"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,6 +134,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/newcolor1"
         android:text="Antiques"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/cate_other"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cate_house"
@@ -146,6 +153,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/newcolor2"
         android:text="Clothing"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/cate_house"
         app:layout_constraintEnd_toStartOf="@+id/cate_photo"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +186,7 @@
             android:layout_weight="1"
             android:text="  Category"
             android:textColor="#ffffff"
-            android:textSize="24sp" />
+            android:textSize="26sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

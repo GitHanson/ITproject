@@ -197,7 +197,7 @@ public class Fragment_Videos extends Fragment_Uploads implements AdapterView.OnI
                         }
                     }, 500);
 
-                    Toast.makeText(getActivity(), "Artifacts successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_LONG).show();
 
                     // Adds the artifact to the database
                     fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
