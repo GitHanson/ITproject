@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_btn" />
 
-    <ImageView
+    <WebView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -30,7 +30,7 @@
         android:layout_marginRight="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goback"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/goback"></WebView>
 
     <TextView
         android:id="@+id/description"

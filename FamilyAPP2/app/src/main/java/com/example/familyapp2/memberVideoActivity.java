@@ -2,6 +2,7 @@ package com.example.familyapp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -20,9 +21,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class memberVideoActivity extends AppCompatActivity {
+
     private VideoView videoView;
     private TextView tvDescription;
-
+    private ImageButton delete;
+    private ImageButton edit;
     private ImageButton back;
 
 
@@ -30,6 +33,7 @@ public class memberVideoActivity extends AppCompatActivity {
     private Uri videoUri;
     private String videoUrl;
     private MediaController mediaController;
+    private ProgressDialog mDialog;
 
     private String description;
     private FirebaseStorage mStorage;
@@ -52,17 +56,32 @@ public class memberVideoActivity extends AppCompatActivity {
         description = extras.getString("DESCRIPTION");
         videoUrl = extras.getString("ARTIFACT_URL");
         videoUri = Uri.parse(extras.getString("ARTIFACT_URL"));
-        //thisKey = extras.getString("theKey");
+        thisKey = extras.getString("theKey");
+
+        mDialog = new ProgressDialog(memberVideoActivity.this);
+        mDialog.setMessage("Video buffering. Please wait...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
 
         videoView.setVideoURI(videoUri);
         videoView.requestFocus();
-        videoView.setMediaController(new MediaController(memberVideoActivity.this));
-        videoView.start();
 
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mDialog.dismiss();
+                mediaController = new MediaController(memberVideoActivity.this);
+                videoView.setMediaController(mediaController);
+                mediaController.setAnchorView(videoView);
+                videoView.start();
+
+            }
+        });
 
         //set the description for this artifact
         tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
+
 
         //back button to go back to previous page
         back = findViewById(R.id.goback);
@@ -79,5 +98,6 @@ public class memberVideoActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
     }
+
 
 }

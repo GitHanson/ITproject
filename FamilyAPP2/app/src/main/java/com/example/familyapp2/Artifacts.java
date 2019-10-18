@@ -123,6 +123,8 @@ public class Artifacts {
     private void setUser_format_privacy(String userId, String format, String privacy) {
         user_format_privacy = userId + "_" + format + "_" + privacy;
     }
+
+    // these two method are useing for delet artifact
     @Exclude
     public String getKey(){
         return mKey;

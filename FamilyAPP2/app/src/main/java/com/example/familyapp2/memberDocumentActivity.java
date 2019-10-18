@@ -2,11 +2,14 @@ package com.example.familyapp2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
@@ -20,10 +23,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 
 public class memberDocumentActivity extends AppCompatActivity {
     private ImageView pdfView;
-    private ImageView goback;
+    private ImageButton goback;
     private ImageButton edit;
     private ImageButton delete;
 
@@ -36,47 +42,50 @@ public class memberDocumentActivity extends AppCompatActivity {
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
 
+    private WebView webView;
+
+
+    private ProgressDialog mDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members_document);
+
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Artifacts");
 
 
-        pdfView = findViewById(R.id.pdfView);
+        webView = findViewById(R.id.pdfView);
+        tvDescription = findViewById(R.id.description);
+
+
+        String googleDocs = "https://docs.google.com/viewer?url=";
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
         documentUrl = extras.getString("ARTIFACT_URL");
-        thumbnailUrl = extras.getString("THUMB");
 
-        Picasso.get()
-                .load(thumbnailUrl)
-                .placeholder(R.mipmap.ic_launcher)
-                .fit()
-                .centerCrop()
-                .into(pdfView);
+        mDialog = new ProgressDialog(memberDocumentActivity.this);
+        mDialog.setMessage("Document loading. Please wait...");
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
 
-        pdfView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setType(Intent.ACTION_VIEW);
-                intent.setDataAndType(Uri.parse(documentUrl),"application/pdf");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                Intent newIntent = Intent.createChooser(intent, "Open File");
-                try {
-                    startActivity(newIntent);
-                } catch (ActivityNotFoundException e) {
-
+        webView.getSettings().setJavaScriptEnabled(true);
+        try {
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    mDialog.dismiss();
                 }
-            }
-        });
+            });
+            webView.loadUrl(googleDocs + URLEncoder.encode(documentUrl, "utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            Toast.makeText(memberDocumentActivity.this, "An error has occurred.", Toast.LENGTH_SHORT).show();
+        }
 
-        //set the artifact description
-        tvDescription = findViewById(R.id.description);
         tvDescription.setText(description);
 
         // go back button, can shift to previous page
@@ -87,6 +96,8 @@ public class memberDocumentActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
 
 
 

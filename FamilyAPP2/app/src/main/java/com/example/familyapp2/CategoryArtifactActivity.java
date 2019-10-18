@@ -113,6 +113,8 @@ public class CategoryArtifactActivity extends AppCompatActivity implements homeI
                             Artifacts artifacts = postSnapshot.getValue(Artifacts.class);
                             if(artifacts.getUserId()!= null && artifacts.getFamily_category_privacy()!=null&& artifacts.getFamily_category_privacy().equals(familyId+"_"+cateName+"_"+"1")){
                                 mArtifacts.add(artifacts);
+                                //set Key use for artifact deletion
+                                artifacts.setKey(postSnapshot.getKey());
                             }
                         }
                         mAdapter.notifyDataSetChanged();
@@ -181,6 +183,11 @@ public class CategoryArtifactActivity extends AppCompatActivity implements homeI
         intent.putExtras(extras);
         startActivity(intent);
         //Toast.makeText(CategoryArtifactActivity.this, "on click works", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void onDestory(){
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
     }
 
 }

@@ -106,6 +106,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
             }
         });
 
+        // use toggle button to set the privacy
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -119,7 +120,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
                 }
             }
         });
-
+        //use getImage button to choose file
         getImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +129,7 @@ public class Fragment_Documents extends Fragment_Uploads implements AdapterView.
             }
         });
 
+        // upload button to upload the artifact to database
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
