@@ -127,26 +127,30 @@ public class TreeFragment extends Fragment {
                             familyNameTextView.setText(familyName);
 
                             for (DataSnapshot child : dataSnapshot.child(familyId).child("members").getChildren()) {
-                                String key = child.getKey();
-                                memberList.add(key);
-                                numOfMembers = memberList.size();
+                                if (child != null) {
+                                    String key = child.getKey();
+                                    memberList.add(key);
+                                    numOfMembers = memberList.size();
+                                }
                             }
                             int i = 0;
-                            for (final String userId : memberList) {
-                                String icon = UserDataSnapshot.child(userId).child("profileUrl").getValue(String.class);
-                                Picasso.get().load(icon).into(treeIconList.get(i));
+                            if (memberList != null) {
+                                for (final String userId : memberList) {
+                                    String icon = UserDataSnapshot.child(userId).child("profileUrl").getValue(String.class);
+                                    Picasso.get().load(icon).into(treeIconList.get(i));
 
-                                treeIconList.get(i).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Bundle extras = new Bundle();
-                                        extras.putString("userId", userId);
-                                        Intent i = new Intent(getActivity(), MemberProfileActivity.class);
-                                        i.putExtras(extras);
-                                        startActivity(i);
-                                    }
-                                });
-                                i = i + 1;
+                                    treeIconList.get(i).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Bundle extras = new Bundle();
+                                            extras.putString("userId", userId);
+                                            Intent i = new Intent(getActivity(), MemberProfileActivity.class);
+                                            i.putExtras(extras);
+                                            startActivity(i);
+                                        }
+                                    });
+                                    i = i + 1;
+                                }
                             }
                         }
 

@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment implements homeImageAdapter.OnItemCli
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
