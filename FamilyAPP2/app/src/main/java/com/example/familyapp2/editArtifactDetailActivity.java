@@ -107,7 +107,7 @@ public class editArtifactDetailActivity extends AppCompatActivity implements Ada
         saveIt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateArtifact(editDescription.getText().toString().trim(), category, privacy);
                 onBackPressed();
             }
         });
@@ -136,6 +136,26 @@ public class editArtifactDetailActivity extends AppCompatActivity implements Ada
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void updateArtifact(final String description, final String category, final String privacy) {
+        final DatabaseReference artifactReference = databaseReference.child(mKey);
+        artifactReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Artifacts artifacts = dataSnapshot.getValue(Artifacts.class);
+                artifacts.setDescription(description);
+                artifacts.setCategory(category);
+                artifacts.setPrivacy(privacy);
+                artifactReference.setValue(artifacts);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 }
