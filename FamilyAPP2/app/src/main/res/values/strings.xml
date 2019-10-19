@@ -16,8 +16,7 @@
 
     <string name="next">Next</string>
     <string name="email">E-mail</string>
-
-    <string name="select_category">Select Category</string>
+    <string name="select_category">Select Category: </string>
     <string-array name="categories">
         <item>Other</item>
         <item>Instrument</item>
@@ -29,7 +28,7 @@
         <item>Jewelry</item>
     </string-array>
 
-    <string name="privacy_setting">Privacy Setting</string>
+    <string name="privacy_setting">Privacy Setting: </string>
     <string name="set_private">Private</string>
     <string name="set_public">Public</string>
 
