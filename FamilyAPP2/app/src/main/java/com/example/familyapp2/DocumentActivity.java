@@ -72,6 +72,7 @@ public class DocumentActivity extends AppCompatActivity {
         Bundle extras = intent.getExtras();
         description = extras.getString("DESCRIPTION");
         documentUrl = extras.getString("ARTIFACT_URL");
+        thisKey = extras.getString("theKey");
 
         mDialog = new ProgressDialog(DocumentActivity.this);
         mDialog.setMessage("Document loading. Please wait...");
@@ -108,6 +109,7 @@ public class DocumentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DocumentActivity.this, editArtifactDetailActivity.class);
+                i.putExtra("KEY", thisKey);
                 startActivity(i);
             }
         });

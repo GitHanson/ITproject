@@ -81,6 +81,7 @@ public class PhotoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(PhotoActivity.this, editArtifactDetailActivity.class);
+                i.putExtra("KEY", thisKey);
                 startActivity(i);
             }
         });
