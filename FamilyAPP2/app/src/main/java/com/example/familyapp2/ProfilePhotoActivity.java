@@ -80,8 +80,7 @@ public class ProfilePhotoActivity extends AppCompatActivity {
         iconConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ProfilePhotoActivity.this, SettingActivity.class);
-                startActivity(i);
+                onBackPressed();
             }
         });
     }
