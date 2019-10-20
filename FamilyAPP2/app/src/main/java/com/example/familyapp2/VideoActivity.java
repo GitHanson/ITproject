@@ -108,6 +108,7 @@ public class VideoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(VideoActivity.this, editArtifactDetailActivity.class);
+                i.putExtra("KEY", thisKey);
                 startActivity(i);
             }
         });

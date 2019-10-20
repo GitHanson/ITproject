@@ -109,6 +109,7 @@ public class DocumentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(DocumentActivity.this, editArtifactDetailActivity.class);
+                i.putExtra("KEY", thisKey);
                 startActivity(i);
             }
         });
