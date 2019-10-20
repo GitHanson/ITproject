@@ -125,7 +125,7 @@ public class TreeFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String familyName = dataSnapshot.child(familyId).child("familyName").getValue(String.class);
                             familyNameTextView.setText(familyName);
-
+                            memberList.clear();
                             for (DataSnapshot child : dataSnapshot.child(familyId).child("members").getChildren()) {
                                 if (child != null) {
                                     String key = child.getKey();
