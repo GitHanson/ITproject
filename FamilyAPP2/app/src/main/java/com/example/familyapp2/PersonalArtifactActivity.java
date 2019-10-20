@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 
 import android.widget.TextView;
@@ -21,11 +17,7 @@ import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.Fragment_Documents;
 import com.example.familyapp2.fragment.Fragment_Photos;
 import com.example.familyapp2.fragment.Fragment_Videos;
-import com.example.familyapp2.ImageAdapter;
-import com.example.familyapp2.newImageAdapter;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
