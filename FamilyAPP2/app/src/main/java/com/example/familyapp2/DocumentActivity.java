@@ -1,5 +1,6 @@
 package com.example.familyapp2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -17,8 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -46,6 +50,7 @@ public class DocumentActivity extends AppCompatActivity {
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference mArtifactRef;
 
     private WebView webView;
 
@@ -92,7 +97,22 @@ public class DocumentActivity extends AppCompatActivity {
             Toast.makeText(DocumentActivity.this, "An error has occurred.", Toast.LENGTH_SHORT).show();
         }
 
-        tvDescription.setText(description);
+        mArtifactRef = mDatabaseRef.child(thisKey);
+        mArtifactRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Artifacts artifacts = dataSnapshot.getValue(Artifacts.class);
+                if(artifacts != null) {
+                    tvDescription.setText(artifacts.getDescription());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //tvDescription.setText(description);
 
         // go back button, can shift to previous page
         goback = findViewById(R.id.goback);

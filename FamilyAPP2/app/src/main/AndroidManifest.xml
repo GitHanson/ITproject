@@ -19,7 +19,6 @@
         <activity android:name=".PhotoActivity" />
         <activity android:name=".VideoActivity" />
         <activity android:name=".CategoryArtifactActivity" />
-        <activity android:name=".ImagesActivity" />
         <activity
             android:name=".ShareActivity"
             android:label="@string/title_activity_share"

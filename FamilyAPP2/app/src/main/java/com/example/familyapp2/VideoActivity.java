@@ -1,5 +1,6 @@
 package com.example.familyapp2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -15,8 +16,11 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -38,6 +42,7 @@ public class VideoActivity extends AppCompatActivity {
     private String description;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference mArtifactRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,24 @@ public class VideoActivity extends AppCompatActivity {
 
         //set the description for this artifact
         tvDescription = findViewById(R.id.description);
-        tvDescription.setText(description);
+
+        mArtifactRef = mDatabaseRef.child(thisKey);
+        mArtifactRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Artifacts artifacts = dataSnapshot.getValue(Artifacts.class);
+                if(artifacts != null) {
+                    tvDescription.setText(artifacts.getDescription());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //tvDescription.setText(description);
 
         //delet button to delete this artifact(video)
         delete = findViewById(R.id.deleteButton);

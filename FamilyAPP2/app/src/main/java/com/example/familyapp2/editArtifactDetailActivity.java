@@ -145,10 +145,12 @@ public class editArtifactDetailActivity extends AppCompatActivity implements Ada
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Artifacts artifacts = dataSnapshot.getValue(Artifacts.class);
-                artifacts.setDescription(description);
-                artifacts.setCategory(category);
-                artifacts.setPrivacy(privacy);
-                artifactReference.setValue(artifacts);
+                if(artifacts != null) {
+                    artifacts.setDescription(description);
+                    artifacts.setCategory(category);
+                    artifacts.setPrivacy(privacy);
+                    artifactReference.setValue(artifacts);
+                }
             }
 
             @Override

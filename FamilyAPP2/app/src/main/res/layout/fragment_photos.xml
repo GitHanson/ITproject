@@ -48,23 +48,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textView3"
         app:srcCompat="@drawable/add_picture" />
-<!--
-    <Button
-        android:id="@+id/btn_upload_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/title_upload" /> -->
-
-    <TextView
-        android:id="@+id/tv_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Show Uploads"
-        android:textSize="16sp" />
 
     <ProgressBar
         android:id="@+id/progress"

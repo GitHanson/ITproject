@@ -7,11 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 
 import android.widget.TextView;
@@ -21,11 +17,7 @@ import com.example.familyapp2.fragment.MeFragment;
 import com.example.familyapp2.fragment.Fragment_Documents;
 import com.example.familyapp2.fragment.Fragment_Photos;
 import com.example.familyapp2.fragment.Fragment_Videos;
-import com.example.familyapp2.ImageAdapter;
-import com.example.familyapp2.newImageAdapter;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -118,62 +110,6 @@ public class PersonalArtifactActivity extends AppCompatActivity implements newIm
 
 
     }
-
-    //load data into recycler view onStart
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-
-        mRefUser = mFirebaseDatabase.getReference("Users");
-        /*mRefUser.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // get user id
-                userId = mAuth.getInstance().getCurrentUser().getUid();
-                user_format = userId +"_"+MeFragment.getTypeName().toLowerCase();
-
-                // get profile icon url and user name
-                profileUrl = dataSnapshot.child(userId).child("profileUrl").getValue(String.class);
-                userName = dataSnapshot.child(userId).child("name").getValue(String.class);
-
-                // set recycler view
-                FirebaseRecyclerOptions<Artifacts> options = new FirebaseRecyclerOptions.Builder<Artifacts>()
-                        // add a filter order by user_format_privacy
-                        // show both private and public
-                        .setQuery(mRefArtifact.orderByChild("user_format_privacy").startAt(user_format).endAt(user_format+"\uf8ff"), Artifacts.class)
-                        .build();
-
-
-                FirebaseRecyclerAdapter<Artifacts, ViewHolder> firebaseRecyclerAdapter =
-                        new FirebaseRecyclerAdapter<Artifacts, ViewHolder>(options) {
-                            @NonNull
-                            @Override
-                            // inflate items in the recycler view
-                            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                                View view = LayoutInflater.from(parent.getContext())
-                                        .inflate(R.layout.list_item_artifact, parent, false);
-                                return new ViewHolder(view);
-                            }
-                            @Override
-                            // set the images
-                            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Artifacts model) {
-                                holder.setDetails(getApplicationContext(), model.getThumbnailUrl(), model.getDescription());
-                                mArtifact.add(model);
-
-                            }
-                        };
-                //set adapter to recycler view
-                firebaseRecyclerAdapter.startListening();
-                mRecyclerView.setAdapter(firebaseRecyclerAdapter);
-
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        }*/
 
     @Override
     public void onItemClick(int position){

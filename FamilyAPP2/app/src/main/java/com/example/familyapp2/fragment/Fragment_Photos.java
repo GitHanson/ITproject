@@ -24,7 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.familyapp2.Artifacts;
-import com.example.familyapp2.ImagesActivity;
 import com.example.familyapp2.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -67,7 +66,6 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
         View view = inflater.inflate(R.layout.fragment_photos, container, false);
         setImageButton((ImageButton) view.findViewById(R.id.uploadButton));
         ImageButton btnUpload = view.findViewById(R.id.btn_upload_photo);
-        TextView showUploads = view.findViewById(R.id.tv_upload);
         description = view.findViewById(R.id.et_description);
         mProgressBar = view.findViewById(R.id.progress);
         spinner = view.findViewById(R.id.spinner_categories);
@@ -125,14 +123,6 @@ public class Fragment_Photos extends Fragment_Uploads implements AdapterView.OnI
                 else {
                     uploadFile();
                 }
-            }
-        });
-
-        showUploads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ImagesActivity.class);
-                startActivity(intent);
             }
         });
 
